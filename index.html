@@ -1,0 +1,2487 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eltern-Medien-Akademie — Young Digital Pioneers Club</title>
+  <meta name="description" content="Ein selektives Förderprogramm für ambitionierte 15–18-Jährige aus leistungsorientierten Familien – mit echten Projekten, persönlichen Mentoren und einer klaren Roadmap.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ══════════════════════════════════════════
+       RESET & CUSTOM PROPERTIES
+       ══════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink:       #111010;
+      --ink-mid:   #3a3a3a;
+      --ink-soft:  #6b6b6b;
+      --ink-faint: #999;
+      --border:    #e2e0db;
+      --surface:   #ffffff;
+      --bg:        #f7f7f5;
+      --bg-dark:   #141312;
+      --red:       #8b1a1a;
+      --red-mid:   #a52222;
+      --red-tint:  #f9eded;
+      --orange:    #e07b39;
+      --orange-light: #f0a060;
+      --fh: 'Poppins', sans-serif;
+      --fb: 'Bitter', serif;
+      --es: cubic-bezier(.34,1.56,.64,1);
+      --eo: cubic-bezier(.16,1,.3,1);
+      --card-shadow: 0 2px 16px rgba(0,0,0,.07);
+      --card-shadow-hover: 0 8px 32px rgba(0,0,0,.11);
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--fb);
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--ink-mid);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+
+    /* ══════════════════════════════════════════
+       TYPOGRAPHY
+       ══════════════════════════════════════════ */
+    .eyebrow {
+      display: block;
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .64rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.18;
+      letter-spacing: -.025em;
+      color: var(--ink);
+      margin-bottom: 18px;
+    }
+
+    .section-title em {
+      font-family: var(--fb);
+      font-style: italic;
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .section-sub {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      max-width: 640px;
+    }
+
+    /* ══════════════════════════════════════════
+       LAYOUT
+       ══════════════════════════════════════════ */
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    section {
+      padding: 120px 0 140px;
+    }
+
+    section.dark {
+      background: var(--bg-dark);
+      color: rgba(255,255,255,.85);
+    }
+
+    section.dark .section-title { color: #fff; }
+    section.dark .section-sub { color: rgba(255,255,255,.55); }
+    section.dark .eyebrow { color: var(--red-mid); }
+
+    section.cream { background: var(--bg); }
+    section.white { background: var(--surface); }
+
+    /* ══════════════════════════════════════════
+       ANIMATIONS
+       ══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .anim {
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .anim.visible {
+      animation: fadeUp .7s var(--eo) forwards;
+    }
+
+    .anim.d1.visible { animation-delay: .05s; }
+    .anim.d2.visible { animation-delay: .12s; }
+    .anim.d3.visible { animation-delay: .20s; }
+    .anim.d4.visible { animation-delay: .28s; }
+    .anim.d5.visible { animation-delay: .36s; }
+    .anim.d6.visible { animation-delay: .44s; }
+
+    /* ══════════════════════════════════════════
+       COMPONENTS
+       ══════════════════════════════════════════ */
+
+    /* --- Card --- */
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      box-shadow: var(--card-shadow);
+      transition: transform .26s var(--es), box-shadow .26s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .card-label {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: .92rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+
+    /* --- Alert Box --- */
+    .alert-box {
+      background: var(--surface);
+      border-left: 4px solid var(--orange);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .alert-box p {
+      font-family: var(--fb);
+      font-size: .95rem;
+      line-height: 1.7;
+      color: var(--ink-mid);
+    }
+
+    .alert-box strong {
+      font-family: var(--fh);
+      font-weight: 700;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* --- Buttons --- */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      color: #fff;
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .9rem;
+      letter-spacing: .04em;
+      padding: 16px 32px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, transform .2s var(--es), box-shadow .2s;
+    }
+    .btn-primary:hover {
+      background: var(--red-mid);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(139,26,26,.28);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .8rem;
+      letter-spacing: .06em;
+      color: rgba(255,255,255,.5);
+      border: 1px solid rgba(255,255,255,.15);
+      padding: 10px 22px;
+      border-radius: 6px;
+      transition: color .2s, border-color .2s;
+    }
+    .btn-secondary:hover {
+      color: rgba(255,255,255,.8);
+      border-color: rgba(255,255,255,.3);
+    }
+
+    /* --- Interlude / Pull-Quote --- */
+    .interlude {
+      background: var(--bg-dark);
+      padding: 100px 32px;
+      text-align: center;
+    }
+
+    .interlude__quote {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      color: rgba(255,255,255,.85);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 1 — HERO
+       ══════════════════════════════════════════ */
+    .hero {
+      background: var(--bg-dark);
+      padding: 0 0 120px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__topbar {
+      height: 3px;
+      background: var(--red);
+    }
+
+    .hero__nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 32px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .hero__logo {
+      font-family: var(--fh);
+      font-weight: 800;
+      font-size: 1rem;
+      color: #fff;
+      letter-spacing: -.01em;
+    }
+
+    .hero__logo span {
+      font-family: var(--fb);
+      font-style: italic;
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .hero__ghost {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: clamp(120px, 24vw, 320px);
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,.04);
+      letter-spacing: -.04em;
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 0;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 80px 32px 0;
+      text-align: center;
+    }
+
+    .hero__content .eyebrow {
+      color: var(--red-mid);
+      margin-bottom: 28px;
+    }
+
+    .hero__content h1 {
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+
+    .hero__sub {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: clamp(.95rem, 1.8vw, 1.15rem);
+      line-height: 1.7;
+      color: rgba(255,255,255,.55);
+      max-width: 620px;
+      margin: 0 auto 48px;
+    }
+
+    .hero__press {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 44px;
+      flex-wrap: wrap;
+    }
+
+    .hero__press-label {
+      font-family: var(--fh);
+      font-size: .6rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.25);
+    }
+
+    .hero__press-logo {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .75rem;
+      color: rgba(255,255,255,.2);
+      letter-spacing: .05em;
+    }
+
+    .hero__ctas {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 2 — PROBLEM / SCHMERZ
+       ══════════════════════════════════════════ */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .problem-grid .card {
+      text-align: left;
+    }
+
+    .problem__closing {
+      margin-top: 56px;
+      padding: 36px 40px;
+      background: var(--red-tint);
+      border-left: 3px solid var(--red);
+      border-radius: var(--radius);
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--ink-mid);
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 3 — WARUM BISHERIGE LÖSUNGEN SCHEITERN
+       ══════════════════════════════════════════ */
+    .solutions-fail .alert-box { margin-top: 40px; margin-bottom: 40px; }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 40px;
+    }
+
+    .compare-table th {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      padding: 20px 28px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table td {
+      font-family: var(--fb);
+      font-size: .92rem;
+      padding: 16px 28px;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-mid);
+    }
+
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td:first-child { font-weight: 700; color: var(--ink); }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .mini-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .mini-card .card-icon { font-size: 1.3rem; margin-bottom: 10px; }
+    .mini-card .card-label { font-size: .88rem; margin-bottom: 4px; }
+    .mini-card p { font-size: .84rem; }
+
+    .dark-card {
+      background: #111;
+      border-radius: var(--radius);
+      padding: 44px 40px;
+      color: rgba(255,255,255,.85);
+    }
+
+    .dark-card p { color: rgba(255,255,255,.6); line-height: 1.7; font-size: .95rem; }
+
+    .dark-card .section-title { color: #fff; font-size: 1.3rem; margin-bottom: 14px; }
+
+    .lever-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .lever-item {
+      background: rgba(255,255,255,.06);
+      border-radius: 14px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .lever-num {
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--orange);
+      margin-bottom: 6px;
+    }
+
+    .lever-item h4 {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .85rem;
+      color: #fff;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 4 — DIE LÖSUNG
+       ══════════════════════════════════════════ */
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 5 — FÜR WEN
+       ══════════════════════════════════════════ */
+    .for-whom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 48px;
+    }
+
+    .for-whom-grid h3 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .check-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .92rem;
+      line-height: 1.55;
+    }
+
+    .check-list li:last-child { border-bottom: none; }
+
+    .check-list .li-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 6 — TEAM
+       ══════════════════════════════════════════ */
+    .team-founder {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-top: 48px;
+      margin-bottom: 56px;
+    }
+
+    .team-avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--fh);
+      font-weight: 800;
+      font-size: 3rem;
+      color: var(--ink-soft);
+    }
+
+    .team-founder h3 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .team-founder .role {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .72rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .team-founder p {
+      font-size: .95rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+    }
+
+    .mentor-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .mentor-cell {
+      text-align: center;
+    }
+
+    .mentor-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--border);
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--ink-soft);
+    }
+
+    .mentor-cell h4 {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .88rem;
+      color: var(--ink);
+    }
+
+    .mentor-cell p {
+      font-size: .78rem;
+      color: var(--ink-soft);
+    }
+
+    .press-row {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    .press-chip {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .75rem;
+      color: var(--ink-faint);
+      background: var(--surface);
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      letter-spacing: .04em;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 7 — PROOF STACK
+       ══════════════════════════════════════════ */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .stat-cell {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 44px 32px 40px;
+      box-shadow: var(--card-shadow);
+      transition: transform .26s var(--es), box-shadow .26s ease;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .stat-cell:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 48px rgba(0,0,0,.10);
+    }
+
+    .stat-cell::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s var(--eo);
+    }
+
+    .stat-cell:hover::after { transform: scaleX(1); }
+
+    .stat-num {
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 6px;
+      letter-spacing: -.03em;
+    }
+
+    .stat-label {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .82rem;
+      color: var(--ink-mid);
+      margin-bottom: 4px;
+    }
+
+    .stat-sub {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: .76rem;
+      color: var(--ink-soft);
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 8 — CLUB-ARCHITEKTUR
+       ══════════════════════════════════════════ */
+    .arch-block {
+      margin-top: 56px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .arch-block:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .arch-block h3 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .arch-block h3 .num {
+      color: var(--red);
+      margin-right: 8px;
+    }
+
+    .arch-block p, .arch-block li {
+      font-size: .92rem;
+      line-height: 1.7;
+      color: var(--ink-mid);
+    }
+
+    .arch-block ul { margin-top: 12px; }
+    .arch-block ul li { padding: 6px 0; padding-left: 20px; position: relative; }
+    .arch-block ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .arch-quote {
+      background: var(--red-tint);
+      border-left: 3px solid var(--red);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-top: 16px;
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: .95rem;
+      color: var(--ink-mid);
+      line-height: 1.7;
+    }
+
+    .arch-examples {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px 28px;
+      margin-top: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,.04);
+    }
+
+    .arch-examples p {
+      font-size: .88rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .arch-examples p:last-child { border-bottom: none; }
+
+    .badge-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .badge-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      text-align: center;
+    }
+
+    .badge-card .card-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .badge-card .card-label { font-size: .82rem; }
+    .badge-card p { font-size: .78rem; }
+
+    /* ══════════════════════════════════════════
+       SECTION 9 — TRANSFORMATION
+       ══════════════════════════════════════════ */
+    .transform-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 48px;
+    }
+
+    .transform-col h3 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .transform-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .85rem;
+      line-height: 1.5;
+    }
+
+    .transform-row:last-child { border-bottom: none; }
+
+    .t-before { color: var(--ink-soft); }
+    .t-arrow {
+      font-family: var(--fh);
+      font-weight: 700;
+      color: var(--red);
+      font-size: .7rem;
+    }
+    .t-after { color: var(--ink); font-weight: 600; font-family: var(--fh); font-size: .82rem; }
+
+    /* ══════════════════════════════════════════
+       SECTION 10 — ELTERN-BENEFITS
+       ══════════════════════════════════════════ */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .benefit-card {
+      position: relative;
+      padding-top: 8px;
+    }
+
+    .benefit-num {
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: 3rem;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -.04em;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 11 — TESTIMONIALS
+       ══════════════════════════════════════════ */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .testimonial-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 36px 32px 32px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .testimonial-stars {
+      color: var(--red);
+      font-size: .85rem;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-card blockquote {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: .9rem;
+      line-height: 1.7;
+      color: var(--ink-mid);
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .78rem;
+      color: var(--ink);
+    }
+
+    .testimonial-role {
+      font-size: .72rem;
+      color: var(--ink-soft);
+    }
+
+    .story-block {
+      margin-top: 56px;
+    }
+
+    .story-block h3 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .story-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 20px;
+    }
+
+    .story-card p { font-size: .92rem; line-height: 1.7; color: var(--ink-mid); }
+
+    .mini-stories {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 12 — WARUM JETZT
+       ══════════════════════════════════════════ */
+    .urgency-list {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .urgency-card {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .urgency-card .u-num {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--red-tint);
+      border-radius: 14px;
+      font-family: var(--fh);
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--red);
+    }
+
+    .urgency-card h4 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .urgency-card p {
+      font-size: .88rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 13 — SELEKTION
+       ══════════════════════════════════════════ */
+    .select-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+      margin-bottom: 56px;
+    }
+
+    .select-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+    }
+
+    .select-card .card-icon { font-size: 1.4rem; margin-bottom: 12px; }
+    .select-card .card-label { color: var(--ink); }
+    .select-card p { font-size: .88rem; color: var(--ink-mid); }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .step-card {
+      background: rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .step-num {
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: 2rem;
+      color: var(--red-mid);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .step-card h4 {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .88rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .step-card p {
+      font-size: .78rem;
+      color: rgba(255,255,255,.5);
+    }
+
+    .chances-block {
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+
+    .chances-block h4 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: .95rem;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .chances-block li {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 0;
+      font-size: .85rem;
+      color: rgba(255,255,255,.6);
+    }
+
+    .chances-block li span { font-size: .8rem; }
+
+    /* ══════════════════════════════════════════
+       SECTION 14 — EINWÄNDE / AKKORDEONS
+       ══════════════════════════════════════════ */
+    .objections { margin-top: 48px; }
+
+    .accordion {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .accordion summary {
+      display: grid;
+      grid-template-columns: 56px 1fr 24px;
+      gap: 20px;
+      align-items: center;
+      padding: 28px 32px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .accordion summary::-webkit-details-marker { display: none; }
+
+    .accordion summary .acc-num {
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: 1.3rem;
+      color: var(--border);
+    }
+
+    .accordion summary h3 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .accordion summary .chevron {
+      transition: transform .3s var(--eo);
+      font-size: .8rem;
+      color: var(--ink-soft);
+    }
+
+    .accordion[open] summary .chevron { transform: rotate(180deg); }
+
+    .accordion-body {
+      padding: 0 32px 36px 108px;
+    }
+
+    .accordion-body .intro-quote {
+      background: var(--red-tint);
+      border-left: 3px solid var(--red);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: .9rem;
+      color: var(--ink-mid);
+      line-height: 1.65;
+    }
+
+    .accordion-body .close-quote {
+      margin-top: 24px;
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: .95rem;
+      color: var(--ink-mid);
+      line-height: 1.65;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 15 — PRICING
+       ══════════════════════════════════════════ */
+    .pricing-compare {
+      margin-top: 48px;
+      margin-bottom: 48px;
+    }
+
+    .pricing-tagline {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ink-soft);
+      text-align: center;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pricing-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 56px 48px;
+      box-shadow: 0 8px 36px rgba(0,0,0,.10);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--red);
+    }
+
+    .pricing-card h3 {
+      font-family: var(--fh);
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .pricing-card .price-tag {
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: var(--red);
+      margin-bottom: 24px;
+      letter-spacing: -.03em;
+    }
+
+    .pricing-features {
+      text-align: left;
+      margin-bottom: 32px;
+    }
+
+    .pricing-features h4 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 12px;
+      margin-top: 20px;
+    }
+
+    .pricing-features li {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 0;
+      font-family: var(--fb);
+      font-size: .88rem;
+      color: var(--ink-mid);
+    }
+
+    .pricing-features li span { font-size: .85rem; }
+
+    /* ══════════════════════════════════════════
+       SECTION 16 — GARANTIE
+       ══════════════════════════════════════════ */
+    .guarantee-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+      margin-bottom: 40px;
+    }
+
+    .guarantee-card {
+      border: 1px solid var(--border);
+    }
+
+    .guarantee-card .card-icon { font-size: 1.6rem; }
+
+    .takeaway-box {
+      background: var(--red-tint);
+      border-radius: var(--radius);
+      padding: 32px 36px;
+    }
+
+    .takeaway-box h4 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .takeaway-box li {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 6px 0;
+      font-size: .88rem;
+      color: var(--ink-mid);
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 17 — FINAL CTA
+       ══════════════════════════════════════════ */
+    .final-cta {
+      text-align: center;
+    }
+
+    .final-cta .scarcity {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .82rem;
+      color: var(--red-mid);
+      background: rgba(139,26,26,.1);
+      padding: 10px 22px;
+      border-radius: 8px;
+      margin-bottom: 32px;
+    }
+
+    .final-cta .social-proof {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: .88rem;
+      color: rgba(255,255,255,.45);
+      margin-top: 20px;
+      margin-bottom: 44px;
+    }
+
+    .final-cta .closing-quotes {
+      max-width: 600px;
+      margin: 0 auto;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .final-cta .closing-quotes p {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: .92rem;
+      color: rgba(255,255,255,.4);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════ */
+    .site-footer {
+      background: var(--bg-dark);
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 60px 0 40px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand .hero__logo { margin-bottom: 12px; }
+
+    .footer-brand p {
+      font-size: .82rem;
+      color: rgba(255,255,255,.35);
+      line-height: 1.65;
+      max-width: 320px;
+    }
+
+    .footer-links h5 {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .72rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.25);
+      margin-bottom: 16px;
+    }
+
+    .footer-links a {
+      display: block;
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .82rem;
+      color: rgba(255,255,255,.45);
+      padding: 5px 0;
+      transition: color .2s;
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,.7); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bottom p {
+      font-family: var(--fh);
+      font-size: .72rem;
+      color: rgba(255,255,255,.2);
+    }
+
+    .footer-bottom .ema-mark {
+      font-family: var(--fb);
+      font-style: italic;
+      color: var(--red);
+      font-weight: 700;
+      font-size: .85rem;
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════════ */
+    @media (max-width: 800px) {
+      section { padding: 80px 0 100px; }
+      .wrap { padding: 0 24px; }
+      .hero__content { padding: 60px 24px 0; }
+      .hero__nav { padding: 20px 24px; }
+
+      .problem-grid,
+      .solution-grid,
+      .for-whom-grid,
+      .transform-grid,
+      .benefits-grid,
+      .testimonial-grid,
+      .stats-grid,
+      .select-grid,
+      .guarantee-grid,
+      .mini-stories,
+      .process-steps,
+      .badge-grid { grid-template-columns: 1fr; }
+
+      .mini-grid { grid-template-columns: 1fr; }
+      .lever-row { grid-template-columns: 1fr; }
+      .mentor-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .team-founder { grid-template-columns: 1fr; text-align: center; }
+      .team-avatar { margin: 0 auto; }
+
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; }
+
+      .compare-table { font-size: .85rem; }
+      .compare-table th, .compare-table td { padding: 12px 16px; }
+
+      .accordion-body { padding-left: 32px; }
+      .pricing-card { padding: 40px 28px; }
+
+      .hero__press { gap: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero__content h1 { font-size: 1.8rem; }
+      .section-title { font-size: 1.5rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .mentor-grid { grid-template-columns: repeat(2, 1fr); }
+      .interlude { padding: 60px 24px; }
+
+      .urgency-card { grid-template-columns: 1fr; }
+      .urgency-card .u-num { width: 44px; height: 44px; font-size: .9rem; }
+
+      .transform-row { grid-template-columns: 1fr; gap: 4px; }
+      .t-arrow { display: none; }
+      .t-after::before { content: '-> '; color: var(--red); font-weight: 700; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 1 — HERO
+       ════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero__topbar"></div>
+
+    <nav class="hero__nav">
+      <div class="hero__logo">EMA <span>&#10022;</span></div>
+      <a href="https://cal.com/team/eltern-medien-akademie/erstgesprach-ema-website" class="btn-primary" style="padding: 12px 24px; font-size: .78rem;">Erstgespräch buchen</a>
+    </nav>
+
+    <div class="hero__ghost" aria-hidden="true">PIONEERS</div>
+
+    <div class="hero__content">
+      <span class="eyebrow anim d1">Selektives Förderprogramm &middot; Deutschsprachiger Raum</span>
+
+      <h1 class="anim d2">Ihr Teenager hat Potenzial. Wir sorgen dafür, dass es sich entfaltet.</h1>
+
+      <p class="hero__sub anim d3">Ein selektives Förderprogramm für ambitionierte 15–18-Jährige aus leistungsorientierten Familien – mit echten Projekten, persönlichen Mentoren und einer klaren Roadmap innerhalb der ersten 14 Tage.</p>
+
+      <div class="hero__press anim d4">
+        <span class="hero__press-label">Bekannt aus</span>
+        <span class="hero__press-logo">Berliner Morgenpost</span>
+        <span class="hero__press-logo">Die Welt</span>
+        <span class="hero__press-logo">RBB 88,8</span>
+        <span class="hero__press-logo">Tagesspiegel</span>
+      </div>
+
+      <div class="hero__ctas anim d5">
+        <a href="https://cal.com/team/eltern-medien-akademie/erstgesprach-ema-website" class="btn-primary">Jetzt Erstgespräch buchen &rarr;</a>
+        <a href="https://von-wien-bis-berlin.de" class="btn-secondary">Von Wien bis Berlin – Mitgliederclub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 2 — PROBLEM / SCHMERZ
+       ════════════════════════════════════════════ -->
+  <section class="cream" id="problem">
+    <div class="wrap">
+      <span class="eyebrow anim">Das Problem</span>
+      <h2 class="section-title anim d1">Du siehst es jeden Abend. Und es beschäftigt Dich mehr, <em>als Du zugibst.</em></h2>
+
+      <div class="problem-grid">
+        <div class="card anim d2">
+          <span class="card-icon">&#128566;</span>
+          <div class="card-label">Das stille Unbehagen</div>
+          <p>Dein Kind hat Interessen. Coding, KI, Kreativität — die Funken sind da. Aber es entsteht nichts daraus. Nur Konsum, der den nächsten Konsum produziert.</p>
+        </div>
+        <div class="card anim d3">
+          <span class="card-icon">&#128532;</span>
+          <div class="card-label">Die erschöpfte Hoffnung</div>
+          <p>Du hast es versucht. Gespräche, Vereinbarungen, Bildschirmzeit-Limits. Es funktioniert kurzfristig — und verpufft. Nicht weil du falsch liegst. Sondern weil das Problem tiefer sitzt als jede Regel erreichen kann.</p>
+        </div>
+        <div class="card anim d4">
+          <span class="card-icon">&#128560;</span>
+          <div class="card-label">Die eigentliche Angst</div>
+          <p>15, 16, 17 Jahre — das sind keine beliebigen Jahre. Das ist das Fenster, in dem Gewohnheiten, Identität und Ambition geformt werden. Und gerade formt sie ein Algorithmus. Nicht du. Nicht dein Kind. Ein Algorithmus.</p>
+        </div>
+      </div>
+
+      <div class="problem__closing anim d5">
+        „Was passiert mit dem Potenzial, das ich in diesem Kind sehe — wenn es weiter in diesem Autopilot bleibt?"
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 3 — WARUM BISHERIGE LÖSUNGEN SCHEITERN
+       ════════════════════════════════════════════ -->
+  <section class="white solutions-fail" id="solutions">
+    <div class="wrap">
+      <span class="eyebrow anim">Die Wahrheit</span>
+      <h2 class="section-title anim d1">Warum die meisten Bemühungen von Eltern <em>ins Leere gehen</em> —</h2>
+      <p class="section-sub anim d2">und was wirklich wirkt. Wir wissen es. Wir sind selbst Teenager.</p>
+
+      <div class="alert-box anim d3">
+        <strong>&#9889; Kontrolle erzeugt Widerstand. Immer.</strong>
+        <p>Das ist keine Erziehungsfrage. Das ist Neurologie. Das Teenagerhirn ist darauf ausgerichtet, Autonomie zu suchen — egal wie recht du hast.</p>
+      </div>
+
+      <table class="compare-table anim d3">
+        <thead>
+          <tr>
+            <th>Was du versucht hast</th>
+            <th>Warum es nicht reicht</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>&#9201; Bildschirmzeit-Limits</td>
+            <td>Kein Ersatz für eine echte Alternative</td>
+          </tr>
+          <tr>
+            <td>&#128172; Gespräche &amp; Abmachungen</td>
+            <td>Verpuffen ohne Umfeld, das dieselben Werte lebt</td>
+          </tr>
+          <tr>
+            <td>&#128241; Lern-Apps &amp; Kurse</td>
+            <td>Keine Menschen, keine Peers, keine Verbindlichkeit</td>
+          </tr>
+          <tr>
+            <td>&#128683; Handy wegnehmen</td>
+            <td>Erzeugt Eskalation — löst nichts</td>
+          </tr>
+          <tr>
+            <td>&#9203; Abwarten</td>
+            <td>Das Fenster schließt sich. Gewohnheiten verfestigen sich.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="section-title anim" style="font-size: 1.3rem; margin-top: 48px; margin-bottom: 24px;">Der Cousin-Effekt</h3>
+
+      <div class="mini-grid anim d2">
+        <div class="mini-card">
+          <span class="card-icon">&#129504;</span>
+          <div class="card-label">Das teenager-Gehirn braucht Distanz</div>
+          <p>Jugendliche nehmen von Gleichaltrigen mehr an als von Eltern — das ist entwicklungspsychologisch normal.</p>
+        </div>
+        <div class="mini-card">
+          <span class="card-icon">&#128101;</span>
+          <div class="card-label">Der Cousin-Effekt</div>
+          <p>Ein leicht älterer Mentor, der respektiert wird, erreicht mehr als jedes Elterngespräch.</p>
+        </div>
+        <div class="mini-card">
+          <span class="card-icon">&#9989;</span>
+          <div class="card-label">Nicht die Botschaft. Die Quelle.</div>
+          <p>Die gleiche Wahrheit, von der richtigen Person gesagt, verändert alles.</p>
+        </div>
+        <div class="mini-card">
+          <span class="card-icon">&#128161;</span>
+          <div class="card-label">Unsere Mentoren sind genau das</div>
+          <p>Jung genug, um glaubwürdig zu sein. Erfahren genug, um zu führen.</p>
+        </div>
+      </div>
+
+      <div class="dark-card anim d3">
+        <h3 class="section-title">Das eigentliche Problem sitzt tiefer.</h3>
+        <p>Es geht nicht um Bildschirmzeit. Es geht darum, womit die Zeit gefüllt wird — und welche Identität dabei entsteht.</p>
+        <div class="lever-row">
+          <div class="lever-item">
+            <div class="lever-num">&#9312;</div>
+            <h4>Umfeld</h4>
+          </div>
+          <div class="lever-item">
+            <div class="lever-num">&#9313;</div>
+            <h4>Identität</h4>
+          </div>
+          <div class="lever-item">
+            <div class="lever-num">&#9314;</div>
+            <h4>Struktur</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 4 — DIE LÖSUNG
+       ════════════════════════════════════════════ -->
+  <section class="cream" id="solution">
+    <div class="wrap">
+      <span class="eyebrow anim">Die Lösung</span>
+      <h2 class="section-title anim d1">Vom Konsumenten <em>zum Macher.</em></h2>
+      <p class="section-sub anim d2">Von Diskussionen zu sichtbarem Fortschritt.</p>
+
+      <div class="solution-grid">
+        <div class="card anim d2">
+          <span class="card-icon">&#128274;</span>
+          <div class="card-label">Robuste Zukunftsabsicherung</div>
+          <p>Wöchentliche Praxis-Workshops in KI, Coding &amp; Unternehmertum — keine Theorie, echte Projekte.</p>
+        </div>
+        <div class="card anim d3">
+          <span class="card-icon">&#128640;</span>
+          <div class="card-label">1-zu-1 Förderung &amp; persönliche Roadmap</div>
+          <p>Innerhalb der ersten 2 Wochen erhält jedes Mitglied eine individuelle Strategie für die nächsten 6 Monate.</p>
+        </div>
+        <div class="card anim d4">
+          <span class="card-icon">&#129309;</span>
+          <div class="card-label">Leistungsorientiertes Club-Umfeld</div>
+          <p>Gleichgesinnte Teenager, die sich gegenseitig nach oben ziehen — statt runter.</p>
+        </div>
+        <div class="card anim d5">
+          <span class="card-icon">&#10084;&#65039;</span>
+          <div class="card-label">Besseres Eltern-Kind-Verhältnis</div>
+          <p>Wir übernehmen die nervigen „Mama/Papa-Lektionen" — ihr könnt wieder Eltern sein, nicht Lehrer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 5 — FÜR WEN
+       ════════════════════════════════════════════ -->
+  <section class="white" id="fuer-wen">
+    <div class="wrap">
+      <span class="eyebrow anim">Für wen</span>
+      <h2 class="section-title anim d1">Du bist hier richtig, wenn Du <em>eine dieser Sorgen teilst:</em></h2>
+
+      <div class="for-whom-grid">
+        <div class="anim d2">
+          <h3>Du kennst mindestens eine dieser Sorgen:</h3>
+          <ul class="check-list">
+            <li>
+              <span class="li-icon">&#127891;</span>
+              <span>„Mein Teenager verpasst wichtige Zukunftsthemen wie KI und Coding"</span>
+            </li>
+            <li>
+              <span class="li-icon">&#128201;</span>
+              <span>Unsere Schule behandelt essentielle Zukunftsthemen nicht ausreichend</span>
+            </li>
+            <li>
+              <span class="li-icon">&#129488;</span>
+              <span>„Mein Teenager hat eigentlich schon Interessen — lässt sich aber zu stark ablenken"</span>
+            </li>
+            <li>
+              <span class="li-icon">&#128064;</span>
+              <span>„Ich sehe, wie andere Teenager leiden und will nicht abwarten"</span>
+            </li>
+            <li>
+              <span class="li-icon">&#128105;&#8205;&#128187;</span>
+              <span>„Ich habe zu wenig Know-How, um mein Kind online zu schützen"</span>
+            </li>
+            <li>
+              <span class="li-icon">&#128242;</span>
+              <span>„Mein Teenager macht zu wenig mit Freunden und zu wenig Sport"</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="anim d3">
+          <h3>Du bist hier richtig, wenn...</h3>
+          <ul class="check-list">
+            <li>
+              <span class="li-icon" style="color: var(--red);">&#10003;</span>
+              <span>Dein Kind zwischen 14 und 18 Jahren ist</span>
+            </li>
+            <li>
+              <span class="li-icon" style="color: var(--red);">&#10003;</span>
+              <span>Dein Kind bereits Interessen und Skills hat</span>
+            </li>
+            <li>
+              <span class="li-icon" style="color: var(--red);">&#10003;</span>
+              <span>Du weißt, wie disruptiv KI ist und entsprechend handeln willst</span>
+            </li>
+            <li>
+              <span class="li-icon" style="color: var(--red);">&#10003;</span>
+              <span>Du weißt, wie gefährlich digitale Medien sein können</span>
+            </li>
+            <li>
+              <span class="li-icon" style="color: var(--red);">&#10003;</span>
+              <span>Du weißt, dass Wohlstand für die Entwicklung kontraproduktiv sein kann</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 6 — TEAM & AUTORITÄT
+       ════════════════════════════════════════════ -->
+  <section class="cream" id="team">
+    <div class="wrap">
+      <span class="eyebrow anim">Das Team</span>
+      <h2 class="section-title anim d1">Das Team hinter <em>dem Club</em></h2>
+
+      <div class="team-founder anim d2">
+        <div class="team-avatar">G</div>
+        <div>
+          <h3>Gründer</h3>
+          <span class="role">Gründer &amp; Visionär</span>
+          <p>Selbst durch die digitale Falle gegangen — und raus. Kennt die Welt der Teenager aus eigener Erfahrung und baut das Programm, das er selbst gebraucht hätte.</p>
+        </div>
+      </div>
+
+      <span class="eyebrow anim">Mentoren</span>
+      <h3 class="section-title anim d1" style="font-size: 1.3rem; margin-bottom: 32px;">Unsere Mentoren — alle unter 25</h3>
+
+      <div class="mentor-grid anim d2">
+        <div class="mentor-cell">
+          <div class="mentor-circle">M1</div>
+          <h4>Mentor</h4>
+          <p>KI &amp; Coding</p>
+        </div>
+        <div class="mentor-cell">
+          <div class="mentor-circle">M2</div>
+          <h4>Mentor</h4>
+          <p>Content &amp; Design</p>
+        </div>
+        <div class="mentor-cell">
+          <div class="mentor-circle">M3</div>
+          <h4>Mentor</h4>
+          <p>Unternehmertum</p>
+        </div>
+        <div class="mentor-cell">
+          <div class="mentor-circle">M4</div>
+          <h4>Mentor</h4>
+          <p>Rhetorik &amp; Mindset</p>
+        </div>
+      </div>
+
+      <div class="card anim d3" style="margin-bottom: 40px;">
+        <span class="eyebrow">Fachreferent</span>
+        <div class="card-label" style="font-size: 1.05rem;">Christian Füller</div>
+        <p>Journalist und Buchautor. Berichtet für Süddeutsche, FAZ, Tagesspiegel, Zeit, Spiegel. Kommentiert bei RBB und Deutschlandradio.</p>
+      </div>
+
+      <div class="press-row anim d4">
+        <span class="press-chip">Berliner Morgenpost</span>
+        <span class="press-chip">Die Welt</span>
+        <span class="press-chip">RBB 88,8</span>
+        <span class="press-chip">Tagesspiegel</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pull-Quote Interlude -->
+  <div class="interlude">
+    <p class="interlude__quote anim">„Verlass dich nicht auf ein überfordertes System. Niemand wird kommen, um Euch zu retten."</p>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 7 — PROOF STACK
+       ════════════════════════════════════════════ -->
+  <section class="cream" id="proof">
+    <div class="wrap">
+      <span class="eyebrow anim">Zahlen &amp; Fakten</span>
+      <h2 class="section-title anim d1">Die Ergebnisse <em>sprechen für sich.</em></h2>
+
+      <div class="stats-grid">
+        <div class="stat-cell anim d1">
+          <div class="stat-num">300+</div>
+          <div class="stat-label">Mitglieder im Club</div>
+          <div class="stat-sub">Deutschsprachiger Raum</div>
+        </div>
+        <div class="stat-cell anim d2">
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Mentoren im Team</div>
+          <div class="stat-sub">Alle unter 25 Jahren</div>
+        </div>
+        <div class="stat-cell anim d3">
+          <div class="stat-num">35+</div>
+          <div class="stat-label">Dokumentierte Transformationen</div>
+          <div class="stat-sub">Passiv &rarr; Aktiv Gestalter</div>
+        </div>
+        <div class="stat-cell anim d4">
+          <div class="stat-num">2&times;</div>
+          <div class="stat-label">Workshops pro Woche</div>
+          <div class="stat-sub">Live &middot; Interaktiv &middot; Peer-geführt</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 8 — CLUB-ARCHITEKTUR
+       ════════════════════════════════════════════ -->
+  <section class="white" id="architektur">
+    <div class="wrap">
+      <span class="eyebrow anim">Das Programm</span>
+      <h2 class="section-title anim d1">Architektur: Wie ist der Club <em>aufgebaut?</em></h2>
+
+      <!-- 8a — Workshops -->
+      <div class="arch-block anim">
+        <h3><span class="num">01</span> Wöchentliche Workshops</h3>
+        <p>2x pro Woche, kleine Gruppen, hands-on, Challenges, Gäste (Gründer, Praktiker).</p>
+        <ul>
+          <li>Künstliche Intelligenz &amp; Automatisierung</li>
+          <li>Videobearbeitung &amp; Content Creation</li>
+          <li>Rhetorik &amp; Kommunikation</li>
+          <li>Bildschirmzeit &amp; digitale Gesundheit</li>
+          <li>Algorithmen verstehen &amp; nutzen</li>
+        </ul>
+      </div>
+
+      <!-- 8b — 1-zu-1 Roadmap -->
+      <div class="arch-block anim">
+        <h3><span class="num">02</span> 1-zu-1 Roadmap</h3>
+        <div class="arch-quote">
+          Auf Basis der Interessen, Wünsche und Träume — entwickeln wir eine maßgeschneiderte Strategie für die nächsten 6 Monate.
+        </div>
+        <ul>
+          <li>Elternformular ausfüllen</li>
+          <li>Erstgespräch mit Teenager</li>
+          <li>Individuelle Roadmap innerhalb von 14 Tagen</li>
+          <li>Klare, messbare Aufgaben &rarr; intrinsische Motivation</li>
+        </ul>
+      </div>
+
+      <!-- 8c — Tages-Challenges -->
+      <div class="arch-block anim">
+        <h3><span class="num">03</span> Club-Tages-Challenges (WhatsApp)</h3>
+        <div class="arch-examples">
+          <p>„Heute macht jeder einem Fremden ein Kompliment — abends erzählen wir uns, was passiert ist"</p>
+          <p>„48h ohne Social Media — danach tauschen wir uns aus"</p>
+        </div>
+      </div>
+
+      <!-- 8d — Netzwerk -->
+      <div class="arch-block anim">
+        <h3><span class="num">04</span> Netzwerk</h3>
+        <div class="arch-examples">
+          <p>Wenn dein Kind Musik macht &rarr; wir kennen Produzenten</p>
+          <p>Wenn dein Kind designt &rarr; wir bauen den Online-Shop</p>
+          <p>Wenn dein Kind zockt &rarr; wir zeigen, wie man daraus Content macht</p>
+        </div>
+      </div>
+
+      <!-- 8e — CCG -->
+      <div class="arch-block anim">
+        <h3><span class="num">05</span> Die CCG (Club Challenger Games)</h3>
+        <p>Das echte Leben ist jetzt ein Spiel. Gamification-System mit:</p>
+        <ul>
+          <li>Avatar pro Jugendlichem</li>
+          <li>XP, Level-Ups für echte Fähigkeiten (Coding, Kommunikation, Selbstbewusstsein)</li>
+          <li>Videokurse als Skill-Freischalter</li>
+          <li>Leaderboard, Monats-Challenges</li>
+        </ul>
+      </div>
+
+      <!-- 8f — Abzeichen -->
+      <div class="arch-block anim">
+        <h3><span class="num">06</span> Abzeichen-System (Pfadfinder-Logik)</h3>
+        <div class="badge-grid">
+          <div class="badge-card">
+            <span class="card-icon">&#127942;</span>
+            <div class="card-label">Ehrenabzeichen Gesellschaft</div>
+            <p>Projekt hat 1.000+ Menschen geholfen</p>
+          </div>
+          <div class="badge-card">
+            <span class="card-icon">&#127775;</span>
+            <div class="card-label">Abzeichen Selbstführung</div>
+            <p>365 Tage positive Gewohnheit</p>
+          </div>
+          <div class="badge-card">
+            <span class="card-icon">&#10084;&#65039;</span>
+            <div class="card-label">Abzeichen Herzensprojekt</div>
+            <p>6 Monate an einem Projekt gearbeitet</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8g — Sonstige Features -->
+      <div class="arch-block anim">
+        <h3><span class="num">07</span> Sonstige Features</h3>
+        <ul>
+          <li>Wöchentlicher Club-Newsletter</li>
+          <li>Videokurse (Coding, AI, Unternehmertum)</li>
+          <li>Gemeinsamer Umbau des Social-Media-Algorithmus</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 9 — TRANSFORMATION VORHER/NACHHER
+       ════════════════════════════════════════════ -->
+  <section class="cream" id="transformation">
+    <div class="wrap">
+      <span class="eyebrow anim">Transformation</span>
+      <h2 class="section-title anim d1">Vorher &amp; Nachher — <em>der Unterschied.</em></h2>
+
+      <div class="transform-grid">
+        <div class="transform-col anim d2">
+          <h3>Dein Kind</h3>
+          <div class="transform-row">
+            <span class="t-before">Technik ist Ablenkung</span>
+            <span class="t-arrow">&rarr;</span>
+            <span class="t-after">Technik ist Werkzeug</span>
+          </div>
+          <div class="transform-row">
+            <span class="t-before">Belohnungssystem zerstört</span>
+            <span class="t-arrow">&rarr;</span>
+            <span class="t-after">Echte Motivation für Langziele</span>
+          </div>
+          <div class="transform-row">
+            <span class="t-before">Volatile Stimmung / innere Leere</span>
+            <span class="t-arrow">&rarr;</span>
+            <span class="t-after">Mental &amp; körperlich fit</span>
+          </div>
+          <div class="transform-row">
+            <span class="t-before">Ungesunde Routinen</span>
+            <span class="t-arrow">&rarr;</span>
+            <span class="t-after">Gesunde Routinen (Schlaf, Dankbarkeit, Sport)</span>
+          </div>
+          <div class="transform-row">
+            <span class="t-before">Schule läuft nicht gut</span>
+            <span class="t-arrow">&rarr;</span>
+            <span class="t-after">Bessere Noten durch bessere Systeme</span>
+          </div>
+          <div class="transform-row">
+            <span class="t-before">Wenig Zukunftsskills</span>
+            <span class="t-arrow">&rarr;</span>
+            <span class="t-after">Wöchentliche Premium-Workshops</span>
+          </div>
+          <div class="transform-row">
+            <span class="t-before">Unklare Identität</span>
+            <span class="t-arrow">&rarr;</span>
+            <span class="t-after">Transformation zur „Traumversion"</span>
+          </div>
+          <div class="transform-row">
+            <span class="t-before">Viele Ideen – wenig Umsetzung</span>
+            <span class="t-arrow">&rarr;</span>
+            <span class="t-after">Klare Roadmap mit konkreten Zielen</span>
+          </div>
+          <div class="transform-row">
+            <span class="t-before">Themen sind Influencer &amp; Trends</span>
+            <span class="t-arrow">&rarr;</span>
+            <span class="t-after">Gesprächsthemen sind Ideen, Skills &amp; Zukunft</span>
+          </div>
+        </div>
+
+        <div class="transform-col anim d3">
+          <h3>Du als Elternteil</h3>
+          <div class="transform-row">
+            <span class="t-before">Sorge um Zeitverschwendung</span>
+            <span class="t-arrow">&rarr;</span>
+            <span class="t-after">Sichtbarer Fortschritt</span>
+          </div>
+          <div class="transform-row">
+            <span class="t-before">Dein Kind wird von Algorithmen erzogen</span>
+            <span class="t-arrow">&rarr;</span>
+            <span class="t-after">Du kontrollierst den Input</span>
+          </div>
+          <div class="transform-row">
+            <span class="t-before">Du schaust zu wie andere Teenager glänzen</span>
+            <span class="t-arrow">&rarr;</span>
+            <span class="t-after">Eltern um dich herum bewundern euch</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 10 — ELTERN-BENEFITS
+       ════════════════════════════════════════════ -->
+  <section class="white" id="eltern">
+    <div class="wrap">
+      <span class="eyebrow anim">Für Eltern</span>
+      <h2 class="section-title anim d1">So profitieren <em>Eltern</em> bei uns</h2>
+
+      <div class="benefits-grid">
+        <div class="card anim d1">
+          <div class="benefit-num">01</div>
+          <div class="card-label">Entlastung</div>
+          <p>Keine weitere To-Do. Wir bringen Lösungen.</p>
+        </div>
+        <div class="card anim d2">
+          <div class="benefit-num">02</div>
+          <div class="card-label">Besseres Verhältnis</div>
+          <p>Wir übernehmen die nervigen Mama/Papa-Lektionen.</p>
+        </div>
+        <div class="card anim d3">
+          <div class="benefit-num">03</div>
+          <div class="card-label">Wir machen Dich zur coolsten Mutter / zum coolsten Vater</div>
+          <p>Direkter Draht zur Welt deines Kindes.</p>
+        </div>
+        <div class="card anim d4">
+          <div class="benefit-num">04</div>
+          <div class="card-label">Überfordert mit Technik? Wir machen das.</div>
+          <p>KI, TikTok, Roblox — kein Problem.</p>
+        </div>
+        <div class="card anim d5">
+          <div class="benefit-num">05</div>
+          <div class="card-label">Vorausdenker statt Reagierer</div>
+          <p>Du handelst, bevor es brennt.</p>
+        </div>
+        <div class="card anim d6">
+          <div class="benefit-num">06</div>
+          <div class="card-label">Keine Vorwürfe in 10 Jahren</div>
+          <p>Dein Kind wird sich bedanken.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 11 — TESTIMONIALS
+       ════════════════════════════════════════════ -->
+  <section class="cream" id="testimonials">
+    <div class="wrap">
+      <span class="eyebrow anim">Erfahrungen</span>
+      <h2 class="section-title anim d1">Eltern <em>Geschichten</em></h2>
+
+      <div class="testimonial-grid">
+        <div class="testimonial-card anim d2">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>„Leon (17) war nie desinteressiert an Technologie — aber irgendwie versickerte das alles im Alltag. TikTok, YouTube, Discord. Keine klare Richtung. Was mir fehlte, war ein Rahmen, der sein Interesse in echte Projekte übersetzt — ohne dass ich täglich nachbohren musste. Heute hat er ein KI-Tool entwickelt, das er in seiner Schule vorstellt. Das Potenzial war immer da. Jetzt sehen wir es auch."</blockquote>
+          <div class="testimonial-author">Markus M., 46</div>
+          <div class="testimonial-role">Unternehmensberater, München</div>
+        </div>
+
+        <div class="testimonial-card anim d3">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>„Sophie (16) ist aufgeweckt, kreativ, hat schon immer gerne geschrieben und Videos geschaut — aber eben nur geschaut, nie selbst gemacht. Der Sprung vom Konsumieren zum Gestalten hat einfach gefehlt. Hier hat sie den ersten Schritt nicht alleine machen müssen. Heute betreibt sie einen eigenen Content-Kanal zum Thema Gesundheit für Teenager."</blockquote>
+          <div class="testimonial-author">Dr. Michael R., 49</div>
+          <div class="testimonial-role">Arzt, Hamburg</div>
+        </div>
+
+        <div class="testimonial-card anim d4">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>„Finn (15) war nie antriebslos — er hatte Ideen, hat viel gebastelt, sich für Coding interessiert. Aber es blieb immer beim Anfangen. Was hier den Unterschied gemacht hat: Er hatte plötzlich Gleichaltrige, die genauso denken und die weitermachen."</blockquote>
+          <div class="testimonial-author">Julia K., 44</div>
+          <div class="testimonial-role">Juristin, Berlin</div>
+        </div>
+      </div>
+
+      <!-- Anna's Geschichte -->
+      <div class="story-block anim">
+        <h3>Anna's Geschichte</h3>
+        <div class="story-card">
+          <p>Anna häkelt Monster. Der Club baute ihr gemeinsam einen Shopify-Store — Logo aus ihrem Handwerk, KI-generierte Produktbilder. Nach 11 Stunden Teamarbeit: ein fertiger Shop. Sie lernte dabei: Marketing, Design, KI, Copywriting, SEO, BWL und Steuerrecht.</p>
+        </div>
+      </div>
+
+      <!-- Max und Josia -->
+      <div class="mini-stories anim">
+        <div class="story-card">
+          <div class="card-label">Max, 16</div>
+          <p>Entdeckte n8n im Club &rarr; automatisierte Hausaufgaben &rarr; baut jetzt Softwarelösungen für Unternehmen.</p>
+        </div>
+        <div class="story-card">
+          <div class="card-label">Josia, 17</div>
+          <p>Von „nur Instagram" &rarr; eigener YouTube-Kanal, Schnitt &amp; Storytelling gelernt, deutlich weniger Konflikte zuhause.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 12 — WARUM JETZT
+       ════════════════════════════════════════════ -->
+  <section class="white" id="warum-jetzt">
+    <div class="wrap">
+      <span class="eyebrow anim">Dringlichkeit</span>
+      <h2 class="section-title anim d1">Warum jetzt der Zeitpunkt <em>zum Handeln ist</em></h2>
+
+      <div class="urgency-list">
+        <div class="card urgency-card anim d1">
+          <div class="u-num">1</div>
+          <div>
+            <h4>Neurobiologisches Zeitfenster</h4>
+            <p>Zwischen 14 und 18 reifen präfrontale Kontrollsysteme. Das dopaminerge System ist besonders reaktiv. Was täglich trainiert wird, wird strukturell effizienter. Algorithmen sind auf Profit trainiert, nicht auf mentale Stabilität.</p>
+          </div>
+        </div>
+
+        <div class="card urgency-card anim d2">
+          <div class="u-num">2</div>
+          <div>
+            <h4>KI verändert alles — jetzt</h4>
+            <p>Technologische Umbrüche dieser Größenordnung vernichten ganze Branchen und schaffen neue Machtzentren. Für Jugendliche: massive Gefahr UND Chance gleichzeitig. Noch ist Zeit, vor die Welle zu kommen.</p>
+          </div>
+        </div>
+
+        <div class="card urgency-card anim d3">
+          <div class="u-num">3</div>
+          <div>
+            <h4>Ihr Kind lernt nie wieder so schnell wie jetzt</h4>
+            <p>Das jugendliche Gehirn ist besonders formbar. Was heute aufgebaut wird — Fokus, Disziplin, Selbstvertrauen — prägt Jahrzehnte.</p>
+          </div>
+        </div>
+
+        <div class="card urgency-card anim d4">
+          <div class="u-num">4</div>
+          <div>
+            <h4>Ihr Kind ist nicht mental erkrankt — und das soll auch so bleiben</h4>
+            <p>Laut Jugend Deutschland 2025: Hälfte der Befragten fühlt sich durch Social Media stark belastet. Prävention ist 1000x besser als Korrektur.</p>
+          </div>
+        </div>
+
+        <div class="card urgency-card anim d5">
+          <div class="u-num">5</div>
+          <div>
+            <h4>Dein Kind wird Dir später unendlich dankbar</h4>
+            <p>Wir kennen viele Lebensgeschichten. Die, die früh Intervention hatten, sagen: „Danke, dass Du mir damals diesen Club gezeigt hast."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 13 — SELEKTION & BEWERBUNGSPROZESS
+       ════════════════════════════════════════════ -->
+  <section class="dark" id="selektion">
+    <div class="wrap">
+      <span class="eyebrow anim">Selektion</span>
+      <h2 class="section-title anim d1">Warum wir nicht <em>jeden nehmen</em></h2>
+
+      <div class="select-grid">
+        <div class="select-card anim d1">
+          <span class="card-icon">&#129504;</span>
+          <div class="card-label">Feste Mentoren-Kapazität</div>
+          <p>Qualität vor Quantität — jedes Mitglied bekommt echte Aufmerksamkeit.</p>
+        </div>
+        <div class="select-card anim d2">
+          <span class="card-icon">&#129309;</span>
+          <div class="card-label">Individuelles Mentoring</div>
+          <p>Kein Massenprodukt. Jede Roadmap ist handgemacht.</p>
+        </div>
+        <div class="select-card anim d3">
+          <span class="card-icon">&#128274;</span>
+          <div class="card-label">Umfeld-Qualität</div>
+          <p>Ein einziges falsches Mitglied kann die Dynamik verändern.</p>
+        </div>
+        <div class="select-card anim d4">
+          <span class="card-icon">&#128161;</span>
+          <div class="card-label">Maximal 5 neue Aufnahmen</div>
+          <p>Pro Monat nehmen wir höchstens 5 neue Mitglieder auf.</p>
+        </div>
+      </div>
+
+      <span class="eyebrow anim" style="color: var(--red-mid);">Bewerbungsprozess</span>
+      <div class="process-steps anim d1">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h4>Erstgespräch buchen</h4>
+          <p>30 Min., kostenfrei</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h4>Wir prüfen den Fit</h4>
+          <p>Passt die Dynamik?</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h4>Onboarding</h4>
+          <p>Innerhalb von 7 Tagen</p>
+        </div>
+      </div>
+
+      <div class="chances-block anim d2">
+        <h4>So erhöhst Du Deine Chancen:</h4>
+        <ul>
+          <li><span>&#128221;</span> Alle Infos vorab bereitstellen</li>
+          <li><span>&#9201;</span> Keine Termine verpassen</li>
+          <li><span>&#128161;</span> Pünktlich &amp; vorbereitet erscheinen</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 14 — EINWÄNDE / HÄUFIGE BEDENKEN
+       ════════════════════════════════════════════ -->
+  <section class="cream" id="einwaende">
+    <div class="wrap">
+      <span class="eyebrow anim">Häufige Bedenken</span>
+      <h2 class="section-title anim d1">Klingt gut, <em>aber...</em></h2>
+
+      <div class="objections">
+        <details class="accordion anim d2">
+          <summary>
+            <span class="acc-num">01</span>
+            <h3>„Mein Kind macht da doch sowieso nicht mit."</h3>
+            <span class="chevron">&#9660;</span>
+          </summary>
+          <div class="accordion-body">
+            <div class="intro-quote">
+              Teenager erkennen sofort, ob jemand auf Augenhöhe spricht — oder ob es eine weitere Mama-Lektion ist.
+            </div>
+            <div class="mini-grid">
+              <div class="mini-card">
+                <span class="card-icon">&#128242;</span>
+                <div class="card-label">Die Website spricht für sich</div>
+                <p>von-wien-bis-berlin.de — gemacht von Teenagern, für Teenager.</p>
+              </div>
+              <div class="mini-card">
+                <span class="card-icon">&#127919;</span>
+                <div class="card-label">Ein klares Angebot als Motivation</div>
+                <p>Anreiz: PC/MacBook — wir schaffen greifbare Ziele.</p>
+              </div>
+              <div class="mini-card">
+                <span class="card-icon">&#128101;</span>
+                <div class="card-label">Sanfter Einstieg, echte Verbindungen</div>
+                <p>Kein Druck, sondern echte Community ab Tag 1.</p>
+              </div>
+              <div class="mini-card">
+                <span class="card-icon">&#128640;</span>
+                <div class="card-label">Interessen als Türöffner</div>
+                <p>Wir starten dort, wo dein Kind bereits brennt.</p>
+              </div>
+            </div>
+            <p class="close-quote">„Deine einzige Aufgabe: Dein Kind in das erste Gespräch mit uns zu bringen."</p>
+          </div>
+        </details>
+
+        <details class="accordion anim d3">
+          <summary>
+            <span class="acc-num">02</span>
+            <h3>„Mein Kind hält das nicht durch."</h3>
+            <span class="chevron">&#9660;</span>
+          </summary>
+          <div class="accordion-body">
+            <div class="intro-quote">
+              Durchhalten ist keine Frage des Charakters — es ist eine Frage der Umgebung.
+            </div>
+            <div class="mini-grid">
+              <div class="mini-card">
+                <span class="card-icon">&#128101;</span>
+                <div class="card-label">Gemeinschaft als Anker</div>
+                <p>Niemand macht alleine weiter. Die Gruppe trägt.</p>
+              </div>
+              <div class="mini-card">
+                <span class="card-icon">&#127918;</span>
+                <div class="card-label">Gamifizierung</div>
+                <p>Tages-Challenges, Monats-Challenges, Leaderboard, Wettbewerb.</p>
+              </div>
+              <div class="mini-card">
+                <span class="card-icon">&#9881;&#65039;</span>
+                <div class="card-label">Echte Werte, kein Kurs</div>
+                <p>Wir bauen Gewohnheiten — keine Lerneinheiten.</p>
+              </div>
+              <div class="mini-card">
+                <span class="card-icon">&#128640;</span>
+                <div class="card-label">Peer-Dynamik als Motor</div>
+                <p>Wenn alle um dich herum wachsen, wächst du mit.</p>
+              </div>
+            </div>
+            <p class="close-quote">„Kein Kind fällt aus einem System heraus, das für seine Generation gebaut wurde."</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 15 — PRICING
+       ════════════════════════════════════════════ -->
+  <section class="white" id="pricing">
+    <div class="wrap">
+      <span class="eyebrow anim">Investment</span>
+      <h2 class="section-title anim d1">Dein <em>Investment.</em></h2>
+      <p class="section-sub anim d2">Was du heute investierst, formt, wer dein Kind morgen ist. Die Frage ist: Was kostet kein Investment?</p>
+
+      <div class="pricing-compare anim d3">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Angestellter</th>
+              <th>Club-Mitgliedschaft</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Verfügbarkeit</td>
+              <td>Begrenzte Arbeitszeit</td>
+              <td>Rundum-die-Uhr</td>
+            </tr>
+            <tr>
+              <td>Team</td>
+              <td>1-Mann-Armee</td>
+              <td>Ganzes Team</td>
+            </tr>
+            <tr>
+              <td>Netzwerk</td>
+              <td>Keine Gemeinschaftseffekte</td>
+              <td>Hunderte Mitglieder &amp; Fähigkeiten aus 20+ Branchen</td>
+            </tr>
+            <tr>
+              <td>Skills</td>
+              <td>Handvoll Fähigkeiten</td>
+              <td>Community-Wissen aus allen Bereichen</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="pricing-tagline anim d3">„Würdest Du einen Mitarbeiter anstellen, der Dein Kind zum digitalen Superstar macht? Wir machen es zum Preis eines Minijobbers."</p>
+
+      <div class="pricing-card anim d4">
+        <h3>Young Digital Pioneers Club</h3>
+        <div class="price-tag">Monatsbeitrag</div>
+
+        <div class="pricing-features">
+          <h4>Für Teenager</h4>
+          <ul>
+            <li><span>&#11088;</span> Zugang zum Jugendclub</li>
+            <li><span>&#128640;</span> 1-zu-1 Betreuung „Roadmap fürs Leben"</li>
+            <li><span>&#128197;</span> Alle Events &amp; Workshops</li>
+            <li><span>&#127942;</span> Gamifizierte Videokurse (CCG)</li>
+          </ul>
+
+          <h4>Für Eltern</h4>
+          <ul>
+            <li><span>&#127909;</span> Eltern-Videokurs (10 Episoden à 20 Min.)</li>
+            <li><span>&#129782;</span> Familien Jahres-Check-Up</li>
+            <li><span>&#10024;</span> Individuelle Handlungsempfehlung</li>
+            <li><span>&#128222;</span> 24/7 Notfall-Rufnummer</li>
+          </ul>
+        </div>
+
+        <a href="https://cal.com/team/eltern-medien-akademie/erstgesprach-ema-website" class="btn-primary" style="width: 100%; justify-content: center;">Jetzt Erstgespräch buchen &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 16 — GARANTIE / RISK REVERSAL
+       ════════════════════════════════════════════ -->
+  <section class="cream" id="garantie">
+    <div class="wrap">
+      <span class="eyebrow anim">Garantien</span>
+      <h2 class="section-title anim d1">Kein Risiko. <em>Versprochen.</em></h2>
+
+      <div class="guarantee-grid">
+        <div class="card guarantee-card anim d2">
+          <span class="card-icon">&#128179;</span>
+          <div class="card-label">14-Tage Geld-zurück-Garantie</div>
+          <p>Jederzeit kündbar innerhalb der ersten 14 Tage — ohne Wenn und Aber.</p>
+        </div>
+        <div class="card guarantee-card anim d3">
+          <span class="card-icon">&#128506;</span>
+          <div class="card-label">Roadmap-Garantie</div>
+          <p>Jedes Mitglied erhält seine individuelle Roadmap innerhalb von 14 Tagen. Garantiert.</p>
+        </div>
+        <div class="card guarantee-card anim d4">
+          <span class="card-icon">&#129309;</span>
+          <div class="card-label">Entwicklungs-Backup (Fairness-Regel)</div>
+          <p>Bei nachweislicher aktiver Teilnahme ohne erkennbare Entwicklung — kostenlose Verlängerung.</p>
+        </div>
+      </div>
+
+      <div class="takeaway-box anim d5">
+        <h4>Was du auf jeden Fall mitnimmst (selbst bei Kündigung):</h4>
+        <ul>
+          <li><span>&#10003;</span> Kind-Onboarding</li>
+          <li><span>&#10003;</span> Individuelle Roadmap</li>
+          <li><span>&#10003;</span> Eltern-Onboarding-Call mit Q&amp;A</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 17 — FINALER CTA
+       ════════════════════════════════════════════ -->
+  <section class="dark final-cta" id="cta">
+    <div class="wrap">
+      <span class="eyebrow anim" style="color: var(--red-mid);">Jetzt starten</span>
+      <h2 class="section-title anim d1" style="color: #fff;">Bring dein Kind mit uns <em>auf die richtige Spur</em></h2>
+      <p class="section-sub anim d2" style="color: rgba(255,255,255,.5); margin: 0 auto;">Mit einer Mitgliedschaft im Young Digital Pioneers Club.</p>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <div class="scarcity anim d3">&#9200; Noch 12 Plätze derzeit frei (Echtzeit)</div>
+      </div>
+
+      <p class="social-proof anim d3">Mehr als 100 Teenager haben bereits teilgenommen &amp; profitiert</p>
+
+      <div style="text-align: center;" class="anim d4">
+        <a href="https://cal.com/team/eltern-medien-akademie/erstgesprach-ema-website" class="btn-primary" style="font-size: 1rem; padding: 20px 44px;">Jetzt Mitgliedschaft sichern</a>
+      </div>
+
+      <div class="closing-quotes anim d5">
+        <p>„Sei klug: Verlass dich nicht auf ein überfordertes System. Niemand wird kommen, um Euch zu retten."</p>
+        <p>„Was dein Kind in den nächsten Jahren aufsaugt, prägt es für den Rest seines Lebens."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="hero__logo" style="margin-bottom: 12px;">EMA <span>&#10022;</span></div>
+          <p>Young Digital Pioneers Club — Ein selektives Förderprogramm für ambitionierte Teenager, die mehr aus ihrer digitalen Welt machen wollen.</p>
+        </div>
+
+        <div class="footer-links">
+          <h5>Legal</h5>
+          <a href="#">Datenschutz</a>
+          <a href="#">Impressum</a>
+        </div>
+
+        <div class="footer-links">
+          <h5>Kontakt</h5>
+          <a href="https://wa.me/4915202957670">WhatsApp: +49 152 0295 7670</a>
+          <a href="https://von-wien-bis-berlin.de">von-wien-bis-berlin.de</a>
+          <a href="https://eltern-medien-akademie.de">eltern-medien-akademie.de</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Eltern-Medien-Akademie. Alle Rechte vorbehalten.</p>
+        <span class="ema-mark">EMA &#10022;</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════════════════════
+       JAVASCRIPT — Scroll Animations
+       ════════════════════════════════════════════ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var animEls = document.querySelectorAll('.anim');
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      animEls.forEach(function (el) {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
