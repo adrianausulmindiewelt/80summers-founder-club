@@ -1900,6 +1900,10 @@
     .section-img--wide { max-width: 100%; }
     .section-img--sm { max-width: 380px; }
 
+    .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+    .img-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+    .img-grid-2 img, .img-grid-3 img { width: 100%; border-radius: var(--radius); box-shadow: var(--card-shadow); }
+
     /* Press logo images — farbig, keine Filter */
     .press-chip img { height: 32px; width: auto; display: inline-block; vertical-align: middle; }
 
@@ -2133,6 +2137,7 @@
       .testimonial-item blockquote { font-size: .88rem; line-height: 1.7; }
 
       /* --- Images --- */
+      .img-grid-2, .img-grid-3 { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
       .section-img { max-width: 300px !important; margin: 24px auto; }
       .member-collage { max-width: 280px !important; margin: 28px auto; }
       .hero__image { max-width: 320px; }
@@ -2581,7 +2586,7 @@
 
       <div class="fachreferent-grid anim d2" style="grid-template-columns: 1fr; max-width: 320px;">
         <div class="fachreferent-cell">
-          <img src="Website Bilder/Bildschirmfoto 2026-02-28 um 16_45_40.avif" alt="Christian Füller" class="fachreferent-photo">
+          <img src="neue bilder/Christian füller.avif" alt="Christian Füller" class="fachreferent-photo">
           <h4>Christian Füller</h4>
           <p>Journalist und Buchautor. Berichtet für Süddeutsche, FAZ, Tagesspiegel, Zeit, Spiegel. Kommentiert bei RBB und Deutschlandradio.</p>
         </div>
@@ -2600,7 +2605,10 @@
       <!-- 8a — Workshops -->
       <div class="arch-block anim">
         <h3><span class="num">01</span> Wöchentliche Workshops</h3>
-        <div class="img-placeholder img-placeholder--wide anim" data-label="Bild: Workshop-Session mit Teenagern"></div>
+        <div class="img-grid-2 anim">
+          <img src="neue bilder/workshop beispiel 1.avif" alt="Workshop Session" style="width:100%; border-radius: var(--radius); box-shadow: var(--card-shadow);">
+          <img src="neue bilder/workshop screen 2.avif" alt="Workshop Screen" style="width:100%; border-radius: var(--radius); box-shadow: var(--card-shadow);">
+        </div>
         <p>2x pro Woche, kleine Gruppen, hands-on, Challenges, Gäste (Gründer, Praktiker).</p>
         <ul>
           <li>Künstliche Intelligenz &amp; Automatisierung</li>
@@ -2614,7 +2622,10 @@
       <!-- 8b — 1-zu-1 Roadmap -->
       <div class="arch-block anim">
         <h3><span class="num">02</span> 1-zu-1 Roadmap</h3>
-        <div class="img-placeholder img-placeholder--wide anim" data-label="Bild: 1-zu-1 Mentoring Gespräch"></div>
+        <div class="img-grid-2 anim">
+          <img src="neue bilder/1 zu 1 foerderung und roadmap.avif" alt="1-zu-1 Förderung und Roadmap" style="width:100%; border-radius: var(--radius); box-shadow: var(--card-shadow);">
+          <img src="neue bilder/roadmao fuers leben.avif" alt="Roadmap fürs Leben" style="width:100%; border-radius: var(--radius); box-shadow: var(--card-shadow);">
+        </div>
         <div class="arch-quote">
           Auf Basis der Interessen, Wünsche und Träume — entwickeln wir eine maßgeschneiderte Strategie für die nächsten 6 Monate.
         </div>
@@ -2629,7 +2640,7 @@
       <!-- 8c — Tages-Challenges -->
       <div class="arch-block anim">
         <h3><span class="num">03</span> Club-Tages-Challenges (WhatsApp)</h3>
-        <div class="img-placeholder img-placeholder--wide anim" data-label="Bild: Tages-Challenge Ergebnisse"></div>
+        <img src="neue bilder/tageschallenges.avif" alt="Tages-Challenges" class="section-img anim" style="margin: 32px auto;">
         <div class="arch-examples">
           <p>„Heute macht jeder einem Fremden ein Kompliment — abends erzählen wir uns, was passiert ist"</p>
           <p>„48h ohne Social Media — danach tauschen wir uns aus"</p>
@@ -2639,7 +2650,7 @@
       <!-- 8d — Netzwerk -->
       <div class="arch-block anim">
         <h3><span class="num">04</span> Netzwerk</h3>
-        <div class="img-placeholder img-placeholder--wide anim" data-label="Bild: Club-Netzwerk in Aktion"></div>
+        <img src="neue bilder/netzwek ist alles.avif" alt="Netzwerk ist alles" class="section-img anim" style="margin: 32px auto;">
         <div class="arch-examples">
           <p>Wenn dein Kind Musik macht &rarr; wir kennen Produzenten</p>
           <p>Wenn dein Kind designt &rarr; wir bauen den Online-Shop</p>
@@ -2671,7 +2682,7 @@
       <!-- 8e — CCG -->
       <div class="arch-block anim">
         <h3><span class="num">05</span> Die CCG (Club Challenger Games)</h3>
-        <div class="img-placeholder img-placeholder--wide anim" data-label="Bild: Gamification Dashboard"></div>
+        <img src="neue bilder/ai bild.avif" alt="CCG KI-gestütztes System" class="section-img anim" style="margin: 32px auto;">
         <p>Das echte Leben ist jetzt ein Spiel. Gamification-System mit:</p>
         <ul>
           <li>Avatar pro Jugendlichem</li>
@@ -2684,7 +2695,11 @@
       <!-- 8f — Abzeichen -->
       <div class="arch-block anim">
         <h3><span class="num">06</span> Abzeichen-System (Pfadfinder-Logik)</h3>
-        <div class="img-placeholder img-placeholder--wide anim" data-label="Bild: Abzeichen-Übersicht"></div>
+        <div class="img-grid-3 anim">
+          <img src="neue bilder/pfadfinder 1 abzeichen.avif" alt="Abzeichen 1" style="width:100%; border-radius: var(--radius); box-shadow: var(--card-shadow);">
+          <img src="neue bilder/pfadfinder 2 abzeichen.avif" alt="Abzeichen 2" style="width:100%; border-radius: var(--radius); box-shadow: var(--card-shadow);">
+          <img src="neue bilder/pfadfinder 3 abzeichen.avif" alt="Abzeichen 3" style="width:100%; border-radius: var(--radius); box-shadow: var(--card-shadow);">
+        </div>
         <div class="badge-grid">
           <div class="badge-card">
             <span class="card-icon">&#127942;</span>
@@ -2707,7 +2722,6 @@
       <!-- 8g — Sonstige Features -->
       <div class="arch-block anim">
         <h3><span class="num">07</span> Sonstige Features</h3>
-        <div class="img-placeholder img-placeholder--wide anim" data-label="Bild: Newsletter & Videokurse"></div>
         <ul>
           <li>Wöchentlicher Club-Newsletter</li>
           <li>Videokurse (Coding, AI, Unternehmertum)</li>
@@ -2885,11 +2899,10 @@
       <span class="eyebrow anim">Dringlichkeit</span>
       <h2 class="section-title anim d1">Warum jetzt der Zeitpunkt <em>zum Handeln ist</em></h2>
 
-      <div class="img-placeholder anim d2" data-label="Bild: Teenager am Scheideweg — Zukunft gestalten"></div>
-
       <div class="urgency-list">
         <div class="card urgency-card anim d1">
           <div class="u-num">1</div>
+          <img src="neue bilder/neuronal zeitfenster schliesst sich.avif" alt="Neurobiologisches Zeitfenster" style="width: 100%; max-width: 400px; border-radius: 12px; margin: 16px 0; box-shadow: 0 2px 12px rgba(0,0,0,.06);">
           <div>
             <h4>Neurobiologisches Zeitfenster</h4>
             <p>Zwischen 14 und 18 reifen präfrontale Kontrollsysteme. Das dopaminerge System ist besonders reaktiv. Was täglich trainiert wird, wird strukturell effizienter. Algorithmen sind auf Profit trainiert, nicht auf mentale Stabilität.</p>
@@ -2898,6 +2911,7 @@
 
         <div class="card urgency-card anim d2">
           <div class="u-num">2</div>
+          <img src="neue bilder/ki adapt or die.avif" alt="KI verändert alles" style="width: 100%; max-width: 400px; border-radius: 12px; margin: 16px 0; box-shadow: 0 2px 12px rgba(0,0,0,.06);">
           <div>
             <h4>KI verändert alles — jetzt</h4>
             <p>Technologische Umbrüche dieser Größenordnung vernichten ganze Branchen und schaffen neue Machtzentren. Für Jugendliche: massive Gefahr UND Chance gleichzeitig. Noch ist Zeit, vor die Welle zu kommen.</p>
@@ -2906,6 +2920,7 @@
 
         <div class="card urgency-card anim d3">
           <div class="u-num">3</div>
+          <img src="neue bilder/schnell lernen bild.avif" alt="Ihr Kind lernt nie wieder so schnell" style="width: 100%; max-width: 400px; border-radius: 12px; margin: 16px 0; box-shadow: 0 2px 12px rgba(0,0,0,.06);">
           <div>
             <h4>Ihr Kind lernt nie wieder so schnell wie jetzt</h4>
             <p>Das jugendliche Gehirn ist besonders formbar. Was heute aufgebaut wird — Fokus, Disziplin, Selbstvertrauen — prägt Jahrzehnte.</p>
@@ -2914,6 +2929,7 @@
 
         <div class="card urgency-card anim d4">
           <div class="u-num">4</div>
+          <img src="neue bilder/dein kind ist noch nicht krank.avif" alt="Ihr Kind ist nicht mental erkrankt" style="width: 100%; max-width: 400px; border-radius: 12px; margin: 16px 0; box-shadow: 0 2px 12px rgba(0,0,0,.06);">
           <div>
             <h4>Ihr Kind ist nicht mental erkrankt — und das soll auch so bleiben</h4>
             <p>Laut Jugend Deutschland 2025: Hälfte der Befragten fühlt sich durch Social Media stark belastet. Prävention ist 1000x besser als Korrektur.</p>
@@ -2922,6 +2938,7 @@
 
         <div class="card urgency-card anim d5">
           <div class="u-num">5</div>
+          <img src="neue bilder/kind spaeter dankbar.avif" alt="Dein Kind wird Dir später dankbar" style="width: 100%; max-width: 400px; border-radius: 12px; margin: 16px 0; box-shadow: 0 2px 12px rgba(0,0,0,.06);">
           <div>
             <h4>Dein Kind wird Dir später unendlich dankbar</h4>
             <p>Wir kennen viele Lebensgeschichten. Die, die früh Intervention hatten, sagen: „Danke, dass Du mir damals diesen Club gezeigt hast."</p>
@@ -3201,7 +3218,6 @@
       <span class="eyebrow anim">Garantien</span>
       <h2 class="section-title anim d1">Kein Risiko. <em>Versprochen.</em></h2>
 
-      <div class="img-placeholder img-placeholder--wide anim d2" data-label="Bild: Unsere Garantien auf einen Blick"></div>
 
       <div class="guarantee-grid">
         <div class="card guarantee-card anim d2">
@@ -3240,7 +3256,6 @@
       <span class="eyebrow anim" style="color: var(--red-mid);">Jetzt starten</span>
       <h2 class="section-title anim d1" style="color: #fff;">Bring dein Kind mit uns <em>auf die richtige Spur</em></h2>
 
-      <div class="img-placeholder anim d2" data-label="Bild: Erfolgreiche Club-Mitglieder" style="border-color: rgba(255,255,255,.15); background: rgba(255,255,255,.05);"></div>
 
       <p class="section-sub anim d2" style="color: rgba(255,255,255,.5); margin: 0 auto;">Mit einer Mitgliedschaft im 80 Summers Founderclub.</p>
 
