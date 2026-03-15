@@ -1,13 +1,27 @@
-# EMA — Eltern-Medien-Akademie / Young Digital Pioneers Club
+# 80 Summers Founder Club — Landingpage
+
+Du arbeitest am Projekt **80 Summers Founder Club** (ehemals "Von Wien bis Berlin" / "Eltern Medien Akademie").
 
 Single-page Landingpage (deutsch). Pure HTML + CSS + Vanilla JS, keine Frameworks. Alles in einer Datei: `index.html`.
+
+## Bevor du anfaengst
+
+- Lies `context/brand.md` fuer CI, Farben, Fonts, Design-Regeln
+- Lies `context/tone.md` fuer Schreibstil und Tonalitaet
+- Lies `context/persona-traumkundin.md` fuer die Zielgruppe
+- Logo-Dateien liegen in `context/logos/`
 
 ## Verzeichnisstruktur
 
 ```
-index.html      ← Komplette Landingpage (HTML + eingebettetes CSS + JS)
-OUTLINE.md      ← Seitenstruktur & Sektions-Map mit Zeilennummern
-CLAUDE.md       ← Diese Datei
+index.html                      ← Komplette Landingpage (HTML + eingebettetes CSS + JS)
+OUTLINE.md                      ← Seitenstruktur & Sektions-Map mit Zeilennummern
+CLAUDE.md                       ← Diese Datei
+context/
+  brand.md                      ← Ausfuehrlicher Brand Guide
+  tone.md                       ← Ausfuehrliche Copy-Guidelines
+  persona-traumkundin.md        ← Zielgruppe Dr. Christina Neuber
+  logos/                        ← Schwan-Logo, Stern-Logo, Website-Referenz
 ```
 
 ## Tech-Stack
@@ -16,6 +30,15 @@ CLAUDE.md       ← Diese Datei
 - **Fonts:** Google Fonts — Poppins (400, 600, 700, 800, 900) + Bitter (400, 400i, 700, 700i)
 - **Animationen:** Vanilla IntersectionObserver (`.anim` → `.visible` Klasse)
 - **Deployment:** Statisches Hosting (HTML-Datei direkt ausliefern)
+
+## Kernregeln
+
+1. **Schriftarten:** Poppins Semi Bold (Ueberschriften) + Bitter Italic (Akzente, Zitate, Sublines)
+2. **Farben:** Weiss (#FFFFFF), Dunkelrot (#8B1A1A), Schwarz (#1A1A1A), Hellgrau (#F5F5F5)
+3. **Design:** Apple-Style, minimalistisch, Premium-Look, stylische Schlagschatten
+4. **Spacing:** Viel Weissraum. Jede Sektion braucht Platz zum Atmen.
+5. **Zielgruppe:** Wohlhabende, gebildete Eltern (180k+/Jahr). Kein Buzzword-Marketing. Wissenschaftlich fundiert, klar, serioes.
+6. **Tonalitaet:** Direkt, kompetent, warmherzig aber nicht soft. Keine Verkaufsmaschen. Keine leeren Versprechen.
 
 ## Vorschau / Testen
 
