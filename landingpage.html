@@ -1,0 +1,3865 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>80 Summers Founderclub — Selektives Förderprogramm für Teenager</title>
+  <meta name="description" content="Ein selektives Förderprogramm für ambitionierte 15–18-Jährige aus leistungsorientierten Familien – mit echten Projekten, persönlichen Mentoren und einer klaren Roadmap.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@200;400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ══════════════════════════════════════════
+       RESET & CUSTOM PROPERTIES
+       ══════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink:       #111010;
+      --ink-mid:   #3a3a3a;
+      --ink-soft:  #6b6b6b;
+      --ink-faint: #999;
+      --border:    #e2e0db;
+      --surface:   #ffffff;
+      --bg:        #fafafa;
+      --bg-dark:   #141312;
+      --red:       #6b0f18;
+      --red-mid:   #8a1a24;
+      --red-tint:  #f8ecee;
+      --orange:    #e07b39;
+      --orange-light: #f0a060;
+      --fh: 'Poppins', sans-serif;
+      --fb: 'Bitter', serif;
+      --es: cubic-bezier(.34,1.56,.64,1);
+      --eo: cubic-bezier(.16,1,.3,1);
+      --card-shadow: 0 2px 16px rgba(0,0,0,.07);
+      --card-shadow-hover: 0 8px 32px rgba(0,0,0,.11);
+      --radius: 16px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: var(--fb);
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--ink-mid);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+
+    /* ══════════════════════════════════════════
+       TYPOGRAPHY
+       ══════════════════════════════════════════ */
+    .eyebrow {
+      display: block;
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .64rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.18;
+      letter-spacing: -.025em;
+      color: var(--ink);
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .section-title em {
+      font-family: var(--fb);
+      font-style: italic;
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .section-sub {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      max-width: 640px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ══════════════════════════════════════════
+       LAYOUT
+       ══════════════════════════════════════════ */
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    section {
+      padding: 100px 0 120px;
+    }
+
+    section.dark {
+      background: var(--bg-dark);
+      color: rgba(255,255,255,.85);
+    }
+
+    section.dark .section-title { color: #fff; }
+    section.dark .section-sub { color: rgba(255,255,255,.55); }
+    section.dark .eyebrow { color: var(--red-mid); }
+
+    section.cream { background: var(--bg); }
+    section.white { background: var(--surface); }
+
+    /* ══════════════════════════════════════════
+       ANIMATIONS
+       ══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .anim {
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .anim.visible {
+      animation: fadeUp .7s var(--eo) forwards;
+    }
+
+    .anim.d1.visible { animation-delay: .05s; }
+    .anim.d2.visible { animation-delay: .12s; }
+    .anim.d3.visible { animation-delay: .20s; }
+    .anim.d4.visible { animation-delay: .28s; }
+    .anim.d5.visible { animation-delay: .36s; }
+    .anim.d6.visible { animation-delay: .44s; }
+
+    .vsl-wrapper.visible {
+      animation: fadeUp .7s var(--eo) forwards, vslBreathe 6s ease-in-out 1s infinite;
+    }
+
+    .vsl-wrapper.is-playing.visible {
+      animation: fadeUp .7s var(--eo) forwards;
+    }
+
+    /* ══════════════════════════════════════════
+       COMPONENTS
+       ══════════════════════════════════════════ */
+
+    /* --- Card --- */
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      box-shadow: var(--card-shadow);
+      transition: transform .26s var(--es), box-shadow .26s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .card-label {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: .92rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+
+    /* --- Alert Box --- */
+    .alert-box {
+      background: var(--surface);
+      border-left: 4px solid var(--orange);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .alert-box p {
+      font-family: var(--fb);
+      font-size: .95rem;
+      line-height: 1.7;
+      color: var(--ink-mid);
+    }
+
+    .alert-box strong {
+      font-family: var(--fh);
+      font-weight: 700;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* --- Buttons --- */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      color: #fff;
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .9rem;
+      letter-spacing: .04em;
+      padding: 16px 32px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, transform .2s var(--es), box-shadow .2s;
+    }
+    .btn-primary:hover {
+      background: var(--red-mid);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(139,26,26,.28);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .8rem;
+      letter-spacing: .06em;
+      color: rgba(255,255,255,.5);
+      border: 1px solid rgba(255,255,255,.15);
+      padding: 10px 22px;
+      border-radius: 6px;
+      transition: color .2s, border-color .2s;
+    }
+    .btn-secondary:hover {
+      color: rgba(255,255,255,.8);
+      border-color: rgba(255,255,255,.3);
+    }
+
+    /* --- Interlude / Pull-Quote --- */
+    .interlude {
+      background: var(--bg-dark);
+      padding: 100px 32px;
+      text-align: center;
+    }
+
+    .interlude__quote {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      color: rgba(255,255,255,.85);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 1 — HERO
+       ══════════════════════════════════════════ */
+    .hero {
+      background: var(--surface);
+      padding: 0 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__topbar {
+      background: #700c0c;
+      border-bottom: none;
+      padding: 0;
+      text-align: center;
+    }
+
+    .hero__topbar-inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--fh);
+      font-size: 1rem;
+      color: var(--ink);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .topbar-logo {
+      display: block;
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      margin: 0 auto;
+      padding-left: 12px;
+    }
+
+    .hero__nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 32px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .hero__logo {
+      font-family: var(--fh);
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--ink);
+      letter-spacing: -.01em;
+    }
+
+    .hero__logo span {
+      font-family: var(--fb);
+      font-style: italic;
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 60px 32px 0;
+      text-align: center;
+    }
+
+    .hero__content h1 {
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.15;
+      letter-spacing: -.03em;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .hero__content h1 em {
+      font-family: var(--fb);
+      font-style: italic;
+      font-weight: 700;
+      color: #6b0f18;
+    }
+
+    .hero__sub {
+      font-family: var(--fb);
+      font-size: clamp(.95rem, 1.8vw, 1.1rem);
+      line-height: 1.85;
+      color: var(--ink-soft);
+      max-width: 560px;
+      margin: 0 auto 48px;
+      letter-spacing: .01em;
+    }
+
+    .hero__image {
+      max-width: 440px;
+      margin: 0 auto 48px;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 40px rgba(0,0,0,.10);
+      transform: rotate(-3deg);
+    }
+
+    /* ── VSL Video Player ── */
+    .vsl-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 720px;
+      aspect-ratio: 16 / 9;
+      margin: 0 auto 48px;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow:
+        0 0 40px rgba(139,26,26,.30),
+        0 0 80px rgba(139,26,26,.15),
+        0 0 120px rgba(139,26,26,.06),
+        0 8px 40px rgba(0,0,0,.18);
+      transition: box-shadow .5s ease, transform .5s ease;
+      margin: 48px auto 40px;
+    }
+
+    .vsl-wrapper:hover {
+      box-shadow:
+        0 0 50px rgba(139,26,26,.40),
+        0 0 100px rgba(139,26,26,.20),
+        0 0 150px rgba(139,26,26,.10),
+        0 12px 48px rgba(0,0,0,.22);
+    }
+
+    @keyframes vslBreathe {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(139,26,26,.30), 0 0 80px rgba(139,26,26,.15), 0 0 120px rgba(139,26,26,.06), 0 8px 40px rgba(0,0,0,.18); }
+      50% { transform: scale(1.025); box-shadow: 0 0 55px rgba(139,26,26,.40), 0 0 100px rgba(139,26,26,.22), 0 0 150px rgba(139,26,26,.10), 0 12px 48px rgba(0,0,0,.22); }
+    }
+
+    .vsl-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 20px;
+    }
+
+    .vsl-poster {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      z-index: 1;
+      transition: opacity .4s ease;
+    }
+
+    .vsl-wrapper.is-playing .vsl-poster {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .vsl-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 2px solid rgba(255,255,255,.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .35s ease;
+      z-index: 2;
+      box-shadow:
+        0 0 24px rgba(255,255,255,.10),
+        inset 0 0 20px rgba(255,255,255,.05);
+    }
+
+    .vsl-play-btn::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 14px 0 14px 24px;
+      border-color: transparent transparent transparent #fff;
+      margin-left: 4px;
+      filter: drop-shadow(0 0 6px rgba(255,255,255,.4));
+    }
+
+    .vsl-play-btn::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.12);
+      animation: vslRing 4s ease-in-out infinite;
+    }
+
+    @keyframes vslRing {
+      0%, 100% { transform: scale(1); opacity: .6; }
+      50% { transform: scale(1.12); opacity: 0; }
+    }
+
+    .vsl-wrapper:hover .vsl-play-btn {
+      background: rgba(255,255,255,.20);
+      border-color: rgba(255,255,255,.4);
+      transform: translate(-50%, -50%) scale(1.08);
+      box-shadow:
+        0 0 36px rgba(255,255,255,.18),
+        inset 0 0 24px rgba(255,255,255,.08);
+    }
+
+    .vsl-wrapper.is-playing .vsl-play-btn {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ── VSL Custom Controls ── */
+    .vsl-controls {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 3;
+      opacity: 0;
+      transition: opacity .3s ease;
+      pointer-events: none;
+    }
+
+    .vsl-wrapper.is-playing .vsl-controls {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .vsl-wrapper.is-playing:hover .vsl-controls {
+      opacity: 1;
+    }
+
+    .vsl-ctrl-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0,0,0,.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #fff;
+      font-size: .85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s ease;
+    }
+
+    .vsl-ctrl-btn:hover {
+      background: rgba(0,0,0,.65);
+    }
+
+    .vsl-icon-play { display: none; font-size: .7rem; }
+    .vsl-wrapper.is-paused .vsl-icon-pause { display: none; }
+    .vsl-wrapper.is-paused .vsl-icon-play { display: inline; }
+
+    .vsl-volume {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 70px;
+      height: 4px;
+      background: rgba(0,0,0,.4);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .vsl-volume::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 4px rgba(0,0,0,.3);
+      cursor: pointer;
+    }
+
+    .vsl-volume::-webkit-slider-runnable-track {
+      background: rgba(0,0,0,.4);
+      border-radius: 2px;
+      height: 4px;
+    }
+
+    /* ── VSL CTA Button ── */
+    .vsl-cta {
+      display: inline-block;
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #fff;
+      background: rgba(255,255,255,.22);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 2px solid rgba(255,255,255,.5);
+      padding: 18px 44px;
+      text-shadow: 0 1px 4px rgba(0,0,0,.15);
+      border-radius: 60px;
+      text-decoration: none;
+      letter-spacing: .01em;
+      margin-top: 8px;
+      margin-bottom: 0;
+      animation: ctaBreathe 5s ease-in-out infinite;
+      box-shadow:
+        0 0 20px rgba(255,255,255,.08),
+        inset 0 0 20px rgba(255,255,255,.04);
+      transition: all .3s ease;
+    }
+
+    .vsl-cta:hover {
+      background: rgba(255,255,255,.18);
+      border-color: rgba(255,255,255,.35);
+      transform: scale(1.04);
+      box-shadow:
+        0 0 30px rgba(255,255,255,.14),
+        inset 0 0 24px rgba(255,255,255,.06);
+    }
+
+    @keyframes ctaBreathe {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(255,255,255,.08), inset 0 0 20px rgba(255,255,255,.04);
+      }
+      50% {
+        transform: scale(1.03);
+        box-shadow: 0 0 35px rgba(255,255,255,.14), inset 0 0 28px rgba(255,255,255,.06);
+      }
+    }
+
+    .vsl-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    /* ── Stats Connector ── */
+    .stats-connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 56px;
+    }
+
+    .stats-connector-line {
+      width: 1px;
+      height: 48px;
+      border-left: 2px dashed rgba(0,0,0,.12);
+      margin-bottom: 20px;
+    }
+
+    .hero__press {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 48px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .hero__press-label {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: .9rem;
+      color: var(--ink-soft);
+      width: 100%;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .hero__press-logo {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .hero__press-logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .hero__ctas {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-secondary-light {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .8rem;
+      letter-spacing: .06em;
+      color: var(--ink-soft);
+      border: 1px solid var(--border);
+      padding: 10px 22px;
+      border-radius: 6px;
+      transition: color .2s, border-color .2s;
+    }
+    .btn-secondary-light:hover {
+      color: var(--ink);
+      border-color: var(--ink-soft);
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 2 — PROBLEM / SCHMERZ
+       ══════════════════════════════════════════ */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .problem-grid .card {
+      text-align: left;
+    }
+
+    .problem__closing {
+      margin-top: 56px;
+      padding: 36px 40px;
+      background: var(--red-tint);
+      border-left: 3px solid var(--red);
+      border-radius: var(--radius);
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--ink-mid);
+    }
+
+    /* Problem Section — Intro Cards */
+    .problem-intro-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 44px 48px;
+      box-shadow: var(--card-shadow);
+      margin-top: 40px;
+    }
+
+    .problem-intro-card p {
+      font-family: var(--fb);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      margin-bottom: 16px;
+    }
+
+    .problem-intro-card p:last-child { margin-bottom: 0; }
+
+    .problem-intro-card strong {
+      font-family: var(--fh);
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .problem-intro-card .intro-emoji {
+      font-size: 1.4rem;
+      margin-right: 6px;
+    }
+
+    .problem-intro-card h3 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    /* Problem Section — Deep section */
+    .problem-deep-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 44px 48px;
+      box-shadow: var(--card-shadow);
+      margin-top: 32px;
+    }
+
+    .problem-deep-card p {
+      font-family: var(--fb);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      margin-bottom: 16px;
+    }
+
+    .problem-deep-card p:last-child { margin-bottom: 0; }
+
+    .problem-deep-card strong {
+      font-family: var(--fh);
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .problem-quote {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.65;
+      color: var(--ink);
+      padding: 28px 32px;
+      background: #fff;
+      border-left: 3px solid #333;
+      border-radius: var(--radius);
+      margin: 24px 0;
+    }
+
+    .problem-question {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      text-align: center;
+      padding: 16px 0;
+    }
+
+    @media (max-width: 800px) {
+      .problem-intro-card, .problem-deep-card { padding: 28px 24px; }
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 3 — WARUM BISHERIGE LÖSUNGEN SCHEITERN
+       ══════════════════════════════════════════ */
+    .solutions-fail .alert-box { margin-top: 40px; margin-bottom: 40px; }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 40px;
+    }
+
+    .compare-table th {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      padding: 20px 28px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table td {
+      font-family: var(--fb);
+      font-size: .92rem;
+      padding: 16px 28px;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-mid);
+    }
+
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td:first-child { font-weight: 700; color: var(--ink); }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .mini-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .mini-card .card-icon { font-size: 1.3rem; margin-bottom: 10px; }
+    .mini-card .card-label { font-size: .88rem; margin-bottom: 4px; }
+    .mini-card p { font-size: .84rem; }
+
+    .dark-card {
+      background: #111;
+      border-radius: var(--radius);
+      padding: 44px 40px;
+      color: rgba(255,255,255,.85);
+    }
+
+    .dark-card p { color: rgba(255,255,255,.6); line-height: 1.7; font-size: .95rem; }
+
+    .dark-card .section-title { color: #fff; font-size: clamp(1.4rem, 3vw, 1.9rem); margin-bottom: 14px; }
+
+    .lever-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .lever-item {
+      background: rgba(255,255,255,.06);
+      border-radius: 14px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .lever-num {
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--orange);
+      margin-bottom: 6px;
+    }
+
+    .lever-item h4 {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .85rem;
+      color: #fff;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 4 — DIE LÖSUNG
+       ══════════════════════════════════════════ */
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 5 — FÜR WEN
+       ══════════════════════════════════════════ */
+    .s5-intro {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 40px;
+    }
+    .s5-intro p { font-family: var(--fb); font-size: 1.05rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 14px; }
+    .s5-intro p:last-child { margin-bottom: 0; }
+    .s5-intro strong { font-family: var(--fh); font-weight: 600; color: var(--ink); }
+
+    .s5-block-label { font-family: var(--fh); font-weight: 700; font-size: 1.2rem; color: var(--ink); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+
+    .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 48px; }
+    .check-card {
+      background: var(--surface); border-radius: 14px; padding: 24px 24px 24px 20px;
+      box-shadow: var(--card-shadow); display: flex; gap: 14px; align-items: flex-start;
+      border-left: 3px solid #3db87a; transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .check-card:hover { transform: translateY(-2px); box-shadow: var(--card-shadow-hover); }
+    .check-card .check-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .check-card h3 { font-family: var(--fh); font-weight: 600; font-size: .95rem; color: var(--ink); margin-bottom: 6px; line-height: 1.35; }
+    .check-card p { font-family: var(--fb); font-size: .9rem; line-height: 1.6; color: var(--ink-soft); }
+
+    .s5-divider { display: flex; align-items: center; gap: 16px; margin: 56px 0 40px; }
+    .s5-divider__line { flex: 1; height: 1px; background: var(--border); }
+    .s5-divider__label { font-family: var(--fh); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-soft); white-space: nowrap; }
+
+    .sorgen-intro {
+      background: var(--surface); border-radius: var(--radius); padding: 32px 40px;
+      box-shadow: var(--card-shadow); margin-bottom: 20px;
+    }
+    .sorgen-intro h2 { font-family: var(--fh); font-weight: 700; font-size: 1.2rem; color: var(--ink); margin-bottom: 8px; }
+    .sorgen-intro p { font-family: var(--fb); font-size: 1rem; line-height: 1.75; color: var(--ink-soft); }
+
+    .sorgen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px; }
+    .sorge-card {
+      background: var(--surface); border-radius: 14px; padding: 22px 22px 22px 18px;
+      box-shadow: var(--card-shadow); display: flex; gap: 14px; align-items: flex-start;
+      position: relative; overflow: hidden; transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .sorge-card:hover { transform: translateY(-2px); box-shadow: var(--card-shadow-hover); }
+    .sorge-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(180deg, var(--orange), var(--orange-light)); }
+    .sorge-card .sorge-emoji { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .sorge-card .quote-text { font-family: var(--fb); font-style: italic; font-size: .95rem; line-height: 1.65; color: var(--ink-mid); }
+    .sorge-card .quote-text strong { font-family: var(--fh); font-style: normal; font-weight: 600; color: var(--ink); }
+
+    .notfor-card {
+      background: var(--bg); border-radius: var(--radius); padding: 32px 40px;
+      box-shadow: var(--card-shadow); margin-bottom: 40px; border: 1px solid var(--border);
+    }
+    .notfor-card h2 { font-family: var(--fh); font-weight: 700; font-size: 1.1rem; color: var(--ink-faint); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .notfor-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .notfor-list li {
+      font-family: var(--fb); font-size: .95rem; line-height: 1.6; color: var(--ink-faint);
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .notfor-list li::before { content: '\2715'; font-family: var(--fh); font-weight: 700; font-size: .85rem; color: #ccc; flex-shrink: 0; margin-top: 3px; }
+
+    .selective-card {
+      background: var(--bg-dark); border-radius: var(--radius); padding: 40px 44px;
+      box-shadow: 0 4px 28px rgba(0,0,0,.18); margin-bottom: 40px;
+    }
+    .selective-card h2 { font-family: var(--fh); font-weight: 700; font-size: 1.2rem; color: #fff; margin-bottom: 16px; }
+    .selective-card p { font-family: var(--fb); font-size: 1.02rem; line-height: 1.8; color: #bbb; margin-bottom: 14px; }
+    .selective-card p:last-child { margin-bottom: 0; }
+    .selective-card strong { color: #fff; font-family: var(--fh); font-weight: 600; }
+
+    .s5-cta-card {
+      background: var(--surface); border-radius: var(--radius); padding: 44px 48px;
+      box-shadow: var(--card-shadow); text-align: center;
+    }
+    .s5-cta-card p { font-family: var(--fb); font-style: italic; font-size: 1.15rem; line-height: 1.7; color: var(--ink-mid); margin-bottom: 8px; }
+    .s5-cta-card .cta-sub { font-family: var(--fh); font-style: normal; font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 0; }
+
+    @media (max-width: 800px) {
+      .check-grid, .sorgen-grid { grid-template-columns: 1fr; }
+      .s5-intro, .sorgen-intro, .notfor-card, .selective-card, .s5-cta-card { padding: 24px 20px; }
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 6 — TEAM
+       ══════════════════════════════════════════ */
+    .team-founder {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-top: 48px;
+      margin-bottom: 56px;
+    }
+
+    .team-avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--fh);
+      font-weight: 800;
+      font-size: 3rem;
+      color: var(--ink-soft);
+    }
+
+    .team-founder h3 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .team-founder .role {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .72rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .team-founder p {
+      font-size: .95rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+    }
+
+    .mentor-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .mentor-cell {
+      text-align: center;
+    }
+
+    .mentor-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--border);
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--ink-soft);
+    }
+
+    .mentor-cell h4 {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .88rem;
+      color: var(--ink);
+    }
+
+    .mentor-cell p {
+      font-size: .78rem;
+      color: var(--ink-soft);
+    }
+
+    .press-row {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    .press-chip {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .press-chip img {
+      height: 32px;
+      width: auto;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 7 — PROOF STACK
+       ══════════════════════════════════════════ */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .stat-cell {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 44px 32px 40px;
+      box-shadow: var(--card-shadow);
+      transition: transform .26s var(--es), box-shadow .26s ease;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .stat-cell:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 48px rgba(0,0,0,.10);
+    }
+
+    .stat-cell::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s var(--eo);
+    }
+
+    .stat-cell:hover::after { transform: scaleX(1); }
+
+    .stat-icon {
+      font-size: 1.75rem;
+      margin-bottom: 8px;
+    }
+
+    .stat-num {
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 6px;
+      letter-spacing: -.03em;
+    }
+
+    .stat-label {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .82rem;
+      color: var(--ink-mid);
+      margin-bottom: 4px;
+    }
+
+    .stat-sub {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: .76rem;
+      color: var(--ink-soft);
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 8 — CLUB-ARCHITEKTUR
+       ══════════════════════════════════════════ */
+    .arch-block {
+      margin-top: 64px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .arch-block:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .arch-block h3 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .arch-block h3 .num {
+      color: var(--red);
+      margin-right: 8px;
+    }
+
+    .arch-block p, .arch-block li {
+      font-size: .92rem;
+      line-height: 1.7;
+      color: var(--ink-mid);
+    }
+
+    .arch-block ul { margin-top: 12px; }
+    .arch-block ul li { padding: 6px 0; padding-left: 20px; position: relative; }
+    .arch-block ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .arch-quote {
+      background: var(--red-tint);
+      border-left: 3px solid var(--red);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-top: 16px;
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: .95rem;
+      color: var(--ink-mid);
+      line-height: 1.7;
+    }
+
+    .arch-examples {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px 28px;
+      margin-top: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,.04);
+    }
+
+    .arch-examples p {
+      font-size: .88rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .arch-examples p:last-child { border-bottom: none; }
+
+    .badge-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .badge-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      text-align: center;
+    }
+
+    .badge-card .card-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .badge-card .card-label { font-size: .82rem; }
+    .badge-card p { font-size: .78rem; }
+
+    /* ══════════════════════════════════════════
+       SECTION 9 — TRANSFORMATION (Vorher/Nachher Tabelle)
+       ══════════════════════════════════════════ */
+    .transform-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 40px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      overflow: hidden;
+    }
+
+    .transform-images img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+
+    .transform-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 48px;
+    }
+
+    .transform-table thead th {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: .95rem;
+      padding: 16px 24px;
+      text-align: center;
+      width: 50%;
+    }
+
+    .transform-table thead th:first-child {
+      color: #c0392b;
+      background: #fdeaea;
+      border-right: 1px solid var(--border);
+    }
+
+    .transform-table thead th:last-child {
+      color: #27ae60;
+      background: #e8f8ef;
+    }
+
+    .transform-table td {
+      padding: 18px 24px;
+      font-size: .88rem;
+      line-height: 1.6;
+      text-align: center;
+      vertical-align: middle;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .transform-table tr td:first-child {
+      background: #fef5f5;
+      border-right: 1px solid var(--border);
+    }
+
+    .transform-table tr td:last-child {
+      background: #f0faf4;
+    }
+
+    .transform-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Legacy classes kept for compatibility */
+    .transform-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 48px;
+    }
+
+    .transform-col h3 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .transform-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .85rem;
+      line-height: 1.5;
+    }
+
+    .transform-row:last-child { border-bottom: none; }
+
+    .t-before { color: var(--ink-soft); }
+    .t-arrow {
+      font-family: var(--fh);
+      font-weight: 700;
+      color: var(--red);
+      font-size: .7rem;
+    }
+    .t-after { color: var(--ink); font-weight: 600; font-family: var(--fh); font-size: .82rem; }
+
+    /* ══════════════════════════════════════════
+       SECTION 10 — ELTERN-BENEFITS
+       ══════════════════════════════════════════ */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .benefit-card {
+      position: relative;
+      padding-top: 8px;
+    }
+
+    .benefit-num {
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: 3rem;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -.04em;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 11 — TESTIMONIALS (Eltern Geschichten)
+       ══════════════════════════════════════════ */
+    .testimonial-list {
+      margin-top: 48px;
+    }
+
+    .testimonial-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 32px;
+      align-items: start;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .testimonial-item:first-child { padding-top: 0; }
+    .testimonial-item:last-child { border-bottom: none; }
+
+    .testimonial-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 20px rgba(0,0,0,.10);
+    }
+
+    .testimonial-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #e8e0d8, #d4c8bc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 2rem;
+      color: #8b7d6b;
+      flex-shrink: 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,.10);
+    }
+
+    .testimonial-item h4 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .testimonial-item blockquote {
+      font-family: var(--fb);
+      font-size: .92rem;
+      line-height: 1.75;
+      color: var(--ink-mid);
+    }
+
+    /* --- Teenager Stories (Max, Josia) --- */
+    .teen-story {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 32px;
+      align-items: start;
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .teen-story:last-child { border-bottom: none; }
+
+    .teen-story-photo {
+      width: 160px;
+      height: 200px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 20px rgba(0,0,0,.10);
+    }
+
+    .teen-story h4 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .teen-story .vorher,
+    .teen-story .intervention {
+      margin-bottom: 16px;
+      font-size: .92rem;
+      line-height: 1.7;
+      color: var(--ink-mid);
+    }
+
+    .teen-story .vorher strong,
+    .teen-story .intervention strong {
+      font-family: var(--fh);
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ══════════════════════════════════════════
+       ANNA'S STORY
+       ══════════════════════════════════════════ */
+    .anna-intro {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 32px;
+      align-items: start;
+      padding: 44px 40px;
+    }
+
+    .anna-intro-photo {
+      width: 180px;
+      height: 240px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 4px 24px rgba(0,0,0,.12);
+    }
+
+    .anna-intro-text h4 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--ink);
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .anna-intro-text p {
+      font-size: .92rem;
+      line-height: 1.75;
+      color: var(--ink-mid);
+      margin-bottom: 10px;
+    }
+
+    .anna-intro-text p:last-child { margin-bottom: 0; }
+
+    .anna-step {
+      text-align: left;
+      padding: 44px 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .anna-step-title {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 20px;
+      line-height: 1.5;
+      text-align: left;
+    }
+
+    .anna-step-title .green { color: #4CAF50; }
+
+    .anna-flohmarkt-img {
+      max-width: 500px;
+      margin: 0 auto 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.10);
+    }
+
+    .anna-results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .anna-result-card {
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      text-align: center;
+    }
+
+    .anna-result-card p {
+      font-size: .82rem;
+      line-height: 1.55;
+      color: var(--ink-mid);
+      margin-top: 10px;
+    }
+
+    .anna-result-card strong {
+      font-family: var(--fh);
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .anna-finale {
+      text-align: left;
+      padding: 44px 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .anna-finale-heading {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--ink-mid);
+      margin-bottom: 4px;
+    }
+
+    .anna-finale-subheading {
+      font-family: var(--fh);
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .anna-finale p {
+      font-size: .92rem;
+      line-height: 1.75;
+      color: var(--ink-mid);
+      max-width: 560px;
+      margin: 0 0 32px;
+      text-align: left;
+    }
+
+    .anna-store-imgs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .anna-store-imgs img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.10);
+    }
+
+    @media (max-width: 800px) {
+      .anna-intro { grid-template-columns: 1fr; text-align: center; padding: 32px 24px; }
+      .anna-intro-photo { width: 140px; height: 180px; margin: 0 auto 8px; }
+      .anna-step { padding: 32px 24px; }
+      .anna-results { grid-template-columns: 1fr; max-width: 280px; }
+      .anna-finale { padding: 32px 24px; }
+      .anna-store-imgs { grid-template-columns: 1fr; max-width: 260px; }
+    }
+
+    /* ══════════════════════════════════════════
+       WHATSAPP GRUPPEN (HTML-built)
+       ══════════════════════════════════════════ */
+    .wa-section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .wa-section-header svg {
+      margin-bottom: 12px;
+    }
+
+    .wa-collage {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .wa-collage img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .wa-collage-left { padding-top: 40px; }
+    .wa-collage-right { padding-top: 20px; }
+
+    .wa-collage-center {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    @media (max-width: 800px) {
+      .wa-collage { grid-template-columns: 1fr; margin: 0 auto; gap: 20px; }
+      .wa-collage-left, .wa-collage-right { padding-top: 0; }
+    }
+
+    .story-block {
+      margin-top: 56px;
+    }
+
+    .story-block h3 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .story-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 32px;
+    }
+
+    .story-card p { font-size: .92rem; line-height: 1.7; color: var(--ink-mid); }
+
+    .mini-stories {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 12 — WARUM JETZT
+       ══════════════════════════════════════════ */
+    .urgency-list {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .urgency-card {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .urgency-card .u-num {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--red-tint);
+      border-radius: 14px;
+      font-family: var(--fh);
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--red);
+    }
+
+    .urgency-card h4 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .urgency-card p {
+      font-size: .88rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 13 — SELEKTION
+       ══════════════════════════════════════════ */
+    .select-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+      margin-bottom: 56px;
+    }
+
+    .select-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+    }
+
+    .select-card .card-icon { font-size: 1.4rem; margin-bottom: 12px; }
+    .select-card .card-label { color: var(--ink); }
+    .select-card p { font-size: .88rem; color: var(--ink-mid); }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .step-card {
+      background: rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .step-num {
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: 2rem;
+      color: var(--red-mid);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .step-card h4 {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .88rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .step-card p {
+      font-size: .78rem;
+      color: rgba(255,255,255,.5);
+    }
+
+    .chances-block {
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+
+    .chances-block h4 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: .95rem;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .chances-block li {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 0;
+      font-size: .85rem;
+      color: rgba(255,255,255,.6);
+    }
+
+    .chances-block li span { font-size: .8rem; }
+
+    /* ══════════════════════════════════════════
+       SECTION 14 — EINWÄNDE / AKKORDEONS
+       ══════════════════════════════════════════ */
+    .objections { margin-top: 48px; }
+
+    .accordion {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .accordion summary {
+      display: grid;
+      grid-template-columns: 56px 1fr 24px;
+      gap: 20px;
+      align-items: center;
+      padding: 28px 32px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .accordion summary::-webkit-details-marker { display: none; }
+
+    .accordion summary .acc-num {
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: 1.3rem;
+      color: var(--border);
+    }
+
+    .accordion summary h3 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .accordion summary .chevron {
+      transition: transform .3s var(--eo);
+      font-size: .8rem;
+      color: var(--ink-soft);
+    }
+
+    .accordion[open] summary .chevron { transform: rotate(180deg); }
+
+    .accordion-body {
+      padding: 0 32px 36px 108px;
+    }
+
+    .accordion-body .intro-quote {
+      background: var(--red-tint);
+      border-left: 3px solid var(--red);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: .9rem;
+      color: var(--ink-mid);
+      line-height: 1.65;
+    }
+
+    .accordion-body .close-quote {
+      margin-top: 24px;
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: .95rem;
+      color: var(--ink-mid);
+      line-height: 1.65;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 15 — PRICING
+       ══════════════════════════════════════════ */
+    .pricing-compare {
+      margin-top: 48px;
+      margin-bottom: 48px;
+    }
+
+    .pricing-tagline {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ink-soft);
+      text-align: center;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pricing-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 56px 48px;
+      box-shadow: 0 8px 36px rgba(0,0,0,.10);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--red);
+    }
+
+    .pricing-card h3 {
+      font-family: var(--fh);
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .pricing-card .price-tag {
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: var(--red);
+      margin-bottom: 24px;
+      letter-spacing: -.03em;
+    }
+
+    .pricing-features {
+      text-align: left;
+      margin-bottom: 32px;
+    }
+
+    .pricing-features h4 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 12px;
+      margin-top: 20px;
+    }
+
+    .pricing-features li {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 0;
+      font-family: var(--fb);
+      font-size: .88rem;
+      color: var(--ink-mid);
+    }
+
+    .pricing-features li span { font-size: .85rem; }
+
+    /* ══════════════════════════════════════════
+       SECTION 16 — GARANTIE
+       ══════════════════════════════════════════ */
+    .guarantee-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+      margin-bottom: 40px;
+    }
+
+    .guarantee-card {
+      border: 1px solid var(--border);
+    }
+
+    .guarantee-card .card-icon { font-size: 1.6rem; }
+
+    .takeaway-box {
+      background: var(--red-tint);
+      border-radius: var(--radius);
+      padding: 32px 36px;
+    }
+
+    .takeaway-box h4 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .takeaway-box li {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 6px 0;
+      font-size: .88rem;
+      color: var(--ink-mid);
+    }
+
+    /* ══════════════════════════════════════════
+       ONBOARDING TIMELINE
+       ══════════════════════════════════════════ */
+    .onboarding-intro {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: .95rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      text-align: center;
+      max-width: 560px;
+      margin: -8px auto 48px;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+      padding-left: 36px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--red), var(--red-tint));
+      border-radius: 2px;
+    }
+
+    .timeline-step {
+      position: relative;
+      padding-bottom: 36px;
+    }
+
+    .timeline-step:last-child { padding-bottom: 0; }
+
+    .timeline-step::before {
+      content: '';
+      position: absolute;
+      left: -36px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 3px solid var(--red);
+      z-index: 1;
+    }
+
+    .timeline-step:first-child::before {
+      background: var(--red);
+      box-shadow: 0 0 0 4px var(--red-tint);
+    }
+
+    .timeline-time {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: .75rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .timeline-desc {
+      font-size: .88rem;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    @media (max-width: 800px) {
+      .timeline { padding-left: 32px; }
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 17 — FINAL CTA
+       ══════════════════════════════════════════ */
+    .final-cta {
+      text-align: center;
+    }
+
+    .final-cta .scarcity {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .82rem;
+      color: var(--red-mid);
+      background: rgba(139,26,26,.1);
+      padding: 10px 22px;
+      border-radius: 8px;
+      margin-bottom: 32px;
+    }
+
+    .final-cta .social-proof {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: .88rem;
+      color: rgba(255,255,255,.45);
+      margin-top: 20px;
+      margin-bottom: 44px;
+    }
+
+    .final-cta .closing-quotes {
+      max-width: 600px;
+      margin: 0 auto;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .final-cta .closing-quotes p {
+      font-family: var(--fb);
+      font-style: italic;
+      font-size: .92rem;
+      color: rgba(255,255,255,.4);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════ */
+    .site-footer {
+      background: var(--bg-dark);
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 60px 0 40px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand .hero__logo { margin-bottom: 12px; }
+
+    .footer-brand p {
+      font-size: .82rem;
+      color: rgba(255,255,255,.35);
+      line-height: 1.65;
+      max-width: 320px;
+    }
+
+    .footer-links h5 {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .72rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.25);
+      margin-bottom: 16px;
+    }
+
+    .footer-links a {
+      display: block;
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .82rem;
+      color: rgba(255,255,255,.45);
+      padding: 5px 0;
+      transition: color .2s;
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,.7); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bottom p {
+      font-family: var(--fh);
+      font-size: .72rem;
+      color: rgba(255,255,255,.2);
+    }
+
+    .footer-bottom .ema-mark {
+      font-family: var(--fb);
+      font-style: italic;
+      color: var(--red);
+      font-weight: 700;
+      font-size: .85rem;
+    }
+
+    /* ══════════════════════════════════════════
+       IMAGES & EXPANDED SECTIONS
+       ══════════════════════════════════════════ */
+
+    /* Team photos */
+    .team-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; border-radius: 50%; }
+    .mentor-photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 14px; box-shadow: 0 4px 20px rgba(0,0,0,.10); }
+    .mentor-cell .mentor-desc { font-size: .82rem; color: var(--ink-soft); line-height: 1.55; margin-top: 8px; }
+    .mentor-specialty { font-family: var(--fh); font-weight: 600; font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; display: block; }
+
+    /* Section images */
+    .section-img { display: block; max-width: 500px; margin: 32px auto; border-radius: var(--radius); box-shadow: 0 4px 24px rgba(0,0,0,.08); }
+    .section-img--wide { max-width: 100%; }
+    .section-img--sm { max-width: 380px; }
+
+    .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+    .img-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+    .img-grid-2 img, .img-grid-3 img { width: 100%; border-radius: var(--radius); box-shadow: var(--card-shadow); }
+
+    /* Press logo images — farbig, keine Filter */
+    .press-chip img { height: 32px; width: auto; display: inline-block; vertical-align: middle; }
+
+    /* WhatsApp screenshots */
+    .wa-screenshot { max-width: 380px; margin: 24px auto; border-radius: 20px; box-shadow: 0 4px 24px rgba(0,0,0,.10); display: block; }
+    .wa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+    .wa-grid img { width: 100%; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,.08); }
+
+    /* WhatsApp Big Screenshots (readable, full-width) */
+    .wa-big-screenshots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .wa-big-screenshots img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.10);
+      display: block;
+    }
+
+    /* (wa-showcase removed — replaced by wa-collage) */
+
+    /* Article screenshots */
+    .press-articles { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 32px 0; }
+    .press-articles img { width: 100%; border-radius: var(--radius); box-shadow: var(--card-shadow); object-fit: contain; }
+
+    /* Photo strip */
+    .photo-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 40px 0; }
+    .photo-strip img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: var(--radius); box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+
+    /* Member collage */
+    .member-collage { display: block; max-width: 600px; margin: 40px auto; }
+
+    /* Fachreferent grid */
+    .fachreferent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
+    .fachreferent-cell { text-align: center; background: var(--surface); border-radius: var(--radius); padding: 24px 16px; box-shadow: var(--card-shadow); }
+    .fachreferent-photo { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; margin: 0 auto 12px; box-shadow: 0 2px 12px rgba(0,0,0,.08); display: block; }
+    .fachreferent-cell h4 { font-family: var(--fh); font-weight: 600; font-size: .88rem; color: var(--ink); }
+    .fachreferent-cell p { font-size: .78rem; color: var(--ink-soft); margin-top: 6px; line-height: 1.5; }
+    .fachreferent-placeholder { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #e8e0d8, #d4c8bc); display: flex; align-items: center; justify-content: center; font-family: var(--fh); font-weight: 700; font-size: 1.4rem; color: #8b7d6b; margin: 0 auto 12px; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+
+    /* Image Placeholders — replace src with real images */
+    .img-placeholder {
+      display: block;
+      width: 100%;
+      max-width: 500px;
+      margin: 40px auto;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #f0eeeb 0%, #e8e4df 100%);
+      border-radius: var(--radius);
+      border: 2px dashed var(--border);
+      position: relative;
+    }
+
+    .img-placeholder::after {
+      content: attr(data-label);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .75rem;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .img-placeholder--wide { max-width: 100%; }
+    .img-placeholder--sm { max-width: 340px; aspect-ratio: 4/3; }
+
+    /* Mentor card style upgrade */
+    .mentor-cell--card { background: var(--surface); border-radius: var(--radius); padding: 28px 20px 24px; box-shadow: var(--card-shadow); }
+
+    /* Section subtitle (h3 sub-headings within sections) */
+    .section-subtitle {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.5rem;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .section-subtitle em {
+      font-family: var(--fb);
+      font-style: italic;
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    /* Visibility utilities */
+    .desktop-only { display: block; }
+    .mobile-only { display: none; }
+
+    @media (max-width: 800px) {
+      .desktop-only { display: none !important; }
+      .mobile-only { display: block !important; }
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════════ */
+    /* ══════════════════════════════════════════
+       HAMBURGER MENU
+       ══════════════════════════════════════════ */
+    .hamburger {
+      position: fixed;
+      top: 18px;
+      right: 20px;
+      z-index: 9999;
+      width: 44px;
+      height: 44px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+      transition: background .2s, box-shadow .2s;
+    }
+    .hamburger:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,.12);
+    }
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform .3s var(--eo), opacity .2s;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      background: rgba(20,19,18,.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s var(--eo);
+    }
+    .nav-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .nav-overlay nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-overlay nav a {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      letter-spacing: -.02em;
+      transition: color .2s;
+    }
+    .nav-overlay nav a:hover {
+      color: #fff;
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE — TABLET (max 800px)
+       ══════════════════════════════════════════ */
+    @media (max-width: 800px) {
+      /* --- Global spacing --- */
+      section { padding: 72px 0 88px; }
+      .wrap { padding: 0 20px; }
+      .hero__content { padding: 48px 28px 0; }
+      .hero__sub { font-size: 1rem; line-height: 1.8; max-width: 520px; margin-left: auto; margin-right: auto; }
+      .vsl-wrapper { margin-bottom: 32px; }
+      .vsl-cta { margin-bottom: 28px; }
+      .hero__press { margin-top: 8px; margin-bottom: 20px; }
+
+      /* --- Typography scale --- */
+      .section-title { font-size: clamp(1.6rem, 5vw, 2.4rem); margin-bottom: 20px; }
+      .section-sub { font-size: .95rem; margin-bottom: 32px; }
+      .eyebrow { font-size: .6rem; margin-bottom: 16px; }
+
+      /* --- All grids to single column --- */
+      .problem-grid, .solution-grid, .for-whom-grid,
+      .transform-grid, .benefits-grid, .testimonial-grid,
+      .stats-grid, .select-grid, .guarantee-grid,
+      .mini-stories, .process-steps, .badge-grid,
+      .mini-grid, .check-grid, .sorgen-grid { grid-template-columns: 1fr; }
+
+      .lever-row { grid-template-columns: 1fr; }
+      .mentor-grid { grid-template-columns: 1fr !important; max-width: 380px; margin-left: auto; margin-right: auto; }
+
+      /* --- Cards: unified padding & font --- */
+      .card { padding: 28px 24px; margin-bottom: 20px; }
+      .card p, .card-label { font-size: .9rem; }
+      .card-icon { font-size: 1.4rem; margin-bottom: 10px; }
+
+      .problem-intro-card, .problem-deep-card { padding: 28px 24px; }
+      .problem-intro-card p, .problem-deep-card p { font-size: .95rem; }
+      .problem-intro-card h3, .problem-deep-card h3 { font-size: 1.05rem; }
+      .problem-quote { padding: 22px 24px; font-size: 1rem; }
+
+      /* --- Team --- */
+      .team-founder { grid-template-columns: 1fr; text-align: center; }
+      .team-avatar { margin: 0 auto; width: 160px; height: 160px; }
+      .insider-grid { grid-template-columns: 1fr !important; }
+      .insider-grid .card { text-align: center; padding: 32px 28px; }
+      .insider-grid .card-icon { display: block; text-align: center; font-size: 2rem; margin-bottom: 14px; }
+      .insider-grid .card p { font-size: .95rem; line-height: 1.8; }
+      .founder-card-grid { grid-template-columns: 1fr !important; }
+
+      /* --- Testimonials --- */
+      .testimonial-item { grid-template-columns: 80px 1fr; gap: 16px; padding: 28px 0; }
+      .testimonial-photo { width: 80px; height: 80px; border-radius: 10px; }
+      .testimonial-avatar { width: 80px; height: 80px; border-radius: 10px; font-size: 1.4rem; }
+      .testimonial-item h4 { font-size: .9rem; margin-bottom: 8px; }
+      .testimonial-item blockquote { font-size: .88rem; line-height: 1.7; }
+
+      /* --- Images --- */
+      .img-grid-2, .img-grid-3 { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+      .section-img { max-width: 300px !important; margin: 24px auto; }
+      .member-collage { max-width: 280px !important; margin: 28px auto; }
+      .hero__image { max-width: 320px; }
+      .vsl-wrapper { max-width: 100%; border-radius: 14px; }
+      .vsl-wrapper video { border-radius: 14px; }
+      .vsl-play-btn { width: 64px; height: 64px; }
+      .vsl-play-btn::after { border-width: 11px 0 11px 19px; }
+      .value-prop-image { max-width: 320px; }
+      .press-articles { grid-template-columns: 1fr; }
+
+      /* --- WhatsApp --- */
+      .wa-collage { gap: 20px; }
+      .wa-collage img { border-radius: 10px; }
+
+      /* --- Tables --- */
+      .compare-table { font-size: .82rem; }
+      .compare-table th, .compare-table td { padding: 10px 12px; }
+      .transform-images { border-radius: 12px 12px 0 0; }
+      .transform-table td { padding: 10px 14px; font-size: .78rem; }
+
+      /* --- Pricing & Footer --- */
+      .pricing-card { padding: 36px 24px; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; }
+
+      /* --- Misc grids --- */
+      .photo-strip { grid-template-columns: 1fr; max-width: 300px; margin: 24px auto; }
+      .wa-grid { grid-template-columns: 1fr; max-width: 360px; margin: 16px auto; }
+      .wa-big-screenshots { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+      .fachreferent-grid { grid-template-columns: 1fr; max-width: 300px; margin-left: auto; margin-right: auto; }
+      .accordion-body { padding-left: 24px; }
+
+      /* --- Hero press logos --- */
+      .hero__press { gap: 20px; }
+      .hero__press-logo img { height: 32px; }
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE — PHONE (max 480px)
+       ══════════════════════════════════════════ */
+    @media (max-width: 480px) {
+      .topbar-logo {
+        width: 100%;
+        padding-left: 18px;
+        padding-top: 7px;
+      }
+      .hero__topbar {
+        padding: 0;
+      }
+      section { padding: 56px 0 72px; }
+      .wrap { padding: 0 24px; }
+      .hero__content { padding: 36px 24px 0; }
+      .hero__content h1 { font-size: 1.6rem; line-height: 1.15; margin-bottom: 20px; }
+      .hero__sub { font-size: .95rem; line-height: 1.75; max-width: 340px; margin-left: auto; margin-right: auto; margin-bottom: 28px; }
+      .vsl-wrapper { margin-bottom: 24px; }
+      .vsl-cta { font-size: .9rem; padding: 15px 32px; margin-bottom: 20px; }
+      .hero__press { margin-top: 4px; margin-bottom: 8px; }
+      .hero__content h1 { font-size: 1.6rem; line-height: 1.15; }
+      .hero__sub { font-size: .95rem; }
+      .hero__image { max-width: 320px; }
+      .vsl-play-btn { width: 56px; height: 56px; }
+      .vsl-play-btn::after { border-width: 10px 0 10px 17px; }
+
+      @keyframes vslBreathe {
+        0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(139,26,26,.30), 0 0 80px rgba(139,26,26,.15), 0 0 120px rgba(139,26,26,.06), 0 8px 40px rgba(0,0,0,.18); }
+        50% { transform: scale(1.045); box-shadow: 0 0 55px rgba(139,26,26,.40), 0 0 100px rgba(139,26,26,.22), 0 0 150px rgba(139,26,26,.10), 0 12px 48px rgba(0,0,0,.22); }
+      }
+      .section-title { font-size: clamp(1.5rem, 5vw, 2rem); margin-bottom: 18px; }
+
+      /* --- Cards tighter on phone --- */
+      .card { padding: 24px 20px; }
+      .problem-intro-card, .problem-deep-card { padding: 24px 20px; }
+
+      /* --- Stats 2-col on phone --- */
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .stat-cell { padding: 28px 16px; }
+      .stat-num { font-size: 1.8rem; }
+      .stat-label { font-size: .75rem; }
+
+      /* --- Urgency --- */
+      .urgency-card { grid-template-columns: 1fr; }
+      .urgency-card .u-num { width: 40px; height: 40px; font-size: .85rem; }
+
+      /* --- Transform legacy --- */
+      .transform-row { grid-template-columns: 1fr; gap: 4px; }
+      .t-arrow { display: none; }
+      .t-after::before { content: '-> '; color: var(--red); font-weight: 700; }
+
+      /* --- Benefit grid 2-col on phone --- */
+      .benefits-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .benefit-num { font-size: 2rem; }
+
+      /* --- Sorgen/Check cards --- */
+      .s5-intro, .sorgen-intro, .notfor-card, .selective-card, .s5-cta-card { padding: 22px 18px; }
+      .check-card { padding: 18px 16px 18px 14px; }
+      .sorge-card { padding: 18px 16px 18px 14px; }
+
+      /* --- Anna --- */
+      .anna-intro { padding: 28px 20px; }
+      .anna-step { padding: 28px 20px; }
+      .anna-finale { padding: 28px 20px; }
+      .anna-results { gap: 12px; }
+      .anna-result-card { padding: 16px; }
+
+      /* --- Hero press logos stacked vertically on mobile --- */
+      .hero__press {
+        flex-direction: column;
+        gap: 24px;
+        align-items: center;
+      }
+      .hero__press-label {
+        margin-bottom: 0;
+      }
+      .hero__press-logo img { height: 26px; }
+
+      /* --- Pricing table mobile --- */
+      .compare-table th, .compare-table td { padding: 8px 10px; font-size: .75rem; }
+      .pricing-card h3 { font-size: 1rem; }
+      .price-tag { font-size: 1.8rem !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hamburger Menu -->
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-overlay" id="navOverlay">
+    <nav>
+      <a href="/">Startseite</a>
+      <a href="/intern">Detailseite</a>
+      <a href="/bewerbung">Bewerbung</a>
+      <a href="/kontakt">Kontakt</a>
+      <a href="/impressum">Impressum</a>
+      <a href="/datenschutz">Datenschutz</a>
+    </nav>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════
+       SECTION 1 — HERO
+       ════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero__topbar">
+      <div class="hero__topbar-inner">
+        <img src="Website Bilder/logo-jh.jpg" alt="Jung & Hungrig Gründer Club" class="topbar-logo">
+      </div>
+    </div>
+
+    <div class="hero__content">
+      <h1 class="anim d1">Dein Teenager hat Potenzial.<br><em>Wir sorgen dafür, dass es sich entfaltet.</em></h1>
+
+      <p class="hero__sub anim d2">Ein selektives <strong>Förderprogramm</strong> für ambitionierte 15–18-Jährige aus leistungsorientierten Familien – mit echten Projekten, persönlichen Mentoren und einer klaren Roadmap innerhalb der ersten 14 Tage.</p>
+
+      <div class="vsl-wrapper anim d3" id="vslPlayer">
+        <div class="vsl-inner">
+          <video class="vsl-poster" id="vslThumbnail" autoplay loop muted playsinline preload="auto">
+            <source src="video/tn.mp4" type="video/mp4">
+          </video>
+          <video id="vslVideo" playsinline preload="auto" src="video/vsl v2 funktional ohne crazy ae.mp4"></video>
+          <div class="vsl-play-btn" id="vslPlayBtn"></div>
+          <div class="vsl-controls" id="vslControls">
+            <button class="vsl-ctrl-btn" id="vslPauseBtn" aria-label="Pause">
+              <span class="vsl-icon-pause">&#10074;&#10074;</span>
+              <span class="vsl-icon-play">&#9654;</span>
+            </button>
+            <button class="vsl-ctrl-btn" id="vslMuteBtn" aria-label="Ton">&#128266;</button>
+            <input type="range" class="vsl-volume" id="vslVolume" min="0" max="1" step="0.05" value="1">
+            <button class="vsl-ctrl-btn" id="vslFullBtn" aria-label="Vollbild">&#x26F6;</button>
+          </div>
+        </div>
+      </div>
+
+      <a href="#bewerbung" class="vsl-cta anim d4">&#128274; Jetzt Platz sichern</a>
+
+      <div class="hero__press anim d5">
+        <span class="hero__press-label">Projekt bekannt aus</span>
+        <span class="hero__press-logo"><img src="Website Bilder/berliner morgenpost.avif" alt="Berliner Morgenpost"></span>
+        <span class="hero__press-logo"><img src="Website Bilder/welt logo.avif" alt="Die Welt"></span>
+        <span class="hero__press-logo"><img src="Website Bilder/tagesspiegel.avif" alt="Der Tagesspiegel"></span>
+      </div>
+
+      <div class="stats-connector anim d5">
+        <div class="stats-connector-line"></div>
+        <img src="Website Bilder/teens im club social proof element.avif" alt="Mitglieder-Collage — unsere Community" class="member-collage" style="max-width: 240px; margin: 0 auto 20px;">
+      </div>
+
+      <div class="stats-grid" style="margin-bottom: 0;">
+        <div class="stat-cell anim d1">
+          <div class="stat-icon">&#x1F466;&#x1F3FC;</div>
+          <div class="stat-num">300+</div>
+          <div class="stat-label">Mitglieder im Club</div>
+          <div class="stat-sub">Deutschsprachiger Raum</div>
+        </div>
+        <div class="stat-cell anim d2">
+          <div class="stat-icon">&#x1F469;&#x1F3FC;</div>
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Mentoren im Team</div>
+          <div class="stat-sub">Alle unter 25 Jahren</div>
+        </div>
+        <div class="stat-cell anim d3">
+          <div class="stat-icon">&#x2705;</div>
+          <div class="stat-num">35+</div>
+          <div class="stat-label">Dokumentierte Transformationen</div>
+          <div class="stat-sub">Passiv &rarr; Aktiv Gestalter</div>
+        </div>
+        <div class="stat-cell anim d4">
+          <div class="stat-icon">&#x1F680;</div>
+          <div class="stat-num">2&times;</div>
+          <div class="stat-label">Workshops pro Woche</div>
+          <div class="stat-sub">Live &middot; Interaktiv &middot; Peer-geführt</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════
+       SECTION 1b — VALUE PROPOSITION
+       ════════════════════════════════════════════ -->
+  <section class="cream" id="value-prop" style="padding-top: 80px;">
+    <div class="wrap">
+      <h2 class="section-title anim d1">Wir akzeptieren nicht, dass Potenzial <em>im Scrolling-Durchschnitt versinkt.</em></h2>
+      <p class="section-sub anim d2" style="margin: 0 auto 48px;">Für Familien, die weiter denken. Von Diskussionen zu sichtbarem Fortschritt.</p>
+
+      <div class="solution-grid" style="max-width: 740px; margin: 0 auto;">
+        <div class="card anim d2">
+          <span class="card-icon">&#128274;</span>
+          <div class="card-label">Robuste Zukunftsabsicherung</div>
+          <p>Wöchentliche Praxis-Workshops in KI, Coding &amp; Unternehmertum</p>
+        </div>
+        <div class="card anim d3">
+          <span class="card-icon">&#128640;</span>
+          <div class="card-label">1-zu-1 Förderung &amp; persönliche Roadmap</div>
+          <p>Innerhalb der ersten 2 Wochen – mit klar definierten Zielen und nächsten Schritten</p>
+        </div>
+        <div class="card anim d4">
+          <span class="card-icon">&#129309;&#127995;</span>
+          <div class="card-label">Leistungsorientiertes Club-Umfeld</div>
+          <p>Das Ihr Kind nach oben zieht</p>
+        </div>
+        <div class="card anim d5">
+          <span class="card-icon">&#10084;&#65039;</span>
+          <div class="card-label">Besseres Eltern-Kind-Verhältnis</div>
+          <p>Wir übernehmen die nervigen „Mama/Papa-Lektionen"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 1c — TRANSFORMATION (hochgezogen)
+       ════════════════════════════════════════════ -->
+  <section class="cream" id="transformation-top">
+    <div class="wrap">
+      <h2 class="section-title anim d1">Mitglieder-Transformation &#128640;</h2>
+      <p class="section-sub anim d2" >Werde zur besten Version Deiner selbst</p>
+
+      <div class="story-card anim d2" style="padding:0; overflow:hidden; margin-top:40px;">
+        <div class="transform-images">
+          <img src="Website Bilder/addicted social media teen .avif" alt="Vorher — Teenager am Handy">
+          <img src="Website Bilder/teen transformation positiv.avif" alt="Nachher — Glückliche Teenagerin">
+        </div>
+
+        <table class="transform-table">
+          <thead>
+            <tr>
+              <th>Vorher &#10060;</th>
+              <th>Nachher &#9989;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>&#128680; Technik und Social Media sind eine Ablenkung</td>
+              <td>&#9989; Technik und Social Media sind ein mächtiges Werkzeug</td>
+            </tr>
+            <tr>
+              <td>&#128200; Belohnungssystem von Algorithmen und Dopamin-Hits zerstört</td>
+              <td>&#127939; Echte Motivation auch für langfristige Ziele</td>
+            </tr>
+            <tr>
+              <td>&#129300; Volatile Stimmung / mentale Gesundheit könnte besser sein</td>
+              <td>&#10084;&#65039; Mental und körperlich fit durch inspirierendes Umfeld</td>
+            </tr>
+            <tr>
+              <td>&#10060; Wenig handfeste Zukunfts-Skills wie KI oder Coding</td>
+              <td>&#128170; Wöchentliche Premium-Workshops zu allen Zukunfts-Themen</td>
+            </tr>
+            <tr>
+              <td>&#127891; Schule / Uni könnte besser laufen</td>
+              <td>&#128640; Bessere Noten durch bessere Systeme und intrinsische Motivation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════
+       SECTION 4 — FÜR WEN (VERKÜRZT)
+       ════════════════════════════════════════════ -->
+  <section class="white" id="fuer-wen">
+    <div class="wrap">
+      <span class="eyebrow anim">Qualifikation</span>
+      <h2 class="section-title anim d1">Du bist hier richtig, <em>wenn…</em></h2>
+
+      <div class="check-grid anim d2">
+        <div class="check-card">
+          <span class="check-icon">&#128102;</span>
+          <div>
+            <h3>Dein Kind zwischen 15 und 18 Jahren ist</h3>
+            <p>Das neurologische Fenster ist offen. Gewohnheiten sind noch formbar. Identität entsteht gerade.</p>
+          </div>
+        </div>
+        <div class="check-card">
+          <span class="check-icon">&#9889;</span>
+          <div>
+            <h3>Dein Kind schon Interessen und Skills hat</h3>
+            <p>Wir fördern vorhandenes Potenzial — wir starten nicht bei null. Gaming, Kreativität, Technik, Sport: alles ein Ausgangspunkt.</p>
+          </div>
+        </div>
+        <div class="check-card">
+          <span class="check-icon">&#129302;</span>
+          <div>
+            <h3>Du weißt, wie disruptiv KI ist — und handeln willst</h3>
+            <p>Nicht irgendwann. Jetzt. Wer KI früh versteht und nutzt, hat einen strukturellen Vorteil für den Rest seines Lebens.</p>
+          </div>
+        </div>
+        <div class="check-card">
+          <span class="check-icon">&#128737;&#65039;</span>
+          <div>
+            <h3>Du dein Kind präventiv schützen willst</h3>
+            <p>Bevor digitale Medien zum Problem werden. Wer baut, konsumiert weniger. Das ist kein Zufall — das ist Mechanismus.</p>
+          </div>
+        </div>
+        <div class="check-card">
+          <span class="check-icon">&#128161;</span>
+          <div>
+            <h3>Du weißt: Wohlstand kann Entwicklung bremsen</h3>
+            <p>Kein Leidensdruck, kein Antrieb — das ist der Wohlstandstrap. Du willst diesen Zyklus für dein Kind durchbrechen.</p>
+          </div>
+        </div>
+        <div class="check-card">
+          <span class="check-icon">&#127919;</span>
+          <div>
+            <h3>Du bewusst in Entwicklung investierst</h3>
+            <p>Nicht als letzter Ausweg. Sondern als strategische Entscheidung — wie du es auch bei guter Schule, Sport oder Musik tust.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 6 — TEAM & AUTORITÄT
+       ════════════════════════════════════════════ -->
+  <section class="white" id="team">
+    <div class="wrap">
+      <span class="eyebrow anim">Wer wir sind</span>
+      <h2 class="section-title anim d1">Wir reden nicht über Teenager.<br><em>Wir sind Teenager.</em></h2>
+      <p class="section-sub anim d2" >Kein Lehrstuhl. Kein Expertenkomitee. Sondern Menschen, die genau dort waren, wo dein Kind gerade steht.</p>
+
+      <!-- USP Dark Card -->
+      <div class="dark-card anim d2" style="border-radius: 20px; padding: 44px 48px; box-shadow: 0 8px 40px rgba(0,0,0,.20); margin-bottom: 32px;">
+        <p style="font-family: var(--fh); font-weight: 600; font-size: .72rem; text-transform: uppercase; letter-spacing: .14em; color: #666; margin-bottom: 16px;">Unser Insider-Vorteil</p>
+        <h3 class="section-title">Was kein Pädagoge, kein Coach und kein Elternteil wissen kann — <em style="font-style: normal; color: var(--orange);">wissen wir.</em></h3>
+        <p style="margin-bottom: 14px;">Wir haben dieselben Spiele gespielt. Dieselben Feeds gescrollt. Dieselben Nächte vor dem Bildschirm verbracht. Wir kennen die Fallen — weil wir selbst darin waren.</p>
+        <p style="margin-bottom: 14px;">Wir haben den Weg raus gefunden. <strong>Durch Zufall.</strong> Doch bei deinem Kind muss es kein Zufall sein.</p>
+        <p style="margin-bottom: 14px;">Wir haben hunderte Lebensläufe analysiert und können sie heute reverse-engineeren. Wir wissen genau, wie aus Minecraft-Spielern Programmierer wurden, wie aus Hobby-Filmern Content Creators wurden. <strong>Wir haben das System verstanden.</strong></p>
+        <p>Dieses Wissen geben wir weiter. Nicht als Theorie. Als gelebte Erfahrung.</p>
+      </div>
+
+      <!-- Insider Knowledge Grid -->
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 32px;" class="anim d3 insider-grid">
+        <div class="card" style="border-top: 3px solid var(--orange); padding: 24px 20px;">
+          <span class="card-icon">&#x1F4F2;</span>
+          <p>Wir wissen, wie <strong>Instagram depressiv</strong> macht und wie man sich <strong>präventiv schützt</strong>, weil wir selbst depressiv waren und rausgekommen sind.</p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--orange); padding: 24px 20px;">
+          <span class="card-icon">&#x1F3AE;</span>
+          <p>Wir wissen, was die <strong>Gefahren des Lieblingsvideospiels</strong> deiner Tochter sind, weil wir es selbst <strong>4 Jahre lang</strong> gespielt haben.</p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--orange); padding: 24px 20px;">
+          <span class="card-icon">&#x1F9D1;&#x200D;&#x1F4BB;</span>
+          <p>Wir wissen, wie man <strong>vom Gamen zum Programmieren</strong> kommt, weil wir selbst vor 2 Jahren <strong>vom Gamer zum Programmierer</strong> wurden.</p>
+        </div>
+      </div>
+
+      <!-- Reverse Engineering Alert -->
+      <div class="alert-box anim d3" style="margin-bottom: 32px;">
+        <strong>&#x2699;&#xFE0F; Wir können Lebenswege reverse-engineeren.</strong>
+        <p style="margin-bottom: 12px;">Wir haben hunderte Entwicklungsverläufe analysiert. Wie aus Minecraft-Spielern Programmierer wurden. Wie aus Hobby-Filmern Content Creators wurden. Wie aus Gamern Unternehmer wurden.</p>
+        <p style="margin-bottom: 12px;"><strong>Das ist kein Zufall mehr.</strong> Wir kennen die Schritte, welches Umfeld und welche Impulse diesen Wandel ausgelöst haben — und wir können ihn heute gezielt reproduzieren.</p>
+        <p>Was früher dem Glück überlassen war, ist bei uns Methode.</p>
+      </div>
+
+      <!-- Die Gründergeschichte -->
+      <h2 class="section-title anim d1" style="margin-top: 56px;">Die <em>Gründergeschichte</em></h2>
+
+      <!-- Founder Card -->
+      <div class="card founder-card-grid anim d3" style="padding: 40px 44px; margin-bottom: 32px; display: grid; grid-template-columns: 220px 1fr; gap: 36px; align-items: start;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+          <div style="width: 220px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.13);">
+            <img src="Website Bilder/adrian schimmelpfennig profil bild intro bild (dont cut it off).jpeg" alt="Adrian Schimmelpfennig" style="width: 100%; height: auto; object-fit: contain;">
+          </div>
+          <div>
+            <strong style="font-family: var(--fh); font-weight: 700; font-size: .95rem; color: var(--ink); display: block;">Adrian Schimmelpfennig</strong>
+            <span style="font-family: var(--fb); font-style: italic; font-size: .82rem; color: var(--ink-faint);">Gründer &amp; CEO, 20</span>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-family: var(--fh); font-weight: 700; font-size: 1.3rem; color: var(--ink); margin-bottom: 16px;">Meine Generation kämpft alleine. Das wollte ich ändern.</h3>
+          <p style="font-family: var(--fb); font-size: 1.02rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 14px;">Ich habe fünf Jahre in der Strategie- und Politikberatung gearbeitet und dabei eines gelernt: Systeme verändern sich nicht von oben. Sie verändern sich, wenn Menschen innerhalb der Generation handeln.</p>
+          <p style="font-family: var(--fb); font-size: 1.02rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 14px;">Ich sehe täglich, wie Social Media ganze Leben zerstört — und gleichzeitig, wie das Internet andere beflügelt. Wie Teenager durch das richtige Umfeld programmieren lernen, Webseiten verkaufen, mit 16 Karrieren aufbauen.</p>
+          <p style="font-family: var(--fb); font-size: 1.02rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 14px;"><strong style="color: var(--ink);">Dieser Unterschied ist kein Talent. Er ist kein Glück. Er ist Methode.</strong> Und diese Methode wollte ich zugänglich machen — für jeden Teenager, der bereit ist.</p>
+          <p style="font-family: var(--fb); font-style: italic; font-size: 1rem; color: var(--ink-faint); margin-top: 20px;">Euer Adrian</p>
+        </div>
+      </div>
+
+      <!-- Press Strip -->
+      <div class="press-articles anim d3" style="margin-bottom: 48px;">
+        <img src="Website Bilder/welt cover adrian (make sure not to cut if off).jpeg" alt="WELT Artikel" style="max-height:none; object-fit:contain;">
+        <img src="Website Bilder/adrian presse morgenpost (dont cut it off).jpeg" alt="Morgenpost Artikel" style="max-height:none; object-fit:contain;">
+      </div>
+
+      <!-- Das Team hinter dem Programm -->
+      <h2 class="section-title anim d1">Das Team hinter <em>dem Programm</em></h2>
+
+      <!-- Mentor Intro -->
+      <div class="card anim" style="margin-bottom: 20px;">
+        <h3 style="font-family: var(--fh); font-weight: 700; font-size: 1.2rem; color: var(--ink); margin-bottom: 8px;">&#x1F9D1;&#x200D;&#x1F3EB; Unsere Mentoren — keine Lehrer. Keine Coaches.</h3>
+        <p style="font-family: var(--fb); font-size: 1rem; line-height: 1.75; color: var(--ink-soft);">Mehr als zehn Mentoren begleiten unsere Teilnehmer — freiberuflich oder fest angestellt. Sie sind 22 bis 28 Jahre alt und haben die digitale Welt nicht studiert, sondern gelebt. Im Hintergrund begleiten zusätzlich über zehn erfahrene Erwachsene — Pädagogen, Psychologen und Lehrende — das Programm fachlich.</p>
+      </div>
+
+      <div class="mentor-grid anim d2" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="mentor-cell mentor-cell--card">
+          <img src="Website Bilder/male mentor 1.jpeg" alt="Floris" class="mentor-photo">
+          <span class="mentor-specialty">Content &amp; Social Media Marketing</span>
+          <h4>Floris</h4>
+          <p class="mentor-desc">Experte für Social Media Marketing und Content-Strategien. Hilft Teenagern, ihre Kreativität in professionelle Kanäle umzusetzen — von der ersten Idee bis zum fertigen Content-Piece.</p>
+        </div>
+        <div class="mentor-cell mentor-cell--card">
+          <img src="Website Bilder/girl mentor.jpeg" alt="Amelie" class="mentor-photo">
+          <span class="mentor-specialty">Challenges &amp; Persönlichkeitsentwicklung</span>
+          <h4>Amelie</h4>
+          <p class="mentor-desc">Verantwortlich für die täglichen Club-Challenges und Persönlichkeitsentwicklung. Motiviert die Community mit kreativen Aufgaben, die echte Veränderung anstoßen.</p>
+        </div>
+        <div class="mentor-cell mentor-cell--card">
+          <img src="Website Bilder/male mentor2.jpeg" alt="Jonas" class="mentor-photo">
+          <span class="mentor-specialty">3D-Design &amp; Technik</span>
+          <h4>Jonas</h4>
+          <p class="mentor-desc">Technisches Multitalent mit Fokus auf 3D-Design, Programmierung und technische Projekte. Begleitet Teenager von der Idee zum fertigen digitalen Produkt.</p>
+        </div>
+      </div>
+
+      <span class="eyebrow anim" style="margin-top: 48px;">Fachreferent</span>
+      <h3 class="section-subtitle anim d1" style="margin-bottom: 32px;">Fachreferent für Eltern-Workshops</h3>
+
+      <div class="fachreferent-grid anim d2" style="grid-template-columns: 1fr; max-width: 320px;">
+        <div class="fachreferent-cell">
+          <img src="neue bilder/Christian füller.avif" alt="Christian Füller" class="fachreferent-photo">
+          <h4>Christian Füller</h4>
+          <p>Journalist und Buchautor. Berichtet für Süddeutsche, FAZ, Tagesspiegel, Zeit, Spiegel. Kommentiert bei RBB und Deutschlandradio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 2 — PROBLEM (VERKÜRZT)
+       ════════════════════════════════════════════ -->
+  <section class="cream" id="problem">
+    <div class="wrap">
+      <span class="eyebrow anim">Das Problem</span>
+      <h2 class="section-title anim d1">Du siehst es jeden Abend. Und es beschäftigt Dich mehr, <em>als Du zugibst.</em></h2>
+
+      <div class="problem-grid" style="grid-template-columns: 1fr;">
+        <div class="card anim d1" style="max-width: 640px; margin: 0 auto; text-align: center;">
+          <span class="card-icon" style="font-size: 2rem;">&#128245;</span>
+          <div class="card-label" style="font-size: 1.15rem;">Potenzial, das von Dopamin-Loops und Algorithmen verschluckt wird</div>
+          <p>Dein Kind ist intelligent. Kreativ. Hat Interessen. Aber das alles versickert zwischen TikTok, YouTube, Discord und digitaler Reizüberflutung. Es liegt nicht am Kind. Es liegt am System, in dem es aufwächst.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 8 — CLUB-ARCHITEKTUR
+       ════════════════════════════════════════════ -->
+  <section class="white" id="architektur">
+    <div class="wrap">
+      <span class="eyebrow anim">Das Programm</span>
+      <h2 class="section-title anim d1">Architektur: Wie ist der Club <em>aufgebaut?</em></h2>
+
+      <!-- 8a — Workshops -->
+      <div class="arch-block anim">
+        <h3><span class="num">01</span> Wöchentliche Workshops</h3>
+        <div class="img-grid-2 anim">
+          <img src="neue bilder/workshop beispiel 1.avif" alt="Workshop Session" style="width:100%; border-radius: var(--radius); box-shadow: var(--card-shadow);">
+          <img src="neue bilder/workshop screen 2.avif" alt="Workshop Screen" style="width:100%; border-radius: var(--radius); box-shadow: var(--card-shadow);">
+        </div>
+        <p>2x pro Woche, kleine Gruppen, hands-on, Challenges, Gäste (Gründer, Praktiker).</p>
+        <ul>
+          <li>Künstliche Intelligenz &amp; Automatisierung</li>
+          <li>Videobearbeitung &amp; Content Creation</li>
+          <li>Rhetorik &amp; Kommunikation</li>
+          <li>Bildschirmzeit &amp; digitale Gesundheit</li>
+          <li>Algorithmen verstehen &amp; nutzen</li>
+        </ul>
+      </div>
+
+      <!-- 8b — 1-zu-1 Roadmap -->
+      <div class="arch-block anim">
+        <h3><span class="num">02</span> 1-zu-1 Roadmap</h3>
+        <div class="anim" style="max-width: 480px; margin: 0 auto;">
+          <img src="neue bilder/1 zu 1 foerderung und roadmap.avif" alt="1-zu-1 Förderung und Roadmap" style="width:100%; border-radius: var(--radius); box-shadow: var(--card-shadow);">
+        </div>
+        <div class="arch-quote">
+          Auf Basis der Interessen, Wünsche und Träume — entwickeln wir eine maßgeschneiderte Strategie für die nächsten 6 Monate.
+        </div>
+        <ul>
+          <li>Elternformular ausfüllen</li>
+          <li>Erstgespräch mit Teenager</li>
+          <li>Individuelle Roadmap innerhalb von 14 Tagen</li>
+          <li>Klare, messbare Aufgaben &rarr; intrinsische Motivation</li>
+        </ul>
+      </div>
+
+      <!-- 8c — Tages-Challenges -->
+      <div class="arch-block anim">
+        <h3><span class="num">03</span> Club-Tages-Challenges (WhatsApp)</h3>
+        <img src="neue bilder/tageschallenges.avif" alt="Tages-Challenges" class="section-img anim" style="margin: 32px auto;">
+        <div class="arch-examples">
+          <p>„Heute macht jeder einem Fremden ein Kompliment — abends erzählen wir uns, was passiert ist"</p>
+          <p>„48h ohne Social Media — danach tauschen wir uns aus"</p>
+        </div>
+      </div>
+
+      <!-- 8d — Netzwerk -->
+      <div class="arch-block anim">
+        <h3><span class="num">04</span> Netzwerk</h3>
+        <img src="neue bilder/netzwek ist alles.avif" alt="Netzwerk ist alles" class="section-img anim" style="margin: 32px auto;">
+        <div class="arch-examples">
+          <p>Wenn dein Kind Musik macht &rarr; wir kennen Produzenten</p>
+          <p>Wenn dein Kind designt &rarr; wir bauen den Online-Shop</p>
+          <p>Wenn dein Kind zockt &rarr; wir zeigen, wie man daraus Content macht</p>
+        </div>
+      </div>
+
+      <!-- 8e — CCG -->
+      <div class="arch-block anim">
+        <h3><span class="num">05</span> Die CCG (Club Challenger Games)</h3>
+        <img src="neue bilder/ai bild.avif" alt="CCG KI-gestütztes System" class="section-img anim" style="margin: 32px auto;">
+        <p>Das echte Leben ist jetzt ein Spiel. Gamification-System mit:</p>
+        <ul>
+          <li>Avatar pro Jugendlichem</li>
+          <li>XP, Level-Ups für echte Fähigkeiten (Coding, Kommunikation, Selbstbewusstsein)</li>
+          <li>Videokurse als Skill-Freischalter</li>
+          <li>Leaderboard, Monats-Challenges</li>
+        </ul>
+      </div>
+
+      <!-- 8g — Sonstige Features -->
+      <div class="arch-block anim">
+        <h3><span class="num">07</span> Sonstige Features</h3>
+        <ul>
+          <li>Wöchentlicher Club-Newsletter</li>
+          <li>Videokurse (Coding, AI, Unternehmertum)</li>
+          <li>Gemeinsamer Umbau des Social-Media-Algorithmus</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 10 — ELTERN-BENEFITS
+       ════════════════════════════════════════════ -->
+  <section class="white" id="eltern">
+    <div class="wrap">
+      <span class="eyebrow anim">Für Eltern</span>
+      <h2 class="section-title anim d1">So profitieren <em>Eltern</em> bei uns</h2>
+
+      <img src="Website Bilder/mom transition positiv.avif" alt="Entspannte Mutter — endlich wieder durchatmen" class="section-img anim d1">
+
+      <div class="benefits-grid">
+        <div class="card anim d1">
+          <span class="card-icon">&#128588;</span>
+          <div class="benefit-num">01</div>
+          <div class="card-label">Entlastung</div>
+          <p>Keine weitere To-Do. Wir bringen Lösungen.</p>
+        </div>
+        <div class="card anim d2">
+          <span class="card-icon">&#10084;&#65039;</span>
+          <div class="benefit-num">02</div>
+          <div class="card-label">Besseres Verhältnis</div>
+          <p>Wir übernehmen die nervigen Mama/Papa-Lektionen.</p>
+        </div>
+        <div class="card anim d3">
+          <span class="card-icon">&#127775;</span>
+          <div class="benefit-num">03</div>
+          <div class="card-label">Wir machen Dich zur coolsten Mutter / zum coolsten Vater</div>
+          <p>Direkter Draht zur Welt deines Kindes.</p>
+        </div>
+        <div class="card anim d4">
+          <span class="card-icon">&#128187;</span>
+          <div class="benefit-num">04</div>
+          <div class="card-label">Überfordert mit Technik? Wir machen das.</div>
+          <p>KI, TikTok, Roblox — kein Problem.</p>
+        </div>
+        <div class="card anim d5">
+          <span class="card-icon">&#128161;</span>
+          <div class="benefit-num">05</div>
+          <div class="card-label">Vorausdenker statt Reagierer</div>
+          <p>Du handelst, bevor es brennt.</p>
+        </div>
+        <div class="card anim d6">
+          <span class="card-icon">&#128591;</span>
+          <div class="benefit-num">06</div>
+          <div class="card-label">Keine Vorwürfe in 10 Jahren</div>
+          <p>Dein Kind wird sich bedanken.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 11 — TESTIMONIALS
+       ════════════════════════════════════════════ -->
+  <section class="cream" id="testimonials">
+    <div class="wrap">
+      <span class="eyebrow anim">Erfahrungen</span>
+      <h2 class="section-title anim d1">&#11088; Eltern <em>Geschichten</em></h2>
+      <p class="section-sub anim d2">Ausgewählte Einblicke und Erfahrungen unserer Kunden</p>
+
+      <div class="testimonial-list">
+        <div class="testimonial-item anim d2">
+          <img src="Website Bilder/parent male testamonaill.avif" alt="Markus M." class="testimonial-photo">
+          <div>
+            <h4>Markus M., 46, Unternehmensberater, München</h4>
+            <blockquote>„Leon (17) war nie das Problem. Er ist neugierig, liest viel, interessiert sich für Technologie — aber irgendwie versickerte das alles im Alltag. TikTok, YouTube, Discord. Keine klare Richtung. Was mir fehlte, war ein Rahmen, der sein Interesse in echte Projekte übersetzt — ohne dass ich täglich nachbohren musste. Heute hat er ein KI-Tool entwickelt, das er in seiner Schule vorstellt. Das Potenzial war immer da. Jetzt sehen wir es auch."</blockquote>
+          </div>
+        </div>
+
+        <div class="testimonial-item anim d3">
+          <img src="Website Bilder/male testamonial2.avif" alt="Dr. Michael R." class="testimonial-photo">
+          <div>
+            <h4>Dr. Michael R., 49, Arzt, Hamburg</h4>
+            <blockquote>„Sophie (16) ist aufgeweckt, kreativ, hat schon immer gerne geschrieben und Videos geschaut — aber eben nur geschaut, nie selbst gemacht. Der Sprung vom Konsumieren zum Gestalten hat einfach gefehlt. Hier hat sie den ersten Schritt nicht alleine machen müssen. Heute betreibt sie einen eigenen Content-Kanal zum Thema Gesundheit für Teenager. Ihre Idee, ihr Projekt, ihr Tempo — wir mussten sie nur in das richtige Umfeld bringen."</blockquote>
+          </div>
+        </div>
+
+        <div class="testimonial-item anim d4">
+          <img src="Website Bilder/woman testamonial 1.avif" alt="Julia K." class="testimonial-photo">
+          <div>
+            <h4>Julia K., 44, Juristin, Berlin</h4>
+            <blockquote>„Finn (15) war nie antriebslos — er hatte Ideen, hat viel gebastelt, sich für Coding interessiert. Aber es blieb immer beim Anfangen. Kein Projekt wurde wirklich fertig, kein Ziel wirklich verfolgt. Was hier den Unterschied gemacht hat: Er hatte plötzlich Gleichaltrige, die genauso ticken wie er — und die weitermachen. Dieses Umfeld hat mehr bewirkt als jedes Gespräch, das ich mit ihm hätte führen können."</blockquote>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teenager-Geschichten: Max, Josia, Anna -->
+      <h2 class="section-title anim d1" style="margin-top: 56px;">Unsere <em>Clubgeschichten</em></h2>
+      <p class="section-sub anim d2">&#128640; Teenager Geschichten — Echte Geschichten von unseren Mitgliedern, die von <strong style="text-decoration:underline;"><em>passiven Konsumenten</em></strong> zu Unternehmern, Gründern und aktiven Gestaltern ihres eigenen Lebens werden!</p>
+
+      <div class="testimonial-list">
+        <div class="testimonial-item anim d2">
+          <img src="Website Bilder/teenager boy testamonianl 1.avif" alt="Max, 16" class="testimonial-photo">
+          <div>
+            <h4>Max, 16 – Von Gaming zu KI-Automatisierung &#128640;</h4>
+            <blockquote>
+              <p style="margin-bottom: 12px;">&#128308; <strong>Vorher:</strong> Max verbrachte Stunden mit Gaming. Eltern verzweifelten. Intervention: Über unseren Kurs entdeckte er n8n, ein KI-Automatisierungstool.</p>
+              <p>&#9989; <strong>Intervention:</strong> Max automatisierte erst seine Hausaufgaben, dann baute er Software-Lösungen, die Unternehmen beeindrucken würden. Heute könnte er damit Geld verdienen – mit 16.</p>
+            </blockquote>
+          </div>
+        </div>
+
+        <div class="testimonial-item anim d3">
+          <img src="Website Bilder/teen testamonial .avif" alt="Josia, 17" class="testimonial-photo">
+          <div>
+            <h4>Josia, 17 – Von „nur Instagram" zu Content Creator &#127909;</h4>
+            <blockquote>
+              <p style="margin-bottom: 12px;">&#128308; <strong>Vorher:</strong> Passiver Konsum, keine erkennbare Richtung, tägliche Diskussionen mit den Eltern.</p>
+              <p>&#9989; <strong>Intervention:</strong> Track-Wahl „Video &amp; Media", wöchentliche Workshops, Peer-Feedback, erste Uploads. Nachher: Eigener YouTube-Kanal, Grundlagen in Schnitt und Storytelling, deutlich weniger Bildschirmzeit-Konflikte. Die Eltern sagen: „Er hat plötzlich ein Ziel."</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 12 — WARUM JETZT
+       ════════════════════════════════════════════ -->
+  <section class="white" id="warum-jetzt">
+    <div class="wrap">
+      <span class="eyebrow anim">Dringlichkeit</span>
+      <h2 class="section-title anim d1">Warum jetzt der Zeitpunkt <em>zum Handeln ist</em></h2>
+
+      <div class="urgency-list">
+        <div class="card urgency-card anim d1">
+          <div class="u-num">1</div>
+          <div>
+            <img src="neue bilder/neuronal zeitfenster schliesst sich.avif" alt="Neurobiologisches Zeitfenster" style="width: 100%; max-width: 400px; border-radius: 12px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,.06);">
+            <h4>Neurobiologisches Zeitfenster</h4>
+            <p>Zwischen 14 und 18 reifen präfrontale Kontrollsysteme. Das dopaminerge System ist besonders reaktiv. Was täglich trainiert wird, wird strukturell effizienter. Algorithmen sind auf Profit trainiert, nicht auf mentale Stabilität.</p>
+          </div>
+        </div>
+
+        <div class="card urgency-card anim d2">
+          <div class="u-num">2</div>
+          <div>
+            <img src="neue bilder/ki adapt or die.avif" alt="KI verändert alles" style="width: 100%; max-width: 400px; border-radius: 12px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,.06);">
+            <h4>KI verändert alles — jetzt</h4>
+            <p>Technologische Umbrüche dieser Größenordnung vernichten ganze Branchen und schaffen neue Machtzentren. Für Jugendliche: massive Gefahr UND Chance gleichzeitig. Noch ist Zeit, vor die Welle zu kommen.</p>
+          </div>
+        </div>
+
+        <div class="card urgency-card anim d3">
+          <div class="u-num">3</div>
+          <div>
+            <img src="neue bilder/schnell lernen bild.avif" alt="Ihr Kind lernt nie wieder so schnell" style="width: 100%; max-width: 400px; border-radius: 12px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,.06);">
+            <h4>Ihr Kind lernt nie wieder so schnell wie jetzt</h4>
+            <p>Das jugendliche Gehirn ist besonders formbar. Was heute aufgebaut wird — Fokus, Disziplin, Selbstvertrauen — prägt Jahrzehnte.</p>
+          </div>
+        </div>
+
+        <div class="card urgency-card anim d4">
+          <div class="u-num">4</div>
+          <div>
+            <img src="neue bilder/dein kind ist noch nicht krank.avif" alt="Ihr Kind ist nicht mental erkrankt" style="width: 100%; max-width: 400px; border-radius: 12px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,.06);">
+            <h4>Ihr Kind ist nicht mental erkrankt — und das soll auch so bleiben</h4>
+            <p>Laut Jugend Deutschland 2025: Hälfte der Befragten fühlt sich durch Social Media stark belastet. Prävention ist 1000x besser als Korrektur.</p>
+          </div>
+        </div>
+
+        <div class="card urgency-card anim d5">
+          <div class="u-num">5</div>
+          <div>
+            <img src="neue bilder/kind spaeter dankbar.avif" alt="Dein Kind wird Dir später dankbar" style="width: 100%; max-width: 400px; border-radius: 12px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,.06);">
+            <h4>Dein Kind wird Dir später unendlich dankbar</h4>
+            <p>Wir kennen viele Lebensgeschichten. Die, die früh Intervention hatten, sagen: „Danke, dass Du mir damals diesen Club gezeigt hast."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════
+       SECTION 12 — DIE WAHRHEIT (VERKÜRZT)
+       ════════════════════════════════════════════ -->
+  <section class="white solutions-fail" id="solutions">
+    <div class="wrap">
+      <span class="eyebrow anim">Die Wahrheit</span>
+      <h2 class="section-title anim d1">Warum die meisten Bemühungen von Eltern <em>ins Leere gehen</em> —</h2>
+      <p class="section-sub anim d2">und was wirklich wirkt. Wir wissen es. Wir sind selbst Teenager. &#129513;</p>
+
+      <!-- Alert: Kontrolle -->
+      <div class="alert-box anim d3">
+        <strong>&#9889; Kontrolle erzeugt Widerstand. Immer.</strong>
+        <p style="margin-bottom: 12px;">Das ist keine Erziehungsfrage. Das ist Neurologie.</p>
+        <p style="margin-bottom: 12px;">Das Teenagerhirn ist darauf ausgerichtet, Autonomie zu suchen und Kontrolle zu verweigern — besonders von Eltern. Je mehr Druck von außen, desto stärker zieht sich dein Kind in genau das zurück, was du einschränken willst.</p>
+        <p>Dein Kind ist nicht schwierig. Kontrolle ist einfach das falsche Werkzeug.</p>
+      </div>
+
+      <!-- Vergleichstabelle -->
+      <div class="card anim d3" style="margin-top: 32px; padding: 36px 32px;">
+        <h3 style="font-family: var(--fh); font-weight: 700; font-size: 1.1rem; color: var(--ink); margin-bottom: 24px;">&#128269; Warum auch die besten Maßnahmen nicht reichen</h3>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Was du versucht hast</th>
+              <th>Warum es nicht reicht</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>&#9201; Bildschirmzeit-Limits</td>
+              <td>Kein Ersatz für eine echte Alternative</td>
+            </tr>
+            <tr>
+              <td>&#128172; Gespräche &amp; Abmachungen</td>
+              <td>Verpuffen ohne Umfeld, das dieselben Werte lebt</td>
+            </tr>
+            <tr>
+              <td>&#128241; Lern-Apps &amp; Kurse</td>
+              <td>Keine Menschen, keine Peers, keine Verbindlichkeit</td>
+            </tr>
+            <tr>
+              <td>&#128683; Handy wegnehmen</td>
+              <td>Erzeugt Eskalation — löst nichts</td>
+            </tr>
+            <tr>
+              <td>&#9203; Abwarten</td>
+              <td>Das Fenster schließt sich. Gewohnheiten verfestigen sich.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Drei Hebel -->
+      <h3 class="section-subtitle anim" style="margin-top: 72px;">&#128161; Was wirklich wirkt — drei Hebel gleichzeitig</h3>
+
+      <div class="lever-row anim d2" style="display: grid; gap: 20px; margin-bottom: 32px;">
+        <div class="card" style="position: relative;">
+          <span style="position: absolute; top: 16px; right: 20px; font-family: var(--fh); font-weight: 700; font-size: 2rem; color: var(--border);">&#9312;</span>
+          <span class="card-icon">&#128101;</span>
+          <div class="card-label">Umfeld</div>
+          <p style="margin-bottom: 10px;">Jugendliche orientieren sich an Gleichaltrigen — nicht an Eltern. Wenn das Umfeld konsumiert &#8594; wird konsumiert. Wenn das Umfeld baut &#8594; wird gebaut.</p>
+          <p style="font-style: italic; color: var(--ink-soft); font-size: .85rem;">Das ist der stärkste Hebel. Und der einzige, den du alleine kaum herstellen kannst.</p>
+        </div>
+        <div class="card" style="position: relative;">
+          <span style="position: absolute; top: 16px; right: 20px; font-family: var(--fh); font-weight: 700; font-size: 2rem; color: var(--border);">&#9313;</span>
+          <span class="card-icon">&#129668;</span>
+          <div class="card-label">Identität</div>
+          <p style="margin-bottom: 10px;">Wir arbeiten nicht an „weniger Handy". Wir arbeiten an der Frage: <strong>Wer willst du sein?</strong> Creator oder Konsument? Gestalter oder Zuschauer?</p>
+          <p style="font-style: italic; color: var(--ink-soft); font-size: .85rem;">Identität verändert Verhalten — nicht umgekehrt.</p>
+        </div>
+        <div class="card" style="position: relative;">
+          <span style="position: absolute; top: 16px; right: 20px; font-family: var(--fh); font-weight: 700; font-size: 2rem; color: var(--border);">&#9314;</span>
+          <span class="card-icon">&#128197;</span>
+          <div class="card-label">Struktur</div>
+          <p style="margin-bottom: 10px;">Motivation schwankt. Struktur trägt. Roadmap. Wöchentlicher Rhythmus. Mentor-Check-ins. Klare Outputs.</p>
+          <p style="font-style: italic; color: var(--ink-soft); font-size: .85rem;">Nicht Hoffnung. Mechanismus.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 13 — SELEKTION & BEWERBUNGSPROZESS
+       ════════════════════════════════════════════ -->
+  <section class="dark" id="selektion">
+    <div class="wrap">
+      <span class="eyebrow anim">Selektion</span>
+      <h2 class="section-title anim d1">Warum wir nicht <em>jeden nehmen</em></h2>
+
+      <div class="select-grid">
+        <div class="select-card anim d1">
+          <span class="card-icon">&#129504;</span>
+          <div class="card-label">Feste Mentoren-Kapazität</div>
+          <p>Qualität vor Quantität — jedes Mitglied bekommt echte Aufmerksamkeit.</p>
+        </div>
+        <div class="select-card anim d2">
+          <span class="card-icon">&#129309;</span>
+          <div class="card-label">Individuelles Mentoring</div>
+          <p>Kein Massenprodukt. Jede Roadmap ist handgemacht.</p>
+        </div>
+        <div class="select-card anim d3">
+          <span class="card-icon">&#128274;</span>
+          <div class="card-label">Umfeld-Qualität</div>
+          <p>Ein einziges falsches Mitglied kann die Dynamik verändern.</p>
+        </div>
+        <div class="select-card anim d4">
+          <span class="card-icon">&#128161;</span>
+          <div class="card-label">Maximal 5 neue Aufnahmen</div>
+          <p>Pro Monat nehmen wir höchstens 5 neue Mitglieder auf.</p>
+        </div>
+      </div>
+
+      <span class="eyebrow anim" style="color: var(--red-mid);">Bewerbungsprozess</span>
+      <div class="process-steps anim d1">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h4>Erstgespräch buchen</h4>
+          <p>30 Min., kostenfrei</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h4>Wir prüfen den Fit</h4>
+          <p>Passt die Dynamik?</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h4>Onboarding</h4>
+          <p>Innerhalb von 7 Tagen</p>
+        </div>
+      </div>
+
+      <div class="chances-block anim d2">
+        <h4>So erhöhst Du Deine Chancen:</h4>
+        <ul>
+          <li><span>&#128221;</span> Alle Infos vorab bereitstellen</li>
+          <li><span>&#9201;</span> Keine Termine verpassen</li>
+          <li><span>&#128161;</span> Pünktlich &amp; vorbereitet erscheinen</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 14 — EINWÄNDE / HÄUFIGE BEDENKEN
+       ════════════════════════════════════════════ -->
+  <section class="cream" id="einwaende">
+    <div class="wrap">
+      <span class="eyebrow anim">Häufige Bedenken</span>
+      <h2 class="section-title anim d1">Klingt gut, <em>aber...</em></h2>
+
+      <div class="objections">
+        <details class="accordion anim d2">
+          <summary>
+            <span class="acc-num">01</span>
+            <h3>„Mein Kind macht da doch sowieso nicht mit."</h3>
+            <span class="chevron">&#9660;</span>
+          </summary>
+          <div class="accordion-body">
+            <div class="intro-quote">
+              Teenager erkennen sofort, ob jemand auf Augenhöhe spricht — oder ob es eine weitere Mama-Lektion ist.
+            </div>
+            <div class="mini-grid">
+              <div class="mini-card">
+                <span class="card-icon">&#128242;</span>
+                <div class="card-label">Die Website spricht für sich</div>
+                <p>von-wien-bis-berlin.de — gemacht von Teenagern, für Teenager.</p>
+              </div>
+              <div class="mini-card">
+                <span class="card-icon">&#127919;</span>
+                <div class="card-label">Ein klares Angebot als Motivation</div>
+                <p>Anreiz: PC/MacBook — wir schaffen greifbare Ziele.</p>
+              </div>
+              <div class="mini-card">
+                <span class="card-icon">&#128101;</span>
+                <div class="card-label">Sanfter Einstieg, echte Verbindungen</div>
+                <p>Kein Druck, sondern echte Community ab Tag 1.</p>
+              </div>
+              <div class="mini-card">
+                <span class="card-icon">&#128640;</span>
+                <div class="card-label">Interessen als Türöffner</div>
+                <p>Wir starten dort, wo dein Kind bereits brennt.</p>
+              </div>
+            </div>
+            <p class="close-quote">„Deine einzige Aufgabe: Dein Kind in das erste Gespräch mit uns zu bringen."</p>
+          </div>
+        </details>
+
+        <details class="accordion anim d3">
+          <summary>
+            <span class="acc-num">02</span>
+            <h3>„Mein Kind hält das nicht durch."</h3>
+            <span class="chevron">&#9660;</span>
+          </summary>
+          <div class="accordion-body">
+            <div class="intro-quote">
+              Durchhalten ist keine Frage des Charakters — es ist eine Frage der Umgebung.
+            </div>
+            <div class="mini-grid">
+              <div class="mini-card">
+                <span class="card-icon">&#128101;</span>
+                <div class="card-label">Gemeinschaft als Anker</div>
+                <p>Niemand macht alleine weiter. Die Gruppe trägt.</p>
+              </div>
+              <div class="mini-card">
+                <span class="card-icon">&#127918;</span>
+                <div class="card-label">Gamifizierung</div>
+                <p>Tages-Challenges, Monats-Challenges, Leaderboard, Wettbewerb.</p>
+              </div>
+              <div class="mini-card">
+                <span class="card-icon">&#9881;&#65039;</span>
+                <div class="card-label">Echte Werte, kein Kurs</div>
+                <p>Wir bauen Gewohnheiten — keine Lerneinheiten.</p>
+              </div>
+              <div class="mini-card">
+                <span class="card-icon">&#128640;</span>
+                <div class="card-label">Peer-Dynamik als Motor</div>
+                <p>Wenn alle um dich herum wachsen, wächst du mit.</p>
+              </div>
+            </div>
+            <p class="close-quote">„Kein Kind fällt aus einem System heraus, das für seine Generation gebaut wurde."</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 15 — PRICING
+       ════════════════════════════════════════════ -->
+  <section class="white" id="pricing">
+    <div class="wrap">
+      <span class="eyebrow anim">Mitgliedschaft</span>
+      <h2 class="section-title anim d1">Deine Mitgliedschaft — <em>was ist drin?</em></h2>
+      <p class="section-sub anim d2">Eine Übersicht aller Leistungen für Teenager und Eltern.</p>
+
+      <div class="pricing-card anim d3">
+        <h3>Übersicht</h3>
+
+        <div class="pricing-features">
+          <h4>Für Teenager</h4>
+          <ul>
+            <li><span>&#11088;</span> <span>Zugang zum Jugendclub</span></li>
+            <li><span>&#128640;</span> <span>1-zu-1 Betreuung „Roadmap fürs Leben"</span></li>
+            <li><span>&#128197;</span> <span>Alle Events &amp; Workshops</span></li>
+            <li><span>&#127942;</span> <span>Gamifizierte Videokurse (CCG)</span></li>
+          </ul>
+
+          <h4>Für Eltern</h4>
+          <ul>
+            <li><span>&#127909;</span> <span>Eltern-Videokurs (10 Episoden à 20 Min.)</span></li>
+            <li><span>&#129782;</span> <span>Familien Jahres-Check-Up</span></li>
+            <li><span>&#10024;</span> <span>Individuelle Handlungsempfehlung</span></li>
+            <li><span>&#128222;</span> <span>24/7 Notfall-Rufnummer</span></li>
+          </ul>
+        </div>
+
+        <a href="https://cal.com/team/eltern-medien-akademie/erstgesprach-ema-website" class="btn-primary" style="width: 100%; justify-content: center; padding: 14px 28px; font-size: .85rem;">Jetzt Erstgespräch buchen &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 16 — GARANTIE / RISK REVERSAL
+       ════════════════════════════════════════════ -->
+  <section class="cream" id="garantie">
+    <div class="wrap">
+      <span class="eyebrow anim">Garantien</span>
+      <h2 class="section-title anim d1">Kein Risiko. <em>Versprochen.</em></h2>
+
+
+      <div class="guarantee-grid">
+        <div class="card guarantee-card anim d2">
+          <span class="card-icon">&#128179;</span>
+          <div class="card-label">14-Tage Geld-zurück-Garantie</div>
+          <p>Jederzeit kündbar innerhalb der ersten 14 Tage — ohne Wenn und Aber.</p>
+        </div>
+        <div class="card guarantee-card anim d3">
+          <span class="card-icon">&#128506;</span>
+          <div class="card-label">Roadmap-Garantie</div>
+          <p>Jedes Mitglied erhält seine individuelle Roadmap innerhalb von 14 Tagen. Garantiert.</p>
+        </div>
+        <div class="card guarantee-card anim d4">
+          <span class="card-icon">&#129309;</span>
+          <div class="card-label">Entwicklungs-Backup (Fairness-Regel)</div>
+          <p>Bei nachweislicher aktiver Teilnahme ohne erkennbare Entwicklung — kostenlose Verlängerung.</p>
+        </div>
+      </div>
+
+      <div class="takeaway-box anim d5">
+        <h4>Was du auf jeden Fall mitnimmst (selbst bei Kündigung):</h4>
+        <ul>
+          <li><span>&#10003;</span> Kind-Onboarding</li>
+          <li><span>&#10003;</span> Individuelle Roadmap</li>
+          <li><span>&#10003;</span> Eltern-Onboarding-Call mit Q&amp;A</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       ONBOARDING — Was passiert nach dem Ja?
+       ════════════════════════════════════════════ -->
+  <section class="white" style="padding: 88px 0 96px;">
+    <div class="wrap">
+
+      <span class="eyebrow anim">Dein Onboarding-Prozess</span>
+
+      <h2 class="section-title anim d1">
+        Was passiert, wenn du <em>Ja</em> sagst?<br>
+        Konkret. Planbar. Vertrauensbildend.
+      </h2>
+
+      <p class="onboarding-intro anim d2">
+        Kein Blindflug. Von Tag eins an weißt du und dein Kind genau,
+        was wann passiert — und welche Ergebnisse ihr erwarten könnt.
+      </p>
+
+      <!-- Video: Ablauf — gleiches Design wie Hero-VSL -->
+      <div class="vsl-wrapper anim d3" id="ablauf-player" style="margin: 48px auto 56px;">
+        <video preload="metadata" playsinline src="Video/ablauf.mp4#t=0.1"></video>
+        <div class="vsl-play-btn"></div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline">
+        <div class="timeline-step anim">
+          <div class="timeline-time">Erste 72 Stunden</div>
+          <div class="timeline-title">Erstgespräch & Kennenlernen</div>
+          <div class="timeline-desc">
+            30-minütiger Call mit den Eltern. Wir lernen eure Situation kennen,
+            beantworten alle Fragen und prüfen, ob der Club das Richtige ist.
+            Danach: persönliches Onboarding-Gespräch mit deinem Kind.
+          </div>
+        </div>
+        <div class="timeline-step anim">
+          <div class="timeline-time">Tag 3–14</div>
+          <div class="timeline-title">Einstieg & erste Schritte</div>
+          <div class="timeline-desc">
+            Dein Kind bekommt Zugang zur Community, lernt seinen Mentor kennen
+            und startet mit den Grundlagen: erstes Setup, erste Code-Zeilen,
+            erstes Verständnis für die Tools, die alles verändern werden.
+          </div>
+        </div>
+        <div class="timeline-step anim">
+          <div class="timeline-time">Tag 14–30</div>
+          <div class="timeline-title">Eigenes Projekt definieren</div>
+          <div class="timeline-desc">
+            Gemeinsam mit dem Mentor wird das erste eigene Projekt definiert —
+            eine App, ein Tool, eine Website. Etwas Echtes, das dein Kind
+            vorzeigen kann. Klare Meilensteine, klare Deadlines.
+          </div>
+        </div>
+        <div class="timeline-step anim">
+          <div class="timeline-time">Tag 30–60</div>
+          <div class="timeline-title">Bauen, Testen, Iterieren</div>
+          <div class="timeline-desc">
+            Dein Kind baut aktiv an seinem Projekt. Wöchentliche Check-ins
+            mit dem Mentor, Peer-Feedback aus der Gruppe, echte Fortschritte,
+            die du als Elternteil sehen und nachvollziehen kannst.
+          </div>
+        </div>
+        <div class="timeline-step anim">
+          <div class="timeline-time">6 Monate</div>
+          <div class="timeline-title">Ergebnis: Ein fertiges Projekt & neue Identität</div>
+          <div class="timeline-desc">
+            Dein Kind hat ein vorzeigbares Projekt gebaut, echte Skills gelernt
+            und ein Netzwerk aus Gleichgesinnten aufgebaut. Es definiert sich nicht
+            mehr über Konsum — sondern über das, was es erschaffen hat.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SECTION 17 — FINALER CTA
+       ════════════════════════════════════════════ -->
+  <section class="dark final-cta" id="cta" style="padding: 80px 0;">
+    <div class="wrap" style="text-align: center;">
+
+      <div class="anim d1" style="margin-bottom: 32px;">
+        <a href="https://cal.com/team/eltern-medien-akademie/erstgesprach-ema-website" class="vsl-cta" style="animation-name: ctaPulse;">&#128274; Jetzt Platz sichern</a>
+      </div>
+
+      <h2 class="section-title anim d2" style="color: #fff; font-size: clamp(1.4rem, 4vw, 2rem); margin-bottom: 16px;">Bring dein Kind mit uns <em>auf die richtige Spur</em></h2>
+
+      <p class="anim d3" style="color: rgba(255,255,255,.4); font-family: var(--fb); font-style: italic; font-size: .95rem;">Was dein Kind in den nächsten Jahren aufsaugt, prägt es für den Rest seines Lebens.</p>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div style="margin-bottom: 12px;"><img src="Website Bilder/logo-jh.jpg" alt="Jung & Hungrig Gründer Club" style="height:32px; width:auto; border-radius: 4px;"></div>
+          <p>80 Summers Founderclub — Ein selektives Förderprogramm für ambitionierte Teenager, die mehr aus ihrer digitalen Welt machen wollen.</p>
+        </div>
+
+        <div class="footer-links">
+          <h5>Legal</h5>
+          <a href="/datenschutz">Datenschutz</a>
+          <a href="/bewerbung">Bewerbung</a>
+      <a href="/kontakt">Kontakt</a>
+      <a href="/impressum">Impressum</a>
+        </div>
+
+        <div class="footer-links">
+          <h5>Kontakt</h5>
+          <a href="https://wa.me/4915202957670">WhatsApp: +49 152 0295 7670</a>
+          <a href="https://von-wien-bis-berlin.de">von-wien-bis-berlin.de</a>
+          <a href="https://eltern-medien-akademie.de">eltern-medien-akademie.de</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Eltern-Medien-Akademie. Alle Rechte vorbehalten.</p>
+        <span class="ema-mark">EMA &#10022;</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════════════════════
+       JAVASCRIPT — Scroll Animations
+       ════════════════════════════════════════════ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Hamburger menu
+      var hamburger = document.getElementById('hamburgerBtn');
+      var overlay = document.getElementById('navOverlay');
+      hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('active');
+        overlay.classList.toggle('open');
+        document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+      });
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay || e.target.tagName === 'A') {
+          hamburger.classList.remove('active');
+          overlay.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+
+      var animEls = document.querySelectorAll('.anim');
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      animEls.forEach(function (el) {
+        observer.observe(el);
+      });
+    });
+
+    (function() {
+      var wrapper = document.getElementById('vslPlayer');
+      var video = document.getElementById('vslVideo');
+      var playBtn = document.getElementById('vslPlayBtn');
+      var pauseBtn = document.getElementById('vslPauseBtn');
+      var muteBtn = document.getElementById('vslMuteBtn');
+      var volumeSlider = document.getElementById('vslVolume');
+
+      function playVideo() {
+        video.play().then(function() {
+          wrapper.classList.add('is-playing');
+          wrapper.classList.remove('is-paused');
+        }).catch(function() {
+          video.muted = true;
+          video.play().then(function() {
+            wrapper.classList.add('is-playing');
+            wrapper.classList.remove('is-paused');
+          });
+        });
+      }
+
+      function pauseVideo() {
+        video.pause();
+        wrapper.classList.add('is-paused');
+      }
+
+      playBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        playVideo();
+      });
+
+      wrapper.addEventListener('click', function(e) {
+        if (e.target.closest('.vsl-controls')) return;
+        if (!wrapper.classList.contains('is-playing')) {
+          playVideo();
+        } else if (video.paused) {
+          playVideo();
+        } else {
+          pauseVideo();
+        }
+      });
+
+      pauseBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (video.paused) {
+          playVideo();
+        } else {
+          pauseVideo();
+        }
+      });
+
+      muteBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        video.muted = !video.muted;
+        muteBtn.textContent = video.muted ? '\u{1F507}' : '\u{1F50A}';
+        volumeSlider.value = video.muted ? 0 : video.volume;
+      });
+
+      volumeSlider.addEventListener('input', function(e) {
+        e.stopPropagation();
+        video.volume = this.value;
+        video.muted = this.value == 0;
+        muteBtn.textContent = this.value == 0 ? '\u{1F507}' : '\u{1F50A}';
+      });
+
+      var fullBtn = document.getElementById('vslFullBtn');
+      fullBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (video.webkitEnterFullscreen) {
+          video.webkitEnterFullscreen();
+        } else if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (wrapper.webkitRequestFullscreen) {
+          wrapper.webkitRequestFullscreen();
+        }
+      });
+
+      video.addEventListener('ended', function() {
+        wrapper.classList.remove('is-playing');
+        wrapper.classList.remove('is-paused');
+      });
+
+      // Smooth thumbnail loop on mobile
+      var tn = document.getElementById('vslThumbnail');
+      if (tn) {
+        tn.addEventListener('timeupdate', function() {
+          if (tn.duration - tn.currentTime < 0.3) {
+            tn.currentTime = 0;
+            tn.play();
+          }
+        });
+      }
+    })();
+
+    /* Ablauf-Video Player */
+    (function() {
+      var w = document.getElementById('ablauf-player');
+      if (!w) return;
+      var v = w.querySelector('video');
+      if (!v) return;
+      var btn = w.querySelector('.vsl-play-btn');
+
+      function play() {
+        v.play().then(function() {
+          w.classList.add('is-playing');
+          w.classList.remove('is-paused');
+        }).catch(function() {
+          v.muted = true;
+          v.play().then(function() {
+            w.classList.add('is-playing');
+            w.classList.remove('is-paused');
+          });
+        });
+      }
+
+      function pause() {
+        v.pause();
+        w.classList.add('is-paused');
+      }
+
+      btn.addEventListener('click', function(e) { e.stopPropagation(); play(); });
+
+      w.addEventListener('click', function(e) {
+        if (!w.classList.contains('is-playing')) { play(); }
+        else if (v.paused) { play(); }
+        else { pause(); }
+      });
+
+      v.addEventListener('ended', function() {
+        w.classList.remove('is-playing');
+        w.classList.remove('is-paused');
+      });
+    })();
+  </script>
+</body>
+</html>

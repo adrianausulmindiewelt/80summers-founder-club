@@ -23,9 +23,9 @@
       --surface:   #ffffff;
       --bg:        #fafafa;
       --bg-dark:   #141312;
-      --red:       #8b1a1a;
-      --red-mid:   #a52222;
-      --red-tint:  #f9eded;
+      --red:       #6b0f18;
+      --red-mid:   #8a1a24;
+      --red-tint:  #f8ecee;
       --orange:    #e07b39;
       --orange-light: #f0a060;
       --fh: 'Poppins', sans-serif;
@@ -279,28 +279,30 @@
     }
 
     .hero__topbar {
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 32px;
+      background: #700c0c;
+      border-bottom: none;
+      padding: 0;
       text-align: center;
     }
 
     .hero__topbar-inner {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       font-family: var(--fh);
-      font-size: .85rem;
+      font-size: 1rem;
       color: var(--ink);
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
-    .hero__topbar-inner span {
-      font-weight: 600;
-    }
-
-    .hero__topbar-inner .topbar-sub {
-      font-weight: 400;
-      color: var(--ink-soft);
+    .topbar-logo {
+      display: block;
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      margin: 0 auto;
+      padding-left: 12px;
     }
 
     .hero__nav {
@@ -2159,6 +2161,14 @@
        RESPONSIVE — PHONE (max 480px)
        ══════════════════════════════════════════ */
     @media (max-width: 480px) {
+      .topbar-logo {
+        width: 100%;
+        padding-left: 18px;
+        padding-top: 7px;
+      }
+      .hero__topbar {
+        padding: 0;
+      }
       section { padding: 48px 0 64px; }
       .wrap { padding: 0 16px; }
       .hero__content { padding: 36px 16px 0; }
@@ -2233,8 +2243,7 @@
   <section class="hero" id="hero">
     <div class="hero__topbar">
       <div class="hero__topbar-inner">
-        <img src="Website Bilder/80-summers-logo-alpha.png" alt="80 Summers" style="height:28px; width:auto;">
-        <span>80 Summers Founderclub</span> <span class="topbar-sub">- Mitgliederclub</span>
+        <img src="Website Bilder/logo-jh.jpg" alt="Jung & Hungrig Gründer Club" class="topbar-logo">
       </div>
     </div>
 
@@ -3494,7 +3503,7 @@
     <div class="wrap">
       <div class="footer-inner">
         <div class="footer-brand">
-          <div style="margin-bottom: 12px;"><img src="Website Bilder/80-summers-logo-alpha.png" alt="80 Summers" style="height:36px; width:auto;"></div>
+          <div style="margin-bottom: 12px;"><img src="Website Bilder/logo-jh.jpg" alt="Jung & Hungrig Gründer Club" style="height:32px; width:auto; border-radius: 4px;"></div>
           <p>80 Summers Founderclub — Ein selektives Förderprogramm für ambitionierte Teenager, die mehr aus ihrer digitalen Welt machen wollen.</p>
         </div>
 

@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --ink: #111; --ink-mid: #3a3a3a; --ink-soft: #6b6b6b; --ink-faint: #999; --bg: #fafafa; --surface: #fff; --bg-dark: #141312; --red: #8b1a1a; --orange: #e07b39; --border: #e2e0db; --fh: 'Poppins', sans-serif; --fb: 'Bitter', serif; --radius: 16px; --card-shadow: 0 2px 16px rgba(0,0,0,.07); }
+    :root { --ink: #111; --ink-mid: #3a3a3a; --ink-soft: #6b6b6b; --ink-faint: #999; --bg: #fafafa; --surface: #fff; --bg-dark: #141312; --red: #6b0f18; --orange: #e07b39; --border: #e2e0db; --fh: 'Poppins', sans-serif; --fb: 'Bitter', serif; --radius: 16px; --card-shadow: 0 2px 16px rgba(0,0,0,.07); }
     html { overflow-x: hidden; }
     body { font-family: var(--fb); font-size: 17px; line-height: 1.7; color: var(--ink-mid); background: var(--surface); overflow-x: hidden; width: 100%; }
     .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
@@ -25,7 +25,7 @@
     .card-label { font-family: var(--fh); font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 8px; }
     .card p { font-size: .92rem; line-height: 1.65; color: var(--ink-soft); }
     .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--red); color: #fff; font-family: var(--fh); font-weight: 600; font-size: .9rem; padding: 16px 32px; border-radius: 8px; border: none; cursor: pointer; text-decoration: none; }
-    .btn-primary:hover { background: #a52222; }
+    .btn-primary:hover { background: #8a1a24; }
 
     section { padding: 80px 0 100px; }
     section.dark { background: var(--bg-dark); color: rgba(255,255,255,.85); }
@@ -59,8 +59,44 @@
     .nav-overlay nav a { font-family: var(--fh); font-weight: 700; font-size: clamp(1.4rem, 4vw, 2rem); color: rgba(255,255,255,.85); text-decoration: none; }
     .nav-overlay nav a:hover { color: #fff; }
 
+    /* Topbar */
+    .hero__topbar {
+      background: #700c0c;
+      border-bottom: none;
+      padding: 0;
+      text-align: center;
+    }
+    .hero__topbar-inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--fh);
+      font-size: 1rem;
+      color: var(--ink);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .topbar-logo {
+      display: block;
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      margin: 0 auto;
+      padding-left: 12px;
+    }
+
     @media (max-width: 800px) {
       .select-grid, .process-steps { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .topbar-logo {
+        width: 100%;
+        padding-left: 18px;
+        padding-top: 7px;
+      }
+      .hero__topbar {
+        padding: 0;
+      }
     }
   </style>
 </head>
@@ -75,6 +111,12 @@
       <a href="/impressum">Impressum</a>
       <a href="/datenschutz">Datenschutz</a>
     </nav>
+  </div>
+
+  <div class="hero__topbar">
+    <div class="hero__topbar-inner">
+      <img src="../Website Bilder/logo-jh.jpg" alt="Jung & Hungrig Gründer Club" class="topbar-logo">
+    </div>
   </div>
 
   <section class="dark" id="selektion">

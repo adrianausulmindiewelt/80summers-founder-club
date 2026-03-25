@@ -14,7 +14,7 @@
     h1 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 2rem; color: #111; margin-bottom: 32px; }
     h2 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1.1rem; color: #111; margin-top: 32px; margin-bottom: 8px; }
     p { margin-bottom: 12px; }
-    a { color: #8b1a1a; }
+    a { color: #6b0f18; }
     .back { font-family: 'Poppins', sans-serif; font-size: .85rem; color: #999; text-decoration: none; display: inline-block; margin-bottom: 40px; }
     .back:hover { color: #111; }
 
@@ -46,6 +46,42 @@
       text-decoration: none; letter-spacing: -.02em; transition: color .2s;
     }
     .nav-overlay nav a:hover { color: #fff; }
+
+    /* Topbar */
+    .hero__topbar {
+      background: #700c0c;
+      border-bottom: none;
+      padding: 0;
+      text-align: center;
+    }
+    .hero__topbar-inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      color: #111;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .topbar-logo {
+      display: block;
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      margin: 0 auto;
+      padding-left: 12px;
+    }
+    @media (max-width: 480px) {
+      .topbar-logo {
+        width: 100%;
+        padding-left: 18px;
+        padding-top: 7px;
+      }
+      .hero__topbar {
+        padding: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -61,6 +97,12 @@
       <a href="/impressum">Impressum</a>
       <a href="/datenschutz">Datenschutz</a>
     </nav>
+  </div>
+
+  <div class="hero__topbar">
+    <div class="hero__topbar-inner">
+      <img src="../Website Bilder/logo-jh.jpg" alt="Jung & Hungrig Gründer Club" class="topbar-logo">
+    </div>
   </div>
 
   <div class="wrap">
