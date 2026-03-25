@@ -3757,18 +3757,35 @@
       var pauseBtn = document.getElementById('vslPauseBtn');
       var muteBtn = document.getElementById('vslMuteBtn');
       var volumeSlider = document.getElementById('vslVolume');
+      var fullBtn = document.getElementById('vslFullBtn');
+      var tnVideo = document.getElementById('vslThumbnail');
+
+      if (!wrapper || !video || !playBtn) return;
+
+      // Pre-load video so it's ready
+      video.load();
 
       function playVideo() {
-        video.play().then(function() {
-          wrapper.classList.add('is-playing');
-          wrapper.classList.remove('is-paused');
-        }).catch(function() {
-          video.muted = true;
-          video.play().then(function() {
+        // Stop thumbnail to free resources
+        if (tnVideo) { try { tnVideo.pause(); } catch(e){} }
+
+        var p = video.play();
+        if (p && p.then) {
+          p.then(function() {
             wrapper.classList.add('is-playing');
             wrapper.classList.remove('is-paused');
+          }).catch(function(err) {
+            console.log('Play error:', err);
+            // Try muted as fallback (autoplay policy)
+            video.muted = true;
+            video.play().then(function() {
+              wrapper.classList.add('is-playing');
+              wrapper.classList.remove('is-paused');
+            }).catch(function(err2) {
+              console.log('Muted play also failed:', err2);
+            });
           });
-        });
+        }
       }
 
       function pauseVideo() {
@@ -3777,12 +3794,14 @@
       }
 
       playBtn.addEventListener('click', function(e) {
+        e.preventDefault();
         e.stopPropagation();
         playVideo();
       });
 
       wrapper.addEventListener('click', function(e) {
         if (e.target.closest('.vsl-controls')) return;
+        e.preventDefault();
         if (!wrapper.classList.contains('is-playing')) {
           playVideo();
         } else if (video.paused) {
@@ -3792,53 +3811,54 @@
         }
       });
 
-      pauseBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (video.paused) {
-          playVideo();
-        } else {
-          pauseVideo();
-        }
-      });
+      if (pauseBtn) {
+        pauseBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (video.paused) { playVideo(); } else { pauseVideo(); }
+        });
+      }
 
-      muteBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        video.muted = !video.muted;
-        muteBtn.textContent = video.muted ? '\u{1F507}' : '\u{1F50A}';
-        volumeSlider.value = video.muted ? 0 : video.volume;
-      });
+      if (muteBtn) {
+        muteBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          video.muted = !video.muted;
+          muteBtn.textContent = video.muted ? '\u{1F507}' : '\u{1F50A}';
+          if (volumeSlider) volumeSlider.value = video.muted ? 0 : video.volume;
+        });
+      }
 
-      volumeSlider.addEventListener('input', function(e) {
-        e.stopPropagation();
-        video.volume = this.value;
-        video.muted = this.value == 0;
-        muteBtn.textContent = this.value == 0 ? '\u{1F507}' : '\u{1F50A}';
-      });
+      if (volumeSlider) {
+        volumeSlider.addEventListener('input', function(e) {
+          e.stopPropagation();
+          video.volume = this.value;
+          video.muted = this.value == 0;
+          if (muteBtn) muteBtn.textContent = this.value == 0 ? '\u{1F507}' : '\u{1F50A}';
+        });
+      }
 
-      var fullBtn = document.getElementById('vslFullBtn');
-      fullBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (video.webkitEnterFullscreen) {
-          video.webkitEnterFullscreen();
-        } else if (video.requestFullscreen) {
-          video.requestFullscreen();
-        } else if (wrapper.webkitRequestFullscreen) {
-          wrapper.webkitRequestFullscreen();
-        }
-      });
+      if (fullBtn) {
+        fullBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (video.webkitEnterFullscreen) {
+            video.webkitEnterFullscreen();
+          } else if (video.requestFullscreen) {
+            video.requestFullscreen();
+          }
+        });
+      }
 
       video.addEventListener('ended', function() {
         wrapper.classList.remove('is-playing');
         wrapper.classList.remove('is-paused');
+        if (tnVideo) { try { tnVideo.play(); } catch(e){} }
       });
 
       // Smooth thumbnail loop on mobile
-      var tn = document.getElementById('vslThumbnail');
-      if (tn) {
-        tn.addEventListener('timeupdate', function() {
-          if (tn.duration - tn.currentTime < 0.3) {
-            tn.currentTime = 0;
-            tn.play();
+      if (tnVideo) {
+        tnVideo.addEventListener('timeupdate', function() {
+          if (tnVideo.duration - tnVideo.currentTime < 0.3) {
+            tnVideo.currentTime = 0;
+            tnVideo.play();
           }
         });
       }
