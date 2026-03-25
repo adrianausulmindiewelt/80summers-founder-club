@@ -71,6 +71,7 @@
       text-transform: uppercase;
       color: var(--red);
       margin-bottom: 18px;
+      text-align: center;
     }
 
     .section-title {
@@ -114,7 +115,11 @@
     }
 
     section {
-      padding: 100px 0 120px;
+      padding: 100px 0;
+    }
+
+    section > .wrap > *:last-child {
+      margin-bottom: 0;
     }
 
     section.dark {
@@ -2078,7 +2083,7 @@
        ══════════════════════════════════════════ */
     .cta-strip {
       text-align: center;
-      margin: 56px 0;
+      margin: 56px 0 0;
     }
 
     .cta-strip .vsl-cta {
@@ -2491,7 +2496,7 @@
        ══════════════════════════════════════════ */
     @media (max-width: 800px) {
       /* --- Global spacing --- */
-      section { padding: 72px 0 88px; }
+      section { padding: 72px 0; }
       .wrap { padding: 0 20px; }
       .hero__content { padding: 48px 28px 0; }
       .hero__sub { font-size: 1rem; line-height: 1.8; max-width: 520px; margin-left: auto; margin-right: auto; }
@@ -2585,7 +2590,7 @@
        RESPONSIVE — PHONE (max 480px)
        ══════════════════════════════════════════ */
     @media (max-width: 480px) {
-      section { padding: 56px 0 72px; }
+      section { padding: 56px 0; }
       .wrap { padding: 0 24px; }
       .hero__content { padding: 36px 24px 0; }
       .hero__content h1 { font-size: 1.6rem; line-height: 1.15; margin-bottom: 20px; }
@@ -2838,7 +2843,7 @@
        ════════════════════════════════════════════ -->
   <section class="cream" style="padding-top: 40px; padding-bottom: 40px;">
     <div class="wrap">
-      <span class="eyebrow anim" style="text-align: center; display: block;">Bekannt aus</span>
+      <span class="eyebrow anim">Bekannt aus</span>
       <h2 class="section-title anim d1">Aktuelle Presseberichte <em>über uns</em></h2>
       <div class="press-articles anim d1">
         <img src="Website Bilder/welt cover adrian (make sure not to cut if off).jpeg" alt="WELT Artikel" style="max-height:none; object-fit:contain;">
@@ -2949,11 +2954,18 @@
 
       <div class="cta-strip anim"><a href="https://cal.com/team/eltern-medien-akademie/erstgesprach-ema-website" class="vsl-cta">Jetzt kostenloses Strategiegespräch sichern &#128640;</a></div>
 
-      <!-- Die Gründergeschichte -->
-      <h2 class="section-title anim d1" style="margin-top: 56px;">Die <em>Gründergeschichte</em></h2>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       DIE GRÜNDERGESCHICHTE
+       ════════════════════════════════════════════ -->
+  <section class="white">
+    <div class="wrap">
+      <h2 class="section-title anim">Die <em>Gründergeschichte</em></h2>
 
       <!-- Founder Card -->
-      <div class="card founder-card-grid anim d3" style="padding: 40px 44px; margin-bottom: 32px; display: grid; grid-template-columns: 220px 1fr; gap: 36px; align-items: start;">
+      <div class="card founder-card-grid anim d1" style="padding: 40px 44px; display: grid; grid-template-columns: 220px 1fr; gap: 36px; align-items: start;">
         <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
           <div style="width: 220px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.13);">
             <img src="Website Bilder/adrian schimmelpfennig profil bild intro bild (dont cut it off).jpeg" alt="Adrian Schimmelpfennig" style="width: 100%; height: auto; object-fit: contain;">
@@ -2974,11 +2986,18 @@
 
       <div class="cta-strip anim"><a href="https://cal.com/team/eltern-medien-akademie/erstgesprach-ema-website" class="vsl-cta">Jetzt kostenloses Strategiegespräch sichern &#128640;</a></div>
 
-      <!-- Das Team hinter dem Programm -->
-      <h2 class="section-title anim d1">Das Team hinter <em>dem Programm</em></h2>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       DAS TEAM HINTER DEM PROGRAMM
+       ════════════════════════════════════════════ -->
+  <section class="cream">
+    <div class="wrap">
+      <h2 class="section-title anim">Das Team hinter <em>dem Programm</em></h2>
 
       <!-- Mentor Intro -->
-      <div class="card anim" style="margin-bottom: 20px;">
+      <div class="card anim d1" style="margin-bottom: 20px;">
         <h3 style="font-family: var(--fh); font-weight: 700; font-size: 1.2rem; color: var(--ink); margin-bottom: 8px;">&#x1F9D1;&#x200D;&#x1F3EB; Unsere Mentoren — keine Lehrer. Keine Coaches.</h3>
         <p style="font-family: var(--fb); font-size: 1rem; line-height: 1.75; color: var(--ink-soft);">Mehr als zehn Mentoren begleiten unsere Teilnehmer — freiberuflich oder fest angestellt. Sie sind 22 bis 28 Jahre alt und haben die digitale Welt nicht studiert, sondern gelebt. Im Hintergrund begleiten zusätzlich über zehn erfahrene Erwachsene — Pädagogen, Psychologen und Lehrende — das Programm fachlich.</p>
       </div>
@@ -3020,7 +3039,7 @@
   <!-- ════════════════════════════════════════════
        ONBOARDING — So einfach sind die nächsten Schritte
        ════════════════════════════════════════════ -->
-  <section class="white" style="padding: 88px 0 96px;">
+  <section class="white">
     <div class="wrap">
 
       <h2 class="section-title anim" style="font-size: clamp(1.8rem, 5vw, 2.8rem);">
@@ -3035,8 +3054,17 @@
       <!-- Video: Ablauf — gleiches Design wie Hero-VSL -->
       <div class="vsl-wrapper anim d2" id="ablauf-player" style="margin: 48px auto 56px;">
         <div class="vsl-inner">
-          <video preload="metadata" playsinline src="media/ablauf-compressed.mp4#t=0.1"></video>
+          <video preload="auto" playsinline src="media/ablauf-compressed.mp4"></video>
           <div class="vsl-play-btn"></div>
+          <div class="vsl-controls">
+            <button class="vsl-ctrl-btn vsl-pause-btn" aria-label="Pause">
+              <span class="vsl-icon-pause">&#10074;&#10074;</span>
+              <span class="vsl-icon-play">&#9654;</span>
+            </button>
+            <button class="vsl-ctrl-btn vsl-mute-btn" aria-label="Ton">&#128266;</button>
+            <input type="range" class="vsl-volume" min="0" max="1" step="0.05" value="1">
+            <button class="vsl-ctrl-btn vsl-full-btn" aria-label="Vollbild">&#x26F6;</button>
+          </div>
         </div>
       </div>
 
@@ -3123,8 +3151,17 @@
       <!-- Video: Club-Architektur -->
       <div class="vsl-wrapper anim d2" id="architektur-player" style="margin: 48px auto 56px;">
         <div class="vsl-inner">
-          <video preload="metadata" playsinline src="media/club-aufbau-compressed.mp4#t=0.1"></video>
+          <video preload="auto" playsinline src="media/club-aufbau-compressed.mp4"></video>
           <div class="vsl-play-btn"></div>
+          <div class="vsl-controls">
+            <button class="vsl-ctrl-btn vsl-pause-btn" aria-label="Pause">
+              <span class="vsl-icon-pause">&#10074;&#10074;</span>
+              <span class="vsl-icon-play">&#9654;</span>
+            </button>
+            <button class="vsl-ctrl-btn vsl-mute-btn" aria-label="Ton">&#128266;</button>
+            <input type="range" class="vsl-volume" min="0" max="1" step="0.05" value="1">
+            <button class="vsl-ctrl-btn vsl-full-btn" aria-label="Vollbild">&#x26F6;</button>
+          </div>
         </div>
       </div>
 
@@ -3292,9 +3329,18 @@
         </div>
       </div>
 
-      <!-- Teenager-Geschichten: Max, Josia, Anna -->
-      <h2 class="section-title anim d1" style="margin-top: 56px;">Unsere <em>Clubgeschichten</em></h2>
-      <p class="section-sub anim d2">Echte Geschichten von unseren Mitgliedern, die von <strong><em>passiven Konsumenten</em></strong> zu Unternehmern, Gründern und aktiven Gestaltern ihres eigenen Lebens werden.</p>
+      <div class="cta-strip anim"><a href="https://cal.com/team/eltern-medien-akademie/erstgesprach-ema-website" class="vsl-cta">Jetzt kostenloses Strategiegespräch sichern &#128640;</a></div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       CLUBGESCHICHTEN — Teenager-Transformationen
+       ════════════════════════════════════════════ -->
+  <section class="cream">
+    <div class="wrap">
+      <h2 class="section-title anim">Unsere <em>Clubgeschichten</em></h2>
+      <p class="section-sub anim d1">Echte Geschichten von unseren Mitgliedern, die von <strong><em>passiven Konsumenten</em></strong> zu Unternehmern, Gründern und aktiven Gestaltern ihres eigenen Lebens werden.</p>
 
       <div class="testimonial-list">
         <div class="testimonial-item anim d2">
@@ -3390,54 +3436,18 @@
   <section class="white solutions-fail" id="solutions">
     <div class="wrap">
       <span class="eyebrow anim">Die Wahrheit</span>
-      <h2 class="section-title anim d1">Warum die meisten Bemühungen von Eltern <em>ins Leere gehen</em> —</h2>
-      <p class="section-sub anim d2">und was wirklich wirkt. Wir wissen es. Wir sind selbst Teenager. &#129513;</p>
+      <h2 class="section-title anim d1">Warum die meisten Bemühungen von Eltern <em>ins Leere gehen</em></h2>
+      <p class="section-sub anim d2">Aus der Analyse von über 300 Teenager-Lebensläufen wissen wir, was wirklich wirkt — und warum die meisten Maßnahmen nicht reichen.</p>
 
-      <!-- Alert: Kontrolle -->
-      <div class="alert-box anim d3">
-        <strong>&#9889; Kontrolle erzeugt Widerstand. Immer.</strong>
-        <p style="margin-bottom: 12px;">Das ist keine Erziehungsfrage. Das ist Neurologie.</p>
-        <p style="margin-bottom: 12px;">Das Teenagerhirn ist darauf ausgerichtet, Autonomie zu suchen und Kontrolle zu verweigern — besonders von Eltern. Je mehr Druck von außen, desto stärker zieht sich dein Kind in genau das zurück, was du einschränken willst.</p>
-        <p>Dein Kind ist nicht schwierig. Kontrolle ist einfach das falsche Werkzeug.</p>
-      </div>
-
-      <!-- Vergleichstabelle -->
-      <div class="card anim d3" style="margin-top: 32px; padding: 36px 32px;">
-        <h3 style="font-family: var(--fh); font-weight: 700; font-size: 1.1rem; color: var(--ink); margin-bottom: 24px;">&#128269; Warum auch die besten Maßnahmen nicht reichen</h3>
-        <table class="compare-table">
-          <thead>
-            <tr>
-              <th>Was du versucht hast</th>
-              <th>Warum es nicht reicht</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>&#9201; Bildschirmzeit-Limits</td>
-              <td>Kein Ersatz für eine echte Alternative</td>
-            </tr>
-            <tr>
-              <td>&#128172; Gespräche &amp; Abmachungen</td>
-              <td>Verpuffen ohne Umfeld, das dieselben Werte lebt</td>
-            </tr>
-            <tr>
-              <td>&#128241; Lern-Apps &amp; Kurse</td>
-              <td>Keine Menschen, keine Peers, keine Verbindlichkeit</td>
-            </tr>
-            <tr>
-              <td>&#128683; Handy wegnehmen</td>
-              <td>Erzeugt Eskalation — löst nichts</td>
-            </tr>
-            <tr>
-              <td>&#9203; Abwarten</td>
-              <td>Das Fenster schließt sich. Gewohnheiten verfestigen sich.</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="card anim d3" style="margin-top: 40px; padding: 40px 36px; text-align: center;">
+        <h3 style="font-family: var(--fh); font-weight: 800; font-size: 1.3rem; color: var(--ink); margin-bottom: 20px;">Du kämpfst einen Kampf, den du nicht gewinnen kannst.</h3>
+        <p style="margin-bottom: 16px;">Dein Kind sitzt jeden Tag den 90 besten Psychologen der Welt gegenüber — und die verfolgen ein einziges Ziel: Dein Kind so lange wie möglich am Bildschirm zu halten.</p>
+        <p style="margin-bottom: 16px;">Instagram. TikTok. YouTube. Jede dieser Apps ist eine Dopamin-Maschine, gebaut von Milliarden-Dollar-Teams, die menschliche Schwächen systematisch ausnutzen. Gegen diese Übermacht helfen keine Regeln, keine Verbote, keine Gespräche am Küchentisch.</p>
+        <p style="font-family: var(--fh); font-weight: 700; color: var(--red); font-size: 1.05rem;">Diesen Kampf kannst du alleine nicht gewinnen.</p>
       </div>
 
       <!-- Drei Hebel -->
-      <h3 class="section-subtitle anim" style="margin-top: 72px;">&#128161; Was wirklich wirkt — drei Hebel gleichzeitig</h3>
+      <h3 class="section-subtitle anim" style="margin-top: 56px;">&#128161; Was wirklich wirkt — drei Hebel gleichzeitig</h3>
 
       <div class="lever-row anim d2" style="display: grid; gap: 20px; margin-bottom: 32px;">
         <div class="card" style="position: relative;">
@@ -3896,25 +3906,34 @@
       }
     })();
 
-    /* Architektur-Video Player */
-    (function() {
-      var w = document.getElementById('architektur-player');
+    /* Generic Video Player — reused for Architektur & Ablauf */
+    function initVideoPlayer(id) {
+      var w = document.getElementById(id);
       if (!w) return;
       var v = w.querySelector('video');
       if (!v) return;
       var btn = w.querySelector('.vsl-play-btn');
+      var pauseBtn = w.querySelector('.vsl-pause-btn');
+      var muteBtn = w.querySelector('.vsl-mute-btn');
+      var volumeSlider = w.querySelector('.vsl-volume');
+      var fullBtn = w.querySelector('.vsl-full-btn');
+
+      v.load();
 
       function play() {
-        v.play().then(function() {
-          w.classList.add('is-playing');
-          w.classList.remove('is-paused');
-        }).catch(function() {
-          v.muted = true;
-          v.play().then(function() {
+        var p = v.play();
+        if (p && p.then) {
+          p.then(function() {
             w.classList.add('is-playing');
             w.classList.remove('is-paused');
+          }).catch(function() {
+            v.muted = true;
+            v.play().then(function() {
+              w.classList.add('is-playing');
+              w.classList.remove('is-paused');
+            });
           });
-        });
+        }
       }
 
       function pause() {
@@ -3922,59 +3941,57 @@
         w.classList.add('is-paused');
       }
 
-      btn.addEventListener('click', function(e) { e.stopPropagation(); play(); });
+      if (btn) btn.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); play(); });
 
       w.addEventListener('click', function(e) {
+        if (e.target.closest('.vsl-controls')) return;
+        e.preventDefault();
         if (!w.classList.contains('is-playing')) { play(); }
         else if (v.paused) { play(); }
         else { pause(); }
       });
 
-      v.addEventListener('ended', function() {
-        w.classList.remove('is-playing');
-        w.classList.remove('is-paused');
-      });
-    })();
-
-    /* Ablauf-Video Player */
-    (function() {
-      var w = document.getElementById('ablauf-player');
-      if (!w) return;
-      var v = w.querySelector('video');
-      if (!v) return;
-      var btn = w.querySelector('.vsl-play-btn');
-
-      function play() {
-        v.play().then(function() {
-          w.classList.add('is-playing');
-          w.classList.remove('is-paused');
-        }).catch(function() {
-          v.muted = true;
-          v.play().then(function() {
-            w.classList.add('is-playing');
-            w.classList.remove('is-paused');
-          });
+      if (pauseBtn) {
+        pauseBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (v.paused) { play(); } else { pause(); }
         });
       }
 
-      function pause() {
-        v.pause();
-        w.classList.add('is-paused');
+      if (muteBtn) {
+        muteBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          v.muted = !v.muted;
+          muteBtn.textContent = v.muted ? '\u{1F507}' : '\u{1F50A}';
+          if (volumeSlider) volumeSlider.value = v.muted ? 0 : v.volume;
+        });
       }
 
-      btn.addEventListener('click', function(e) { e.stopPropagation(); play(); });
+      if (volumeSlider) {
+        volumeSlider.addEventListener('input', function(e) {
+          e.stopPropagation();
+          v.volume = this.value;
+          v.muted = this.value == 0;
+          if (muteBtn) muteBtn.textContent = this.value == 0 ? '\u{1F507}' : '\u{1F50A}';
+        });
+      }
 
-      w.addEventListener('click', function(e) {
-        if (!w.classList.contains('is-playing')) { play(); }
-        else if (v.paused) { play(); }
-        else { pause(); }
-      });
+      if (fullBtn) {
+        fullBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (v.webkitEnterFullscreen) { v.webkitEnterFullscreen(); }
+          else if (v.requestFullscreen) { v.requestFullscreen(); }
+        });
+      }
 
       v.addEventListener('ended', function() {
         w.classList.remove('is-playing');
         w.classList.remove('is-paused');
       });
-    })();
+    }
+
+    initVideoPlayer('architektur-player');
+    initVideoPlayer('ablauf-player');
   </script>
 </body>
 </html>
