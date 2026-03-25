@@ -1,5 +1,9 @@
 {
   "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/strategiegespräch", "destination": "/strategiegespraech.html" },
+    { "source": "/strategiegespr%C3%A4ch", "destination": "/strategiegespraech.html" }
+  ],
   "headers": [
     {
       "source": "/video/(.*)",
