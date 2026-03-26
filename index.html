@@ -2079,6 +2079,119 @@
     }
 
     /* ══════════════════════════════════════════
+       BUCKET LIST CARD
+       ══════════════════════════════════════════ */
+    .bl-card {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 44px 40px;
+      box-shadow: 0 4px 32px rgba(0,0,0,.06);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      max-width: 760px;
+      margin: 0 auto;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .bl-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 40px rgba(0,0,0,.10);
+    }
+
+    .bl-card-text h3 {
+      font-family: var(--fh);
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .bl-card-text h3 em {
+      font-family: var(--fb);
+      font-style: italic;
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .bl-card-text p {
+      font-size: .88rem;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin-bottom: 18px;
+    }
+
+    .bl-card-link {
+      font-family: var(--fh);
+      font-weight: 600;
+      font-size: .82rem;
+      color: var(--red);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .bl-card-link .arrow {
+      transition: transform .2s;
+    }
+
+    .bl-card:hover .bl-card-link .arrow {
+      transform: translateX(4px);
+    }
+
+    .bl-card-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bl-preview-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: .82rem;
+      color: var(--ink-mid);
+    }
+
+    .bl-preview-check {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .bl-preview-item.checked .bl-preview-check {
+      background: var(--red);
+      border-color: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: .65rem;
+    }
+
+    .bl-preview-item.checked {
+      color: var(--ink-faint);
+      text-decoration: line-through;
+    }
+
+    @media (max-width: 700px) {
+      .bl-card {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+        gap: 28px;
+      }
+    }
+
+    /* ══════════════════════════════════════════
        INLINE CTA STRIP
        ══════════════════════════════════════════ */
     .cta-strip {
@@ -2835,6 +2948,39 @@
       </table>
 
       <div class="cta-strip anim"><a href="https://cal.com/team/eltern-medien-akademie/erstgesprach-ema-website" class="vsl-cta">Jetzt kostenloses Strategiegespräch sichern &#128640;</a></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       BUCKET LIST — 100 Dinge
+       ════════════════════════════════════════════ -->
+  <section class="cream">
+    <div class="wrap">
+      <a href="/bucket-list/" class="bl-card anim">
+        <div class="bl-card-text">
+          <h3>100 Dinge, die ich <em>erleben</em> will</h3>
+          <p>Dein Leben hat ca. 80 Sommer. Was willst du damit anfangen? Erstelle deine persönliche Bucket List — und fang an, sie abzuhaken.</p>
+          <span class="bl-card-link">Bucket List öffnen <span class="arrow">&rarr;</span></span>
+        </div>
+        <div class="bl-card-preview">
+          <div class="bl-preview-item checked">
+            <div class="bl-preview-check">&#10003;</div>
+            Alle 7 Kontinente bereisen
+          </div>
+          <div class="bl-preview-item">
+            <div class="bl-preview-check"></div>
+            Ein eigenes Unternehmen gründen
+          </div>
+          <div class="bl-preview-item">
+            <div class="bl-preview-check"></div>
+            Eine eigene App programmieren
+          </div>
+          <div class="bl-preview-item checked">
+            <div class="bl-preview-check">&#10003;</div>
+            Unter dem Sternenhimmel schlafen
+          </div>
+        </div>
+      </a>
     </div>
   </section>
 
