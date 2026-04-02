@@ -114,7 +114,7 @@
     }
 
     section {
-      padding: 100px 0 120px;
+      padding: 100px 0;
     }
 
     section.dark {
@@ -152,6 +152,84 @@
     .anim.d4.visible { animation-delay: .28s; }
     .anim.d5.visible { animation-delay: .36s; }
     .anim.d6.visible { animation-delay: .44s; }
+
+    /* ── Hero Headline Rotator ──
+       RULE: Every headline is exactly 3 lines via <br>.
+       This makes height predictable and consistent.
+       Eyebrow = grid row 1 (pinned top, same Y always).
+       Headline = grid row 2 (centered in remaining space).
+       overflow:hidden = hard safety net. */
+    .hero-rotator {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      justify-items: center;
+      opacity: 0;
+      transition: opacity .65s ease;
+      pointer-events: none;
+    }
+
+    .hero-slide.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .hero-slide .eyebrow {
+      grid-row: 1;
+      margin: 0;
+      padding: 0 8px;
+      padding-bottom: 18px;       /* gap between eyebrow and headline */
+      color: var(--red);
+      font-size: .82rem;
+      letter-spacing: .18em;
+      white-space: nowrap;         /* RULE: eyebrow is always 1 line */
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hero-slide h1 {
+      grid-row: 2;
+      align-self: center;
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: clamp(2rem, 4.8vw, 3rem);
+      line-height: 1.18;
+      letter-spacing: -.03em;
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .hero-slide h1 em {
+      font-family: var(--fb);
+      font-style: italic;
+      font-weight: 700;
+      color: #8f0000;
+    }
+
+    /* Tablet */
+    @media (max-width: 800px) {
+      .hero-rotator { height: 195px; }
+      .hero-slide h1 { font-size: clamp(1.7rem, 4.2vw, 2.4rem); }
+      .hero-slide .eyebrow { font-size: .74rem; }
+    }
+
+    /* Mobile — use vw-based font so lines scale to screen width.
+       At 375px: 5.2vw = 19.5px. At 414px: 5.2vw = 21.5px.
+       This keeps lines from wrapping at every common phone width. */
+    @media (max-width: 480px) {
+      .hero-rotator { height: 150px; }
+      .hero-slide .eyebrow { font-size: .6rem; letter-spacing: .1em; padding-bottom: 6px; }
+      .hero-slide h1 { font-size: 5.2vw; line-height: 1.24; letter-spacing: -.035em; }
+    }
 
     .vsl-wrapper.visible {
       animation: fadeUp .7s var(--eo) forwards, vslBreathe 6s ease-in-out 1s infinite;
@@ -200,6 +278,14 @@
       font-size: .92rem;
       line-height: 1.65;
       color: var(--ink-soft);
+    }
+
+    /* --- Strat Grid (Strategiegespräch Benefit-Karten) --- */
+    .strat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
     }
 
     /* --- Alert Box --- */
@@ -369,27 +455,10 @@
     .hero__content {
       position: relative;
       z-index: 1;
-      max-width: 780px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 60px 32px 0;
       text-align: center;
-    }
-
-    .hero__content h1 {
-      font-family: var(--fh);
-      font-weight: 900;
-      font-size: clamp(2.1rem, 5.5vw, 3.4rem);
-      line-height: 1.15;
-      letter-spacing: -.03em;
-      color: var(--ink);
-      margin-bottom: 24px;
-    }
-
-    .hero__content h1 em {
-      font-family: var(--fb);
-      font-style: italic;
-      font-weight: 700;
-      color: #8f0000;
     }
 
     .hero__sub {
@@ -398,7 +467,7 @@
       line-height: 1.85;
       color: var(--ink-soft);
       max-width: 560px;
-      margin: 20px auto 33px;
+      margin: 32px auto 48px;
       letter-spacing: .01em;
     }
 
@@ -2491,7 +2560,7 @@
        ══════════════════════════════════════════ */
     @media (max-width: 800px) {
       /* --- Global spacing --- */
-      section { padding: 72px 0 88px; }
+      section { padding: 72px 0; }
       .wrap { padding: 0 20px; }
       .hero__content { padding: 48px 28px 0; }
       .hero__sub { font-size: 1rem; line-height: 1.8; max-width: 520px; margin-left: auto; margin-right: auto; }
@@ -2499,7 +2568,8 @@
       .vsl-cta { margin-bottom: 28px; animation: ctaAlive 4s ease-in-out infinite; }
       .vsl-wrapper { margin-top: 47px; }
       .hero__press { margin-top: 32px; margin-bottom: 20px; }
-      .stats-group { margin-top: 79px; }
+      .hero .stats-group { margin-top: 79px; }
+      #club-zahlen .stats-group { margin-top: 0; }
 
       /* --- Typography scale --- */
       .section-title { font-size: clamp(1.6rem, 5vw, 2.4rem); margin-bottom: 20px; }
@@ -2587,18 +2657,16 @@
        RESPONSIVE — PHONE (max 480px)
        ══════════════════════════════════════════ */
     @media (max-width: 480px) {
-      section { padding: 56px 0 72px; }
+      section { padding: 56px 0; }
       .wrap { padding: 0 24px; }
       .hero__content { padding: 36px 24px 0; }
-      .hero__content h1 { font-size: 1.6rem; line-height: 1.15; margin-bottom: 20px; }
-      .hero__sub { font-size: .95rem; line-height: 1.75; max-width: 340px; margin: 35px auto 28px; }
+      .hero__sub { font-size: .95rem; line-height: 1.75; max-width: 340px; margin: 16px auto 28px; }
       .vsl-wrapper { margin-bottom: 24px; }
       .vsl-cta { font-size: .95rem; padding: 17px 36px; margin-bottom: 16px; animation: ctaAlive 4s ease-in-out infinite; }
       .vsl-wrapper { margin-top: 47px; }
       .hero__press { margin-top: 32px; margin-bottom: 8px; }
-      .stats-group { margin-top: 79px; }
-      .hero__content h1 { font-size: 1.6rem; line-height: 1.15; }
-      .hero__sub { font-size: .95rem; }
+      .hero .stats-group { margin-top: 79px; }
+      #club-zahlen .stats-group { margin-top: 0; }
       .hero__image { max-width: 320px; }
       .vsl-play-btn { width: 56px; height: 56px; }
       .vsl-play-btn::after { border-width: 10px 0 10px 17px; }
@@ -2686,7 +2754,58 @@
     </div>
 
     <div class="hero__content">
-      <h1 class="anim d1">In 30 Minuten weißt du genau,<br><em>wie dein Kind die nächsten 60 Tage nutzen sollte.</em></h1>
+
+      <div class="hero-rotator anim d1" id="heroRotator">
+
+        <!-- Slide 1 — 3-Akt-Struktur -->
+        <div class="hero-slide is-active" data-slide="0">
+          <span class="eyebrow">200+ Teenager. Eine Methode. Echte Ergebnisse.</span>
+          <h1>Dein Kind hat Potenzial.<br>Algorithmen fressen es auf.<br><em>Wir holen es zurück.</em></h1>
+        </div>
+
+        <!-- Slide 2 — KI / Zukunft -->
+        <div class="hero-slide" data-slide="1">
+          <span class="eyebrow">Die Zukunft wartet nicht.</span>
+          <h1>In 10 Jahren wünschst du dir,<br>du hättest heute angefangen,<br><em>dein Kind mit KI zu fördern.</em></h1>
+        </div>
+
+        <!-- Slide 3 — Social Proof -->
+        <div class="hero-slide" data-slide="2">
+          <span class="eyebrow">Bewährt bei über 200 Familien.</span>
+          <h1>Über 200 Teenager haben<br>aufgehört zu scrollen —<br><em>und angefangen zu bauen.</em></h1>
+        </div>
+
+        <!-- Slide 4 — Konsument → Macher -->
+        <div class="hero-slide" data-slide="3">
+          <span class="eyebrow">Kostenloses 30-Minuten-Strategiegespräch</span>
+          <h1>In 30 Minuten weißt du genau,<br>wie dein Teenager wird: <em>vom passiven</em><br><em>Konsumenten zum aktiven Macher.</em></h1>
+        </div>
+
+        <!-- Slide 5 — Algorithmus vs. Plan -->
+        <div class="hero-slide" data-slide="4">
+          <span class="eyebrow">Potenzial darf nicht im Scrolling versinken.</span>
+          <h1>Algorithmen haben einen<br>Plan für dein Kind. <em>Wir haben</em><br><em>einen besseren.</em></h1>
+        </div>
+
+        <!-- Slide 6 — Doppelte Transformation -->
+        <div class="hero-slide" data-slide="5">
+          <span class="eyebrow">Zwei Roadmaps. Ein Gespräch.</span>
+          <h1>Dein Kind lernt, die digitale Welt<br>für sich zu nutzen. Du lernst,<br><em>dir keine Sorgen mehr zu machen.</em></h1>
+        </div>
+
+        <!-- Slide 7 — Brand-Statement + Klarheit -->
+        <div class="hero-slide" data-slide="6">
+          <span class="eyebrow">Potenzial darf nicht im Scrolling versinken.</span>
+          <h1>30 Minuten. Eine Roadmap.<br>Und dein Teenager weiß,<br><em>wohin die Reise geht.</em></h1>
+        </div>
+
+        <!-- Slide 8 — Problem + Auflösung -->
+        <div class="hero-slide" data-slide="7">
+          <span class="eyebrow">Für Eltern, die handeln statt zusehen.</span>
+          <h1>Dein Teenager scrollt.<br>Und du schaust zu.<br><em>In 30 Minuten ändern wir beides.</em></h1>
+        </div>
+
+      </div>
 
       <p class="hero__sub anim d2">Kostenloses Strategiegespräch für Eltern — mit <strong>individuellem 60-Tage-Actionplan</strong> für dein Kind. Wir analysieren, wo dein Teenager steht, erkennen verborgene Chancen und liefern dir eine konkrete Roadmap. Innerhalb von 5 Tagen bei dir.</p>
 
@@ -2718,54 +2837,20 @@
         <span class="hero__press-logo"><img src="Website Bilder/tagesspiegel.avif" alt="Der Tagesspiegel"></span>
       </div>
 
-      <div class="stats-group anim d5">
-        <div class="stats-group-inner">
-          <p style="font-family: var(--fb); font-style: italic; font-size: .9rem; color: var(--ink-soft); text-align: center; margin-bottom: 16px;">Unser Club in Zahlen</p>
-          <img src="Website Bilder/teens im club social proof element.avif" alt="Mitglieder-Collage — unsere Community" class="member-collage" style="max-width: 220px; margin: 0 auto -14px; position: relative; z-index: 1;">
-
-          <div class="stats-grid" style="margin-bottom: 0;">
-        <div class="stat-cell anim d1">
-          <div class="stat-icon">&#x1F466;&#x1F3FC;</div>
-          <div class="stat-num">300+</div>
-          <div class="stat-label">Mitglieder im Club</div>
-          <div class="stat-sub">Deutschsprachiger Raum</div>
-        </div>
-        <div class="stat-cell anim d2">
-          <div class="stat-icon">&#x1F469;&#x1F3FC;</div>
-          <div class="stat-num">15+</div>
-          <div class="stat-label">Mentoren im Team</div>
-          <div class="stat-sub">Alle unter 25 Jahren</div>
-        </div>
-        <div class="stat-cell anim d3">
-          <div class="stat-icon">&#x2705;</div>
-          <div class="stat-num">35+</div>
-          <div class="stat-label">Dokumentierte Transformationen</div>
-          <div class="stat-sub">Passiv &rarr; Aktiv Gestalter</div>
-        </div>
-        <div class="stat-cell anim d4">
-          <div class="stat-icon">&#x1F680;</div>
-          <div class="stat-num">2&times;</div>
-          <div class="stat-label">Workshops pro Woche</div>
-          <div class="stat-sub">Live &middot; Interaktiv &middot; Peer-geführt</div>
-        </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
   <!-- ════════════════════════════════════════════
        STRATEGIEGESPRÄCH — Was dich erwartet
        ════════════════════════════════════════════ -->
-  <section class="white" id="strategiegespraech" style="padding: 88px 0;">
+  <section class="cream" id="strategiegespraech">
     <div class="wrap">
       <span class="eyebrow anim" style="text-align: center; display: block;">Dein kostenloses Strategiegespräch</span>
       <h2 class="section-title anim d1">30 Minuten, die <em>Klarheit schaffen.</em></h2>
       <p class="section-sub anim d2">Ein persönliches Gespräch mit unserem Team — Elternteil zu Elternversteher. Kein Verkaufsgespräch, sondern eine echte Analyse der Situation deines Kindes.</p>
 
       <!-- 4 Benefit-Karten -->
-      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 48px;" class="anim d2 strat-grid">
+      <div class="anim d2 strat-grid">
 
         <div class="card" style="padding: 32px 28px; border-top: 3px solid var(--orange);">
           <span class="card-icon" style="font-size: 1.6rem;">&#128269;</span>
@@ -2793,8 +2878,12 @@
 
       </div>
 
+      <div style="text-align: center; margin-top: 40px;" class="anim d3">
+        <a href="https://cal.com/team/eltern-medien-akademie/erstgesprach-ema-website" class="vsl-cta">Jetzt kostenloses Strategiegespräch sichern &#128640;</a>
+      </div>
+
       <!-- Ablauf-Schritte -->
-      <div class="card anim d3" style="padding: 40px 36px; background: var(--bg-dark); color: #fff; border-radius: 20px;">
+      <div class="card anim d3" style="padding: 40px 36px; background: var(--bg-dark); color: #fff; border-radius: 20px; margin-top: 56px;">
         <h3 style="font-family: var(--fh); font-weight: 700; font-size: 1.15rem; color: #fff; margin-bottom: 24px; text-align: center;">So läuft es ab</h3>
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center;" class="strat-steps">
           <div>
@@ -2820,17 +2909,54 @@
         </div>
       </div>
 
-      <div style="text-align: center; margin-top: 40px;" class="anim d3">
-        <a href="https://cal.com/team/eltern-medien-akademie/erstgesprach-ema-website" class="vsl-cta">Jetzt kostenloses Strategiegespräch sichern &#128640;</a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       UNSER CLUB IN ZAHLEN
+       ════════════════════════════════════════════ -->
+  <section class="white" id="club-zahlen">
+    <div class="wrap">
+      <div class="stats-group anim" style="margin-top: 0;">
+        <div class="stats-group-inner">
+          <p style="font-family: var(--fb); font-style: italic; font-size: .9rem; color: var(--ink-soft); text-align: center; margin-bottom: 16px;">Unser Club in Zahlen</p>
+          <img src="Website Bilder/teens im club social proof element.avif" alt="Mitglieder-Collage — unsere Community" class="member-collage" style="max-width: 220px; margin: 0 auto -14px; position: relative; z-index: 1;">
+
+          <div class="stats-grid" style="margin-bottom: 0;">
+            <div class="stat-cell anim d1">
+              <div class="stat-icon">&#x1F466;&#x1F3FC;</div>
+              <div class="stat-num">300+</div>
+              <div class="stat-label">Mitglieder im Club</div>
+              <div class="stat-sub">Deutschsprachiger Raum</div>
+            </div>
+            <div class="stat-cell anim d2">
+              <div class="stat-icon">&#x1F469;&#x1F3FC;</div>
+              <div class="stat-num">15+</div>
+              <div class="stat-label">Mentoren im Team</div>
+              <div class="stat-sub">Alle unter 25 Jahren</div>
+            </div>
+            <div class="stat-cell anim d3">
+              <div class="stat-icon">&#x2705;</div>
+              <div class="stat-num">35+</div>
+              <div class="stat-label">Dokumentierte Transformationen</div>
+              <div class="stat-sub">Passiv &rarr; Aktiv Gestalter</div>
+            </div>
+            <div class="stat-cell anim d4">
+              <div class="stat-icon">&#x1F680;</div>
+              <div class="stat-num">2&times;</div>
+              <div class="stat-label">Workshops pro Woche</div>
+              <div class="stat-sub">Live &middot; Interaktiv &middot; Peer-geführt</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-
   <!-- ════════════════════════════════════════════
        SECTION 1b — VALUE PROPOSITION
        ════════════════════════════════════════════ -->
-  <section class="cream" id="value-prop" style="padding-top: 80px;">
+  <section class="cream" id="value-prop">
     <div class="wrap">
       <h2 class="section-title anim d1">Wir akzeptieren nicht, dass Potenzial <em>im Scrolling-Durchschnitt versinkt.</em></h2>
       <p class="section-sub anim d2" style="margin: 0 auto 48px;">Für Familien, die weiter denken. Von Diskussionen zu sichtbarem Fortschritt.</p>
@@ -2912,11 +3038,11 @@
   <!-- ════════════════════════════════════════════
        PRESSE-ARTIKEL
        ════════════════════════════════════════════ -->
-  <section class="cream" style="padding-top: 40px; padding-bottom: 40px;">
+  <section class="cream">
     <div class="wrap">
       <span class="eyebrow anim" style="text-align: center; display: block;">Bekannt aus</span>
       <h2 class="section-title anim d1">Aktuelle Presseberichte <em>über uns</em></h2>
-      <div class="press-articles anim d1">
+      <div class="press-articles anim d1" style="margin-top: 40px;">
         <img src="Website Bilder/welt cover adrian (make sure not to cut if off).jpeg" alt="WELT Artikel" style="max-height:none; object-fit:contain;">
         <img src="Website Bilder/adrian presse morgenpost (dont cut it off).jpeg" alt="Morgenpost Artikel" style="max-height:none; object-fit:contain;">
       </div>
@@ -3024,12 +3150,18 @@
       </div>
 
       <div class="cta-strip anim"><a href="https://cal.com/team/eltern-medien-akademie/erstgesprach-ema-website" class="vsl-cta">Jetzt kostenloses Strategiegespräch sichern &#128640;</a></div>
+    </div>
+  </section>
 
-      <!-- Die Gründergeschichte -->
-      <h2 class="section-title anim d1" style="margin-top: 56px;">Die <em>Gründergeschichte</em></h2>
+  <!-- ════════════════════════════════════════════
+       DIE GRÜNDERGESCHICHTE
+       ════════════════════════════════════════════ -->
+  <section class="white" id="gruendergeschichte">
+    <div class="wrap">
+      <h2 class="section-title anim">Die <em>Gründergeschichte</em></h2>
 
       <!-- Founder Card -->
-      <div class="card founder-card-grid anim d3" style="padding: 40px 44px; margin-bottom: 32px; display: grid; grid-template-columns: 220px 1fr; gap: 36px; align-items: start;">
+      <div class="card founder-card-grid anim d1" style="padding: 40px 44px; display: grid; grid-template-columns: 220px 1fr; gap: 36px; align-items: start;">
         <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
           <div style="width: 220px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.13);">
             <img src="Website Bilder/adrian schimmelpfennig profil bild intro bild (dont cut it off).jpeg" alt="Adrian Schimmelpfennig" style="width: 100%; height: auto; object-fit: contain;">
@@ -3049,12 +3181,18 @@
       </div>
 
       <div class="cta-strip anim"><a href="https://cal.com/team/eltern-medien-akademie/erstgesprach-ema-website" class="vsl-cta">Jetzt kostenloses Strategiegespräch sichern &#128640;</a></div>
+    </div>
+  </section>
 
-      <!-- Das Team hinter dem Programm -->
-      <h2 class="section-title anim d1">Das Team hinter <em>dem Programm</em></h2>
+  <!-- ════════════════════════════════════════════
+       DAS TEAM
+       ════════════════════════════════════════════ -->
+  <section class="cream" id="das-team">
+    <div class="wrap">
+      <h2 class="section-title anim">Das Team hinter <em>dem Programm</em></h2>
 
       <!-- Mentor Intro -->
-      <div class="card anim" style="margin-bottom: 20px;">
+      <div class="card anim d1" style="margin-bottom: 20px;">
         <h3 style="font-family: var(--fh); font-weight: 700; font-size: 1.2rem; color: var(--ink); margin-bottom: 8px;">&#x1F9D1;&#x200D;&#x1F3EB; Unsere Mentoren — keine Lehrer. Keine Coaches.</h3>
         <p style="font-family: var(--fb); font-size: 1rem; line-height: 1.75; color: var(--ink-soft);">Mehr als zehn Mentoren begleiten unsere Teilnehmer — freiberuflich oder fest angestellt. Sie sind 22 bis 28 Jahre alt und haben die digitale Welt nicht studiert, sondern gelebt. Im Hintergrund begleiten zusätzlich über zehn erfahrene Erwachsene — Pädagogen, Psychologen und Lehrende — das Programm fachlich.</p>
       </div>
@@ -3096,7 +3234,7 @@
   <!-- ════════════════════════════════════════════
        ONBOARDING — So einfach sind die nächsten Schritte
        ════════════════════════════════════════════ -->
-  <section class="white" style="padding: 88px 0 96px;">
+  <section class="white" style="padding: 100px 0;">
     <div class="wrap">
 
       <h2 class="section-title anim" style="font-size: clamp(1.8rem, 5vw, 2.8rem);">
@@ -3775,7 +3913,7 @@
   <!-- ════════════════════════════════════════════
        SECTION 17 — FINALER CTA
        ════════════════════════════════════════════ -->
-  <section class="dark final-cta" id="cta" style="padding: 80px 0;">
+  <section class="dark final-cta" id="cta">
     <div class="wrap" style="text-align: center;">
 
       <div class="anim d1" style="margin-bottom: 32px;">
@@ -4055,6 +4193,24 @@
         w.classList.remove('is-playing');
         w.classList.remove('is-paused');
       });
+    })();
+
+    /* ── Hero Headline Rotator ── */
+    (function() {
+      var rotator = document.getElementById('heroRotator');
+      if (!rotator) return;
+
+      var slides = rotator.querySelectorAll('.hero-slide');
+      var total = slides.length;
+      var current = 0;
+
+      function next() {
+        slides[current].classList.remove('is-active');
+        current = (current + 1) % total;
+        slides[current].classList.add('is-active');
+      }
+
+      setInterval(next, 6000);
     })();
   </script>
 </body>
