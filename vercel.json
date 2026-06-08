@@ -1,9 +1,24 @@
 {
   "outputDirectory": ".",
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/eltern-test", "destination": "/elterntest/", "permanent": false },
+    { "source": "/eltern-test/", "destination": "/elterntest/", "permanent": false },
+    { "source": "/elterntest", "destination": "/elterntest/", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/strategiegespräch", "destination": "/strategiegespraech.html" },
-    { "source": "/strategiegespr%C3%A4ch", "destination": "/strategiegespraech.html" }
+    { "source": "/strategiegespr%C3%A4ch", "destination": "/strategiegespraech.html" },
+
+    { "source": "/check/ergebnis", "destination": "/check-ergebnis.html" },
+    { "source": "/check/quiz-2", "destination": "/check-quiz2.html" },
+    { "source": "/check/generieren", "destination": "/check-generieren.html" },
+    { "source": "/check/plan", "destination": "/check-plan.html" },
+    { "source": "/check/upsell", "destination": "/check-upsell.html" },
+    { "source": "/check/danke", "destination": "/check-danke.html" },
+
+    { "source": "/elterntest/", "destination": "https://eltern-test.vercel.app/" },
+    { "source": "/elterntest/:path*", "destination": "https://eltern-test.vercel.app/:path*" }
   ],
   "headers": [
     {
@@ -11,6 +26,12 @@
       "headers": [
         { "key": "Content-Type", "value": "video/mp4" },
         { "key": "Accept-Ranges", "value": "bytes" }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" }
       ]
     }
   ]
