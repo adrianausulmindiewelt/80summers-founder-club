@@ -1,3 +1,13 @@
 # Backup files
 landingpage.html
 video-originals/
+
+# Funnel: Tests und SQL-Schema werden nicht ausgeliefert
+funnel/profile-scoring.test.js
+funnel/lib/supabase-schema.sql
+funnel/emails/
+
+# Dev-only
+.env
+.env.local
+README_FUNNEL.md

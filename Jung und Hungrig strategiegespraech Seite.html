@@ -161,7 +161,7 @@
        overflow:hidden = hard safety net. */
     .hero-rotator {
       position: relative;
-      height: 220px;
+      height: 260px;
       overflow: hidden;
     }
 
@@ -228,7 +228,7 @@
     @media (max-width: 480px) {
       .hero-rotator { height: 150px; }
       .hero-slide .eyebrow { font-size: .6rem; letter-spacing: .1em; padding-bottom: 6px; }
-      .hero-slide h1 { font-size: 5.2vw; line-height: 1.24; letter-spacing: -.035em; }
+      .hero-slide h1 { font-size: 5.6vw; line-height: 1.22; letter-spacing: -.035em; }
     }
 
     .vsl-wrapper.visible {
@@ -668,6 +668,7 @@
       background: #fff;
       box-shadow: 0 0 4px rgba(0,0,0,.3);
       cursor: pointer;
+      margin-top: -5px;
     }
 
     .vsl-volume::-webkit-slider-runnable-track {
@@ -2778,7 +2779,7 @@
         <!-- Slide 4 — Konsument → Macher -->
         <div class="hero-slide" data-slide="3">
           <span class="eyebrow">Kostenloses 30-Minuten-Strategiegespräch</span>
-          <h1>In 30 Minuten weißt du genau,<br>wie dein Teenager wird: <em>vom passiven</em><br><em>Konsumenten zum aktiven Macher.</em></h1>
+          <h1>Vom passiven Konsumenten<br>zum aktiven Macher.<br><em>Wir zeigen dir, wie.</em></h1>
         </div>
 
         <!-- Slide 5 — Algorithmus vs. Plan -->
@@ -2807,7 +2808,7 @@
 
       </div>
 
-      <p class="hero__sub anim d2">Kostenloses Strategiegespräch für Eltern — mit <strong>individuellem 60-Tage-Actionplan</strong> für dein Kind. Wir analysieren, wo dein Teenager steht, erkennen verborgene Chancen und liefern dir eine konkrete Roadmap. Innerhalb von 5 Tagen bei dir.</p>
+      <p class="hero__sub anim d2">In 30 Minuten analysieren wir die größten Baustellen und Chancen für dein Kind — und liefern dir <strong>zwei individuelle Roadmaps:</strong> einen gamifizierten Aktionsplan, den dein Teenager wirklich umsetzt. Und einen klaren Plan für dich — für mehr Freiraum, weniger Konflikte und ein besseres Verhältnis. Kostenlos. Bewährt bei über 200 Familien.</p>
 
       <div class="vsl-wrapper anim d3" id="vslPlayer">
         <div class="vsl-inner">
@@ -4016,6 +4017,14 @@
       // Pre-load video so it's ready
       video.load();
 
+      // Recover from audio renderer errors — just reload, keep sound on
+      video.addEventListener('error', function() {
+        var err = video.error;
+        if (err && err.message && err.message.indexOf('AUDIO_RENDERER') !== -1) {
+          video.load();
+        }
+      });
+
       function playVideo() {
         // Stop thumbnail to free resources
         if (tnVideo) { try { tnVideo.pause(); } catch(e){} }
@@ -4123,6 +4132,13 @@
       if (!v) return;
       var btn = w.querySelector('.vsl-play-btn');
 
+      v.addEventListener('error', function() {
+        var err = v.error;
+        if (err && err.message && err.message.indexOf('AUDIO_RENDERER') !== -1) {
+          v.load();
+        }
+      });
+
       function play() {
         v.play().then(function() {
           w.classList.add('is-playing');
@@ -4162,6 +4178,13 @@
       var v = w.querySelector('video');
       if (!v) return;
       var btn = w.querySelector('.vsl-play-btn');
+
+      v.addEventListener('error', function() {
+        var err = v.error;
+        if (err && err.message && err.message.indexOf('AUDIO_RENDERER') !== -1) {
+          v.load();
+        }
+      });
 
       function play() {
         v.play().then(function() {

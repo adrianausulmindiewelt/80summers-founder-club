@@ -1,2 +1,17 @@
 .DS_Store
 .cursor/
+
+# — ergänzt: Secrets, Dependencies, Deploy-Metadaten, Schwergewichte —
+.env
+.env.local
+*.local
+node_modules/
+.vercel/
+.next/
+video-originals/
+*.mp4
+*.mov
+
+# Secret: Figma-Token etc.
+.mcp.json
+.claude/

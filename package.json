@@ -1,0 +1,14 @@
+{
+  "name": "jung-und-hungrig-funnel",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static landing pages + Vercel Serverless Functions für den Digital-Reality-Check Funnel.",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "test:scoring": "node funnel/profile-scoring.test.js",
+    "preview": "open index.html"
+  },
+  "dependencies": {}
+}

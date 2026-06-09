@@ -3,8 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Next Generation Founders Club — Selektives Förderprogramm für Teenager</title>
-  <meta name="description" content="Ein selektives Förderprogramm für ambitionierte 15–18-Jährige aus leistungsorientierten Familien – mit echten Projekten, persönlichen Mentoren und einer klaren Roadmap.">
+  <title>Jung und Hungrig Gründer Club — Selektives Förderprogramm für ambitionierte 15–18-Jährige</title>
+  <meta name="description" content="Jung und Hungrig Gründer Club — das selektive Förderprogramm für ambitionierte 15–18-Jährige aus leistungsorientierten Familien. Echte Projekte, persönliche Mentoren, klare Roadmap.">
+  <link rel="canonical" href="https://jung-und-hungrig.com/">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jung-und-hungrig.com/">
+  <meta property="og:title" content="Jung und Hungrig Gründer Club — Selektives Förderprogramm für ambitionierte 15–18-Jährige">
+  <meta property="og:description" content="Echte Projekte. Persönliche Mentoren. Klare Roadmap. Für Teenager aus leistungsorientierten Familien, die mehr wollen als einen guten Abschluss.">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="Jung und Hungrig Gründer Club">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://jung-und-hungrig.com/">
+  <meta name="twitter:title" content="Jung und Hungrig Gründer Club — Selektives Förderprogramm für ambitionierte 15–18-Jährige">
+  <meta name="twitter:description" content="Echte Projekte. Persönliche Mentoren. Klare Roadmap. Für Teenager aus leistungsorientierten Familien, die mehr wollen als einen guten Abschluss.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@200;400;600;700;800;900&display=swap" rel="stylesheet">
@@ -604,6 +620,7 @@
       background: #fff;
       box-shadow: 0 0 4px rgba(0,0,0,.3);
       cursor: pointer;
+      margin-top: -5px;
     }
 
     .vsl-volume::-webkit-slider-runnable-track {
@@ -3824,6 +3841,14 @@
       // Pre-load video so it's ready
       video.load();
 
+      // Recover from audio renderer errors — just reload, keep sound on
+      video.addEventListener('error', function() {
+        var err = video.error;
+        if (err && err.message && err.message.indexOf('AUDIO_RENDERER') !== -1) {
+          video.load();
+        }
+      });
+
       function playVideo() {
         // Stop thumbnail to free resources
         if (tnVideo) { try { tnVideo.pause(); } catch(e){} }
@@ -3934,6 +3959,14 @@
       var muteBtn = w.querySelector('.vsl-mute-btn');
       var volumeSlider = w.querySelector('.vsl-volume');
       var fullBtn = w.querySelector('.vsl-full-btn');
+
+      // Recover from audio renderer errors — just reload, keep sound on
+      v.addEventListener('error', function() {
+        var err = v.error;
+        if (err && err.message && err.message.indexOf('AUDIO_RENDERER') !== -1) {
+          v.load();
+        }
+      });
 
       function play() {
         var p = v.play();
