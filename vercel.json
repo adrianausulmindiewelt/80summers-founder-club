@@ -7,8 +7,8 @@
     { "source": "/elterntest", "destination": "/elterntest/", "permanent": false }
   ],
   "rewrites": [
-    { "source": "/events", "destination": "https://succeed-feat-sell-specializing.trycloudflare.com/events" },
-    { "source": "/events/:path*", "destination": "https://succeed-feat-sell-specializing.trycloudflare.com/events/:path*" },
+    { "source": "/events", "destination": "https://umlauf-events.vercel.app/events" },
+    { "source": "/events/:path*", "destination": "https://umlauf-events.vercel.app/events/:path*" },
     { "source": "/strategiegespräch", "destination": "/strategiegespraech.html" },
     { "source": "/strategiegespr%C3%A4ch", "destination": "/strategiegespraech.html" },
 
